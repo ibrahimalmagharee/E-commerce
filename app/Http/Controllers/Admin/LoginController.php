@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Admin\LoginRequest;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -21,5 +21,18 @@ class LoginController extends Controller
         }
 
         return redirect() -> back()->with(['error' => 'هناك خطأ بالبيانات يرجى التحقق']);
+    }
+
+    public function logout()
+    {
+        $guard = $this->getGuard();
+        $guard->logout();
+
+        return redirect() ->route('admin.login.page');
+    }
+
+    private function getGuard()
+    {
+        return auth('admin');
     }
 }
