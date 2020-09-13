@@ -24,11 +24,21 @@ class ProfileController extends Controller
             }
             unset($request['id'], $request['password_confirmation']);
 
-            $admin -> update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password,
-            ]);
+            if ($request->password == null){
+                $admin -> update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                ]);
+
+            }else{
+                $admin -> update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $request->password,
+                ]);
+
+            }
+
 
             return redirect() -> back() -> with(['success' => __('translate-admin/editProfile.success')]);
 

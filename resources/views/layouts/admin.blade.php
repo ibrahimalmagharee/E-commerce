@@ -51,7 +51,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/style-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/category.css')}}">
     <!-- END Custom CSS-->
     <link rel="stylesheet" href="{{asset('assets/admin/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/dataTables.bootstrap4.min.css')}}">
@@ -68,7 +69,7 @@
     </style>
 </head>
 
-<body class="vertical-layout vertical-menu 2-columns chat-application menu-expanded fixed-navbar"
+<body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-col="2-columns">
 <!-- fixed-top-->
 

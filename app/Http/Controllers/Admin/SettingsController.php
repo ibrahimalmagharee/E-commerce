@@ -16,10 +16,10 @@ class SettingsController extends Controller
             $shipping_method = Setting::where('key', 'free_shipping_label')->first();
 
         elseif($type === 'inner')
-            $shipping_method = Setting::where('key', 'local_label')->first();
+            $shipping_method = Setting::where('key', 'local_shipping_label')->first();
 
         elseif($type === 'outer')
-            $shipping_method = Setting::where('key', 'outer_label')->first();
+            $shipping_method = Setting::where('key', 'outer_shipping_label')->first();
 
         else
             $shipping_method = Setting::where('key', 'free_shipping_label')->first();
@@ -36,7 +36,7 @@ class SettingsController extends Controller
             $shipping_method = Setting::find($id);
             DB::beginTransaction();
             $shipping_method ->update(['plain_value' => $request->plain_value]);
-            $shipping_method ->translateOrNew() -> value = $request->value;
+            $shipping_method ->value = $request->value;
             $shipping_method -> save();
             DB::commit();
 
