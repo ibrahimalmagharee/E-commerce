@@ -20,12 +20,12 @@
 
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.main-category')}} </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.categories')}} </span>
                     <span
-                        class="badge badge badge-danger badge-pill float-right mr-2"></span>
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> </a>
+                    <li class="active"><a class="menu-item" href="{{route('index.mainCategories')}}" data-i18n="nav.dash.ecommerce">{{__('translate-admin/sidebar.show-category')}}</a>
                     </li>
                 </ul>
             </li>

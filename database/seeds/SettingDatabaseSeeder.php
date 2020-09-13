@@ -27,8 +27,8 @@ class SettingDatabaseSeeder extends Seeder
             'translatable' => [
                 'store_name' => 'Happy Store',
                 'free_shipping_label' => 'Free Shipping',
-                'local_label' => 'Local Shipping',
-                'outer_label' => 'Outer Shipping',
+                'local_shipping_label' => 'Local Shipping',
+                'outer_shipping_label' => 'Outer Shipping',
             ],
         ]);
     }
