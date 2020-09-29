@@ -5,12 +5,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">{{__('translate-admin/category.sub_category')}}</h3>
+                    <h3 class="content-header-title"> {{__('translate-admin/category.main_category')}} </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/category.main')}}</a></li>
-                                <li class="breadcrumb-item active"> {{__('translate-admin/category.sub_category')}}</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/category.main')}} </a></li>
+                                <li class="breadcrumb-item active"> {{__('translate-admin/category.main_category')}}</li>
                             </ol>
                         </div>
                     </div>
@@ -23,18 +23,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                        <label for="type" id="chooseTypeCategory" class="card-title"><strong>{{__('translate-admin/category.choose_type_category')}}</strong> </label>
                                     <a class="btn btn-outline-success float-left" href="javascript:void(0)"
-                                       id="addNewMainCategory">  {{__('translate-admin/category.add_mainCategory')}}</a>
-
-                                    <a class="btn btn-outline-success float-left" href="javascript:void(0)"
-                                       id="addNewSubCategory">{{__('translate-admin/category.add_subCategory')}}</a>
-
-
-                                    <div class="card-body" style="margin-top: 8em">
-                                            <label><strong>{{__('translate-admin/category.show_category')}} </strong></label>
-                                            <a href="{{route('index.mainCategories')}}" class="btn btn-primary" id="viewCategory"> {{__('translate-admin/category.mainCategory')}}</a>
-                                    </div>
+                                       id="addNewCategory"> اضافة قسم جديد</a>
 
 
                                     <a class="heading-elements-toggle"><i
@@ -79,12 +69,12 @@
 
                                 <div class="card-content collapse show" id="viewMainCategory">
                                     <div class="card-body card-dashboard">
-                                        <table class="table subCategory-table">
+                                        <table class="table category-table">
                                             <thead>
                                             <tr>
                                                 <th> {{ __('translate-admin/category.name')}}</th>
+                                                <th> {{ __('translate-admin/category.main_category')}}</th>
                                                 <th>{{ __('translate-admin/category.slug')}}</th>
-                                                <th>{{ __('translate-admin/category.category')}}</th>
                                                 <th>{{ __('translate-admin/category.status')}}</th>
                                                 <th>{{ __('translate-admin/category.photo')}}</th>
                                                 <th>{{ __('translate-admin/category.process')}}</th>
@@ -105,11 +95,11 @@
 
     <!-- Begin Form Add Main Category -->
 
-    <div class="modal fade modal-open" id="mainCategory-modal" aria-hidden="true">
+    <div class="modal fade modal-open" id="category-modal" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content width-800">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalheader">
+                    <h4 class="modal-title form-section" id="modalheader">
                         <i class="ft-home"></i> {{ __('translate-admin/category.data_mainCategory')}}
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -119,10 +109,29 @@
                 <div class="modal-body">
                     <div class="card-content collapse show">
                         <div class="card-body">
-                            <form class="form" id="mainCategoryForm" enctype="multipart/form-data">
+                            <form class="form" id="categoryForm" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group mt-1">
+                                                <input type="radio" name="type" value="1"
+                                                       class="switchery" data-color="success" checked/>
+                                                <label class="card-title ml-1">قسم رئيسي</label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group mt-1">
+                                                <input type="radio" name="type" value="2"
+                                                       class="switchery" data-color="success"/>
+                                                <label class="card-title ml-1">قسم فرعي</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     <label> {{ __('translate-admin/category.photo')}} </label>
                                     <label id="projectinput7" class="file center-block">
                                         <input type="file" id="file" name="photo">
@@ -131,13 +140,11 @@
                                     <span id="photo_error" class="text-danger"> </span>
                                 </div>
 
-                                <input type="hidden" name="type" id="type" value="main">
-
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="projectinput1">{{ __('translate-admin/category.name')}} </label>
+                                                <label for="projectinput1"> {{ __('translate-admin/category.name')}} </label>
                                                 <input type="text" id="name" class="form-control" placeholder=""
                                                        name="name">
                                                 <span id="name_error" class="text-danger"></span>
@@ -155,9 +162,33 @@
 
                                     </div>
 
+                                    <div class="row hidden" id="categories_list">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="projectinput2"> {{ __('translate-admin/category.choose category')}} </label>
+                                                <select name="parent_id" id="parent_id" class="select2 form-control width-700">
+                                                    <optgroup label="{{ __('translate-admin/category.choose_main_category')}}">
+                                                        @if($categories && $categories -> count() > 0)
+
+                                                            @foreach($categories as $main_category)
+                                                                <option value="{{$main_category->id}}">{{$main_category->name}}</option>
+
+                                                                @foreach ($main_category->childrenCategories as $index => $childCategory)
+                                                                    @include('admin.categories.child_category', ['child_category' => $childCategory])
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+
+                                                    </optgroup>
+                                                </select>
+                                                <span id="parent_id_error" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group mt-1">
                                                 <label for="switcheryColor4" class="card-title ml-1">{{ __('translate-admin/category.status')}}</label>
                                                 <input type="checkbox" name="is_active" value="1" id="switcheryColor4"
@@ -165,6 +196,8 @@
 
                                             </div>
                                         </div>
+
+
 
                                     </div>
 
@@ -176,7 +209,7 @@
                                     <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
                                             class="ft-x"></i> {{ __('translate-admin/category.retreat')}}
                                     </button>
-                                    <button class="btn btn-primary" id="addMainCategory"> {{ __('translate-admin/category.save')}}</button>
+                                    <button class="btn btn-primary" id="addCategory"> {{ __('translate-admin/category.save')}}</button>
                                 </div>
 
                             </form>
@@ -189,109 +222,7 @@
 
     <!-- End Form Add Main Category -->
 
-    <!-- Begin Form Add Sub Category -->
 
-    <div class="modal fade modal-open" id="subCategory-modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalheader">
-                        <i class="ft-home"></i> {{ __('translate-admin/category.data_subCategory')}}
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-content collapse show">
-                        <div class="card-body">
-                            <form class="form" id="subCategoryForm" enctype="multipart/form-data">
-                                @csrf
-
-                                <div class="form-group">
-                                    <label> {{ __('translate-admin/category.photo')}} </label>
-                                    <label id="projectinput7" class="file center-block">
-                                        <input type="file" id="file" name="photo">
-                                        <span class="file-custom"></span>
-                                    </label>
-                                    <span id="photo_error" class="text-danger"> </span>
-                                </div>
-
-                                <input type="hidden" name="type" id="type" value="sub">
-
-                                <div class="form-body">
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="projectinput2"> {{ __('translate-admin/category.choose category')}} </label>
-                                                <select name="parent_id" id="parent_id" class="select2 form-control width-200">
-                                                    <optgroup label="{{ __('translate-admin/category.choose_main_category')}}">
-                                                        @if($main_categories && $main_categories -> count() > 0)
-                                                            @foreach($main_categories as $main_category)
-                                                                <option value="{{$main_category->id}}">{{$main_category->name}}</option>
-                                                                @endforeach
-                                                            @endif
-
-                                                    </optgroup>
-                                                </select>
-                                                <span id="parent_id_error" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="projectinput1">{{ __('translate-admin/category.name')}} </label>
-                                                <input type="text" id="name" class="form-control" placeholder=""
-                                                       name="name">
-                                                <span id="name_error" class="text-danger"></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="projectinput1"> {{ __('translate-admin/category.slug')}} </label>
-                                                <input type="text" id="slug" class="form-control" placeholder=""
-                                                       name="slug">
-                                                <span id="slug_error" class="text-danger"></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-1">
-                                                <label for="switcheryColor4" class="card-title ml-1">{{ __('translate-admin/category.status')}}</label>
-                                                <input type="checkbox" name="is_active" value="1" id="switcheryColor4"
-                                                       class="switchery active" data-color="success" checked/>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-actions">
-                                    <input type="hidden" name="action" id="action" value="Add">
-                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
-                                            class="ft-x"></i> {{ __('translate-admin/category.retreat')}}
-                                    </button>
-                                    <button class="btn btn-primary" id="addSubCategory"> {{ __('translate-admin/category.save')}}</button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--  End Form Add Sub Category -->
 
     <!-- // Basic form layout section end -->
 
@@ -335,6 +266,16 @@
 
         $(document).ready(function () {
 
+            $('input:radio[name="type"]').change(
+                function () {
+                    if (this.checked && this.value == 2){
+                        $('#categories_list').removeClass('hidden');
+                    }else{
+                        $('#categories_list').addClass('hidden');
+                    }
+                });
+
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -342,14 +283,14 @@
             });
 
             //Show Table
-            var subCategoryTable = $('.subCategory-table').DataTable({
+            var categoryTable = $('.category-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{route("index.subCategories")}}",
+                ajax: "{{route("index.categories")}}",
                 columns: [
                     {data: 'name', name: 'name'},
-                    {data: 'slug', name: 'slug'},
                     {data: 'parent_id', name: 'parent_id'},
+                    {data: 'slug', name: 'slug'},
                     {data: 'is_active', name: 'is_active'},
                     {data: 'photo', name: 'photo'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -357,24 +298,18 @@
             });
 
 
-
             //Show Form
-            $('#addNewMainCategory').click(function () {
-                $('#mainCategoryForm').trigger('reset');
-                $('#mainCategory-modal').modal('show');
+            $('#addNewCategory').click(function () {
+                $('#categoryForm').trigger('reset');
+                $('#category-modal').modal('show');
 
             });
 
-            $('#addNewSubCategory').click(function () {
-                $('#subCategoryForm').trigger('reset');
-                $('#subCategory-modal').modal('show');
-
-            });
 
             //Add Or Update
-            $(document).on('click', '#addMainCategory', function (e) {
+            $(document).on('click', '#addCategory', function (e) {
                 e.preventDefault();
-                var formData = new FormData($('#mainCategoryForm')[0]);
+                var formData = new FormData($('#categoryForm')[0]);
                 $('#photo_error').text('');
                 $('#name_error').text('');
                 $('#slug_error').text('');
@@ -391,60 +326,14 @@
                     success: function (data) {
                         if (data.status == true) {
                             $('#success_msg_add').show();
-                            $('#mainCategoryForm').trigger('reset');
-                            $('#mainCategory-modal').modal('hide');
-                            subCategoryTable.draw();
+                            $('#categoryForm').trigger('reset');
+                            $('#category-modal').modal('hide');
+                            categoryTable.draw();
                         } else {
                             $('#error_msg_add').show();
                             $('#mainCategoryForm').trigger('reset');
                             $('#mainCategory-modal').modal('hide');
-                            subCategoryTable.draw();
-                        }
-
-                    },
-
-                    error: function (reject) {
-                        console.log('Error: not added', reject);
-                        var response = $.parseJSON(reject.responseText);
-                        $.each(response.errors, function (key, val) {
-                            $("#" + key + "_error").text(val[0]);
-
-
-                        });
-
-                    }
-
-                });
-            });
-
-            $(document).on('click', '#addSubCategory', function (e) {
-                e.preventDefault();
-                var formData = new FormData($('#subCategoryForm')[0]);
-                $('#photo_error').text('');
-                $('#name_error').text('');
-                $('#parent_id_error').text('');
-                $('#slug_error').text('');
-                $.ajax({
-                    type: 'post',
-                    url: "{{ route('save.category') }}",
-                    enctype: 'multipart/form-data',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    dataType: 'json',
-
-                    success: function (data) {
-                        if (data.status == true) {
-                            $('#success_msg_add').show();
-                            $('#subCategoryForm').trigger('reset');
-                            $('#subCategory-modal').modal('hide');
-                            subCategoryTable.draw();
-                        } else {
-                            $('#error_msg_add').show();
-                            $('#subCategoryForm').trigger('reset');
-                            $('#subCategory-modal').modal('hide');
-                            subCategoryTable.draw();
+                            categoryTable.draw();
                         }
 
                     },
@@ -480,11 +369,11 @@
                             if (data.status == true) {
                                 $('#delete-modal').modal('hide');
                                 $('#success_msg_delete').show();
-                                subCategoryTable.draw();
+                                categoryTable.draw();
                             } else {
                                 $('#delete-modal').modal('hide');
                                 $('#error_msg_delete').show();
-                                subCategoryTable.draw();
+                                categoryTable.draw();
                             }
 
                         }

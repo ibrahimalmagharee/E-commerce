@@ -38,17 +38,38 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         ######################### End Profile Routes #############################################################
 
-        ################## Main Category Routes #############################################################
+        ##################  Category Routes #############################################################
 
         Route::group(['prefix' => 'category'], function (){
-            Route::get('/show-main-category', 'CategoriesController@indexMain')->name('index.mainCategories');
-            Route::get('/show-sub-category', 'CategoriesController@indexSub')->name('index.subCategories');
+            Route::get('/show-category', 'CategoriesController@index')->name('index.categories');
             Route::post('save', 'CategoriesController@store')->name('save.category');
             Route::get('edit/{id}', 'CategoriesController@edit')->name('edit.category');
             Route::post('update/{id}', 'CategoriesController@update')->name('update.category');
             Route::get('delete/{id}', 'CategoriesController@destroy')->name('delete.category');
         });
-        ######################### End Main Category Routes #############################################################
+        ######################### End Category Routes #############################################################
+
+        ################## Brand Routes #############################################################
+
+        Route::group(['prefix' => 'brand'], function (){
+            Route::get('/show-brand', 'BrandController@index')->name('index.brand');
+            Route::post('save-brand', 'BrandController@store')->name('save.brand');
+            Route::get('edit-brand/{id}', 'BrandController@edit')->name('edit.brand');
+            Route::post('update-brand/{id}', 'BrandController@update')->name('update.brand');
+            Route::get('delete-brand/{id}', 'BrandController@destroy')->name('delete.brand');
+        });
+        ######################### End Brand Routes #############################################################
+
+        ################## Tag Routes #############################################################
+
+        Route::group(['prefix' => 'tag'], function (){
+            Route::get('/show-tag', 'TagController@index')->name('index.tag');
+            Route::post('save-tag', 'TagController@store')->name('save.tag');
+            Route::get('edit-tag/{id}', 'TagController@edit')->name('edit.tag');
+            Route::post('update-tag/{id}', 'TagController@update')->name('update.tag');
+            Route::get('delete-tag/{id}', 'TagController@destroy')->name('delete.tag');
+        });
+        ######################### End Tag Routes #############################################################
 
     });
 
