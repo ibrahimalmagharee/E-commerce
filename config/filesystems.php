@@ -57,7 +57,21 @@ return [
 
         'categories' => [
             'driver' => 'local',
-            'root' =>  'assets/images/categories/',
+            'root' =>  public_path('assets/images/categories/'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+
+        'brands' => [
+            'driver' => 'local',
+            'root' =>  public_path('assets/images/brands/'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+
+        'products' => [
+            'driver' => 'local',
+            'root' =>  public_path('assets/images/products/'),
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],

@@ -12,7 +12,7 @@
                         class="badge badge badge-info badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> </a>
+                    <li class="{{'index.language' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> </a>
                     </li>
 
                 </ul>
@@ -25,22 +25,50 @@
                         class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('index.mainCategories')}}" data-i18n="nav.dash.ecommerce">{{__('translate-admin/sidebar.show-category')}}</a>
+                    <li class="{{'index.categories' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.categories')}}" data-i18n="nav.dash.ecommerce">{{__('translate-admin/sidebar.show-category')}}</a>
                     </li>
                 </ul>
             </li>
 
             <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.vendor')}}  </span>
+                    <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.brands')}} </span>
                     <span
-                        class="badge badge badge-success badge-pill float-right mr-2"></span>
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Brand::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce">  </a>
+                    <li class="{{'index.brand' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.brand')}}" data-i18n="nav.dash.ecommerce">{{__('translate-admin/sidebar.show-brands')}}</a>
                     </li>
 
                 </ul>
             </li>
+
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.tags')}} </span>
+                    <span
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Tag::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{'index.tag' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.tag')}}" data-i18n="nav.dash.ecommerce">{{__('translate-admin/sidebar.show-tags')}} </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">المنتجات </span>
+                    <span
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Product::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{'index.product' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.product')}}" data-i18n="nav.dash.ecommerce">عرض الكل </a>
+                    </li>
+
+                    <li class="{{'create.product' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('create.product')}}" data-i18n="nav.dash.ecommerce">اضافة منتج </a>
+                    </li>
+
+                </ul>
+            </li>
+
 
 
 

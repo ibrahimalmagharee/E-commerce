@@ -21,10 +21,11 @@ class Category extends Model
         'is_active' => 'boolean',
     ];
 
-    public function scopeParent($query)
+    public function scopeActive($query)
     {
-        return  $query -> whereNull('parent_id');
+        return $query->where('is_active', 1);
     }
+
 
     public function scopeChild($query)
     {
@@ -34,13 +35,28 @@ class Category extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('assets/' . $val) : "";
+        return ($val !== null) ? asset('assets/images/categories/' . $val) : "";
 
     }
 
     public function _parent()
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function scopeParent($query)
+    {
+        return  $query -> whereNull('parent_id');
+    }
+
+    public function childrenCategories()
+    {
+        return $this->hasMany(self::class, 'parent_id')->with('categories');
     }
 
 }

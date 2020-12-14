@@ -20,6 +20,8 @@
           rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/wizard.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/wizard.css')}}">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/vendors.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
@@ -49,9 +51,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/file-uploaders/dropzone.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/file-uploaders/dropzone.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/category.css')}}">
     <!-- END Custom CSS-->
     <link rel="stylesheet" href="{{asset('assets/admin/css/jquery.dataTables.min.css')}}">
@@ -86,21 +90,27 @@
 
 
 
+
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/js/jquery.validate.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"
         type="text/javascript"></script>
 
 
+
 <script src="{{asset('assets/admin/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
         type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/extensions/dropzone.min.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/switchery.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/forms/switch.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
@@ -115,6 +125,10 @@
 
 <script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
+
+
+<script src="{{asset('assets/admin/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}" type="text/javascript"></script>
+
 <!-- END PAGE VENDOR JS-->
 
 <!-- BEGIN MODERN JS-->
@@ -125,11 +139,15 @@
 
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
+
 
 
 <script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/extensions/date-time-dropper.js')}}" type="text/javascript"></script>
+
 <!-- END PAGE LEVEL JS-->
 
 <script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>
