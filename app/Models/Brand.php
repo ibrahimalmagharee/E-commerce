@@ -21,6 +21,11 @@ class Brand extends Model
         'is_active' => 'boolean',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
     public function getLogoAttribute($val)
     {
         return ($val !== null) ? asset('assets/images/brands/' . $val) : "";

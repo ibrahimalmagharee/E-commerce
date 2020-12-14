@@ -27,11 +27,11 @@ class CategoryRequest extends FormRequest
     {
 
         return [
-            'name' => 'required',
+            'name' => 'required|max:100',
             'photo' => 'required_without:id|mimes:jpg,jpeg,png',
             'type' => 'required|in:'. CategoryType::mainCategory . ',' . CategoryType::subCategory,
             //'parent_id' => 'required|exist:categories,id',
-            'slug' => 'required|unique:categories,slug,' . $this->id
+            'slug' => 'required|max:100|unique:categories,slug,' . $this->id
         ];
 
 

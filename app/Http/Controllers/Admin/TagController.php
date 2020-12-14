@@ -24,7 +24,7 @@ class TagController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $url = route('edit.tag', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" id="editBrand" class="btn btn-outline-primary box-shadow-3 mb-1 editTag" style="width: 80px"><i class="la la-edit"></i>'.__('translate-admin/tag.eit').'</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" id="editBrand" class="btn btn-outline-primary box-shadow-3 mb-1 editTag" style="width: 80px"><i class="la la-edit"></i>'.__('translate-admin/tag.edit').'</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteTag" style="width: 80px"><i class="la la-remove"></i> '.__('translate-admin/tag.delete').'</a></td>';
                     return $btn;

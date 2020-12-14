@@ -51,14 +51,19 @@
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                 <span class="mr-1">
                   <span
-                      class="user-name text-bold-700"> {{ LaravelLocalization::getCurrentLocaleName() }}</span>
+                      class="user-name text-bold-700"> <i class="flag-icon flag-icon-gb"></i></span>
                 </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    {{ $properties['native'] }}
+                                  <i class="flag-icon @if($localeCode == 'en') flag-icon-us @elseif($localeCode =='ar') flag-icon-ps @endif"></i>
+                                    @if($localeCode == 'en')
+                                        English
+                                        @elseif($localeCode == 'ar')
+                                        Arabic
+                                    @endif
                                 </a>
                                 @if(!$loop ->last)
                                     <div class="dropdown-divider"></div>

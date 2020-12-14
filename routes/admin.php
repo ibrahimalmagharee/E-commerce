@@ -71,6 +71,36 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         });
         ######################### End Tag Routes #############################################################
 
+
+        ################## Products Routes #############################################################
+
+        Route::group(['prefix' => 'product'], function (){
+            Route::get('/show-products', 'ProductController@index')->name('index.product');
+            Route::get('create-product', 'ProductController@create')->name('create.product');
+            Route::post('save-product-general', 'ProductController@store')->name('save.product.general');
+            Route::get('delete-product/{id}', 'ProductController@destroy')->name('delete.product');
+
+            ##################### Product Images ######################################
+            Route::get('add-product-images/{product_id}', 'ProductController@addProductImages')->name('add.product.images');
+            Route::post('save-images-inFolder', 'ProductController@saveImagesOfProductInFolder')->name('save.images.inFolder');
+            Route::post('save-images-inDB', 'ProductController@saveImagesOfProductInDB')->name('save.images.inDB');
+            Route::get('delete-image/{id}', 'ProductController@deleteImagesOfProduct')->name('delete.image');
+            Route::post('remove-image', 'ProductController@removeImagesOfProductFromFolder')->name('delete.image.fromFolder');
+            ##################### Product Images ######################################
+
+
+            ##################### Product Edit ######################################
+            Route::get('edit-product-general/{product_id}', 'ProductController@editProductGeneral')->name('edit.product.general');
+            Route::post('update-product-general/{product_id}', 'ProductController@updateProductGeneral')->name('update.product.general');
+            Route::get('edit-product-price/{product_id}', 'ProductController@editProductPrice')->name('edit.product.price');
+            Route::post('update-product-price/{product_id}', 'ProductController@updateProductPrice')->name('update.product.price');
+            Route::get('edit-product-store/{product_id}', 'ProductController@editProductStore')->name('edit.product.store');
+            Route::post('update-product-store/{product_id}', 'ProductController@updateProductStore')->name('update.product.store');
+            Route::get('edit-product-activation/{product_id}', 'ProductController@editProductActivation')->name('edit.product.activation');
+            Route::post('update-product-activation/{product_id}', 'ProductController@updateProductActivation')->name('update.product.activation');
+            ##################### Product Edit ######################################
+        });
+        ######################### End Products Routes ###########################################################
     });
 
     Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin', 'prefix' => 'admin'], function(){

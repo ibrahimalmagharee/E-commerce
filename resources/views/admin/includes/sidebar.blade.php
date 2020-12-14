@@ -54,6 +54,21 @@
                 </ul>
             </li>
 
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">المنتجات </span>
+                    <span
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Product::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{'index.product' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.product')}}" data-i18n="nav.dash.ecommerce">عرض الكل </a>
+                    </li>
+
+                    <li class="{{'create.product' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('create.product')}}" data-i18n="nav.dash.ecommerce">اضافة منتج </a>
+                    </li>
+
+                </ul>
+            </li>
+
 
 
 

@@ -120,7 +120,7 @@ class CategoriesController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::find($id);
+         $categories = Category::find($id);
         if (!$categories)
             return redirect()->route('index.categories')->with('error',__('translate-admin/category.error'));
 

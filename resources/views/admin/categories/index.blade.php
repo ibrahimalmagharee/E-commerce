@@ -25,8 +25,6 @@
                                 <div class="card-header">
                                     <a class="btn btn-outline-success float-left" href="javascript:void(0)"
                                        id="addNewCategory"> اضافة قسم جديد</a>
-
-
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
