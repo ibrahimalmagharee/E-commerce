@@ -65,4 +65,9 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function options()
+    {
+        return $this->hasMany(Option::class, 'product_id');
+    }
 }

@@ -4,7 +4,9 @@
 namespace App\Http\Enumeration;
 
 
-final class CategoryType
+use Spatie\Enum\Enum;
+
+final class CategoryType extends Enum
 {
 
     const mainCategory = 1;

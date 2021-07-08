@@ -35,6 +35,26 @@ class ProductController extends Controller
                 ->addColumn('is_active', function ($row) {
                     return $row->is_active == 1 ? __('translate-admin/brand.active') : __('translate-admin/brand.not active');
                 })
+                ->addColumn('attribute', function ($row) {
+                    $url = route('index.option', $row->id);
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Attribute" class="btn btn-outline-info box-shadow-3 mb-1 editBrand">الخصائص</a></td>';
+                    return $btn;
+                })
+
+                ->addColumn('images', function ($row) {
+                    $url = route('add.product.images', $row->id);
+                    $btn =  ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Images" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">صور المنتج</a></td>';
+
+                    return $btn;
+                })
+
+                ->addColumn('activation', function ($row) {
+                    $url = route('edit.product.activation', $row->id);
+                    $btn =  ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Active" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
+
+                    return $btn;
+                })
+
                 ->addColumn('action', function ($row) {
                     $url = route('edit.product.general', $row->id);
                     $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-outline-primary box-shadow-3 mb-1 editBrand">تعديل المنتج</a></td>';
@@ -46,14 +66,9 @@ class ProductController extends Controller
                     $btn = $btn.'<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Store" class="btn btn-outline-blue box-shadow-3 mb-1 editBrand">المخزون</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteProduct">حذف</a></td>';
-                    $btn .= '&nbsp;&nbsp;';
-                    $url = route('add.product.images', $row->id);
-                    $btn = $btn . ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">صور المنتج</a></td>';
-                    $url = route('edit.product.activation', $row->id);
-                    $btn = $btn . ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['attribute','images','activation','action'])
                 ->make(true);
 
 
@@ -195,8 +210,8 @@ class ProductController extends Controller
             $product_general->short_description = $request->short_description;
             $product_general->save();
 
-            $product_general->categories()->attach($request->categories);
-            $product_general->tags()->attach($request->tags);
+            $product_general->categories()->sync($request->categories);
+            $product_general->tags()->sync($request->tags);
 
             DB::commit();
             return redirect()->route('index.product')->with('success', 'تم تحديث المنتج بنجاح');

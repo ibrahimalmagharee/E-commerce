@@ -168,7 +168,7 @@
 
                                                                     </optgroup>
                                                                 </select>
-                                                                @error('tags')
+                                                                @error('tags[0]')
                                                                 <span id="parent_id_error"
                                                                       class="text-danger">{{$message}}</span>
                                                                 @enderror

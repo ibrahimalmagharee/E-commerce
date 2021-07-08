@@ -50,10 +50,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
 
-                                        <form class="form" method="post"
-                                              action="{{route('save.product.general')}}"
-                                              id="categoryForm" enctype="multipart/form-data">
-                                            @csrf
+
 
                                         <ul class="nav nav-tabs nav-linetriangle no-hover-bg">
                                             <li class="nav-item">
@@ -77,8 +74,14 @@
                                             </li>
                                         </ul>
 
+                                        <form class="form" method="post"
+                                              action="{{route('save.product.general')}}"
+                                              id="categoryForm" enctype="multipart/form-data">
+                                            @csrf
+
 
                                         <div class="tab-content px-1 pt-1">
+
                                             <div role="tabpanel" class="tab-pane active" id="general"
                                                  aria-labelledby="generalLable-tab"
                                                  aria-expanded="true">
@@ -412,6 +415,7 @@
 
                                                 </div>
                                             </div>
+
                                         </div>
 
                                             <div class="form-actions">
@@ -425,7 +429,6 @@
                                             </div>
 
                                         </form>
-
                                     </div>
                                 </div>
 

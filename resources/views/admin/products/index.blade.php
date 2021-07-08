@@ -70,8 +70,10 @@
                                             <tr>
                                                 <th width="10"> اسم المنتج</th>
                                                 <th width="10"> الاسم بالرابط</th>
-                                                <th width="10">الحالة</th>
                                                 <th width="10">السعر</th>
+                                                <th width="10">الخصائص</th>
+                                                <th width="10">صور المنتج</th>
+                                                <th width="10">الحالة</th>
                                                 <th width="200">العمليات</th>
                                             </tr>
                                             </thead>
@@ -161,8 +163,10 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'slug', name: 'slug'},
-                    {data: 'is_active', name: 'is_active'},
                     {data: 'price', name: 'price'},
+                    {data: 'attribute', name: 'attribute'},
+                    {data: 'images', name: 'images'},
+                    {data: 'activation', name: 'activation'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

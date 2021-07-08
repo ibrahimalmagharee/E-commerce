@@ -99,6 +99,32 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('edit-product-activation/{product_id}', 'ProductController@editProductActivation')->name('edit.product.activation');
             Route::post('update-product-activation/{product_id}', 'ProductController@updateProductActivation')->name('update.product.activation');
             ##################### Product Edit ######################################
+
+
+            ##################### Product Attributes ######################################
+            Route::group(['prefix' => 'attribute'], function (){
+                Route::get('/show-attribute', 'AttributesController@index')->name('index.attribute');
+                Route::post('save-attribute', 'AttributesController@store')->name('save.attribute');
+                Route::get('edit-attribute/{id}', 'AttributesController@edit')->name('edit.attribute');
+                Route::post('update-attribute/{id}', 'AttributesController@update')->name('update.attribute');
+                Route::get('delete-attribute/{id}', 'AttributesController@destroy')->name('delete.attribute');
+
+                ##################### Product Attributes Options ######################################
+
+                Route::group(['prefix' => 'option'], function (){
+                    Route::get('/show-option/{product_id}', 'OptionController@index')->name('index.option');
+                    Route::post('save-option', 'OptionController@store')->name('save.option');
+                    Route::get('edit-option/{option_id}', 'OptionController@edit')->name('edit.option');
+                    Route::post('update-option/{option_id}', 'OptionController@update')->name('update.option');
+                    Route::get('delete-option/{id}', 'OptionController@destroy')->name('delete.option');
+                });
+
+                ##################### Product Attributes Options ######################################
+
+
+
+            });
+            ##################### Product Attributes ######################################
         });
         ######################### End Products Routes ###########################################################
     });
