@@ -3,7 +3,7 @@
 
 <option value="{{$child_category->id}}">
 
-    {{ $child_category->name }} {{str_repeat('-', $index+=1)}}
+    {{ $child_category->name }}
 
 </option>
 @if ($child_category->categories)

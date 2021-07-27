@@ -22,30 +22,28 @@ Route::group([
     Route::group(['namespace' => 'Site'/*, 'middleware' => 'guest'*/], function () {
         //guest  user
         route::get('/', 'HomeController@index')->name('home');//->middleware('VerifiedUser');
-        route::get('category/{slug}', 'CategoryController@productsBySlug')->name('category');
+        route::get('category/{slug}', 'CategoryProductsController@productsBySlug')->name('category');
         route::get('product/{slug}', 'ProductController@productsBySlug')->name('product.details');
+        Route::get('wishlist/products', 'WishlistController@index')->name('wishlist.products.index');
+        Route::get('/cart', 'CartController@index')->name('cart.products.index');
+        Route::get('/profile', 'ProfileController@edit')->name('profile');
+
 
         /**
          *  Cart routes
          */
-        Route::group(['prefix' => 'cart'], function () {
-            Route::get('/', 'CartController@getIndex')->name('site.cart.index');
-            Route::post('/cart/add/{slug?}', 'CartController@postAdd')->name('site.cart.add');
-            Route::post('/update/{slug}', 'CartController@postUpdate')->name('site.cart.update');
-            Route::post('/update-all', 'CartController@postUpdateAll')->name('site.cart.update-all');
-        });
     });
 
 
-    Route::group(['namespace' => 'Site', 'middleware' => ['auth', 'VerifiedUser']], function () {
-        // must be authenticated user and verified
-        Route::get('profile', function () {
-            return 'You Are Authenticated ';
-        });
-    });
+
 
     Route::group(['namespace' => 'Site', 'middleware' => 'auth:customer'], function () {
         // must be authenticated user
+
+        Route::group(['prefix' => 'profile'], function (){
+            Route::post('update', 'ProfileController@update')->name('customer.update.profile');
+        });
+
         Route::post('verify-user/', 'VerificationCodeController@verify')->name('verify-user');
         Route::get('verify', 'VerificationCodeController@getVerifyPage')->name('get.verification.form');
         Route::get('products/{productId}/reviews', 'ProductReviewController@index')->name('products.reviews.index');
@@ -59,10 +57,13 @@ Route::group([
 
 
 
-Route::group(['namespace' => 'Site', 'middleware' => 'auth'], function () {
-    Route::post('wishlist', 'WishlistController@store')->name('wishlist.store');
+Route::group(['namespace' => 'Site', 'middleware' => 'auth:customer'], function () {
+    Route::post('save-product-wishlist', 'WishlistController@store')->name('wishlist.store');
     Route::delete('wishlist', 'WishlistController@destroy')->name('wishlist.destroy');
-    Route::get('wishlist/products', 'WishlistController@index')->name('wishlist.products.index');
+
+    Route::post('save-product','CartController@saveProduct')->name('customer.saveProduct');
+    Route::post('update-product-quantity', 'CartController@updateQuantity')->name('Product.update.quantity');
+    Route::delete('delete-product-cart', 'CartController@destroy')->name('Product.destroy');
 });
 
 Route::group(['namespace' => 'Site', 'middleware' => 'guest:customer'], function(){

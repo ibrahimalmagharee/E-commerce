@@ -112,7 +112,7 @@
                                                             <div class="form-group">
                                                                 <label for="srartdate"
                                                                        class="card-title ml-1">تاريخ البداية</label>
-                                                                <input type="date" name="special_price_start" id="special_price_start" class="form-control" value="{{$product_price->special_price_start->format('Y-m-d')}}">
+                                                                <input type="date" name="special_price_start" id="special_price_start" class="form-control" value="{{date('Y-m-d', strtotime($product_price->special_price_start))}}">
 
                                                             </div>
                                                             @error('special_price_start')
@@ -125,7 +125,7 @@
                                                             <div class="form-group">
                                                                 <label for="enddate"
                                                                        class="card-title ml-1">تاريخ النهاية</label>
-                                                                <input type="date" name="special_price_end" id="special_price_end" class="form-control" value="{{$product_price->special_price_end->format('Y-m-d')}}">
+                                                                <input type="date" name="special_price_end" id="special_price_end" class="form-control" value="{{date('Y-m-d', strtotime($product_price->special_price_end))}}">
 
                                                             </div>
                                                             @error('special_price_end')

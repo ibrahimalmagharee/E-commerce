@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\CustomerLoginRequest;
 use App\Http\Requests\Site\CustomerRequest;
+use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,14 @@ class RegisterationController extends Controller
 {
     public function login()
     {
-        return view('site.auth.login');
+        $categories = Category::parent()->select('id', 'slug')->with(['categories' => function ($q) {
+            $q->select('id', 'parent_id', 'slug');
+            $q->with(['categories' => function ($qq) {
+                $qq->select('id', 'parent_id', 'slug');
+            }]);
+        }])->get();
+
+        return view('site.auth.login', compact('categories'));
     }
 
     public function checkLoginCustomer(CustomerLoginRequest $request)
@@ -36,7 +44,14 @@ class RegisterationController extends Controller
 
     public function register()
     {
-        return view('site.auth.register');
+        $categories = Category::parent()->select('id', 'slug')->with(['categories' => function ($q) {
+            $q->select('id', 'parent_id', 'slug');
+            $q->with(['categories' => function ($qq) {
+                $qq->select('id', 'parent_id', 'slug');
+            }]);
+        }])->get();
+
+        return view('site.auth.register', compact('categories'));
     }
 
     public function registerCustomer(CustomerRequest $request)

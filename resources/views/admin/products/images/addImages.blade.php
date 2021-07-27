@@ -110,12 +110,12 @@
                         @isset($product)
                             @foreach($product->images as $product_images)
 
-                                <div class="col-md-4 mt-2">
+                                <div class="col-md-4 mt-2 imageProduct">
                                     <div class="text-center">
                                         <img src="{{$product_images->getPhoto($product_images->photo)}}" alt="photo" class="img-thumbnail height-150 width-300">
-                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{$product_images->id}}"
-                                           data-original-title="Delete" class="btn btn-danger box-shadow-3 mb-1 deleteProductImages"
-                                           style="width: 80px; margin-top: 1em"><i class="la la-remove"></i>حذف</a>
+                                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="{{$product_images->id}}" data-product-id="{{$product->id}}"
+                                           data-original-title="Delete" class="danger box-shadow-3 mb-1 deleteProductImages"
+                                           style="width: 80px; margin-top: 1em"><i class="la la-trash font-large-1 mt-1"></i></a>
                                     </div>
                                 </div>
 
@@ -170,18 +170,21 @@
 
             //Delete
             $('body').on('click', '.deleteProductImages', function () {
-                var id = $(this).data('id');
+                var image_id =  $(this).data('id');
+                var Clickedthis = $(this);
+                var id = $(Clickedthis).closest('.imageProduct').attr('data-id');
                 $('#delete-modal').modal('show');
 
                 $('#delete').click(function (e) {
                     e.preventDefault();
                     $.ajax({
-                        url: "delete-image/" + id,
+                        url: "/ar/admin/product/delete-image/" + image_id,
 
                         success: function (data) {
                             console.log('success:', data);
                             if (data.status == true) {
                                 $('#delete-modal').modal('hide');
+                                $(Clickedthis).closest('.imageProduct').remove();
                                 $('#success_msg_delete').show();
                             } else {
                                 $('#delete-modal').modal('hide');
@@ -259,6 +262,7 @@
                     var file = files[i]
                     this.options.addedfile.call(this, file)
                     file.previewElement.classList.add('dz-complete')
+                    console.log(file)
                     $('form').append('<input type="hidden" name="images[]" value="' + file.file_name + '">')
                 }
                 @endif

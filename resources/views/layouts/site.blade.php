@@ -16,7 +16,7 @@
         <meta name="description" content="المتجر مدعوم من طرف بريستاشوب">
         <meta name="keywords" content="">
 
-
+        <meta name="csrf-token" content="{{csrf_token()}}">
 
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
 

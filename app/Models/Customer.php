@@ -36,4 +36,34 @@ class Customer extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function wishlist()
+    {
+        return $this->belongsToMany(Product::class, 'wishlists')->withTimestamps();
+    }
+
+    public function wishlistHas($productId)
+    {
+        return self::wishlist()->where('product_id', $productId)->exists();
+    }
+
+    public function cartProduct()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function cartHasProduct($product_id)
+    {
+        return self::cartProduct()->where('product_id', $product_id)->exists();
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

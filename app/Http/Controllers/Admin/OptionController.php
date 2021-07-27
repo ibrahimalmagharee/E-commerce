@@ -21,18 +21,16 @@ class OptionController extends Controller
     public function index(Request $request, $product_id)
     {
 
-         $options = Option::get();
+         $options = Option::where('product_id', $product_id)->get();
          $product = Product::find($product_id);
-        if (!$product)
-            return redirect()->route('index.product')->with('error','هذا المنتج غير موجود');
+
+
          $attributes = Attribute::select('id')->get();
 
-        foreach ($options as $option){
-            if ($option->product_id == $product->id){
                  if ($request->ajax()) {
 
 
-                             return DataTables::of($option)
+                             return DataTables::of($options)
                                  ->addIndexColumn()
                                  ->addColumn('product_id', function ($row) {
                                      return $row->product->name;
@@ -49,8 +47,7 @@ class OptionController extends Controller
                                  })
                                  ->rawColumns(['action'])
                                  ->make(true);
-                         }
-                     }
+
 
 
                  }

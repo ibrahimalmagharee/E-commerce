@@ -25,8 +25,8 @@ class ImageRequest extends FormRequest
     {
         return [
             'product_id' => 'required|exists:products,id',
-            'images' => 'required|array|min:1',
-            'images.*' => 'required|string',
+            'images' => 'required|min:1',
+            'images.*' => 'string',
         ];
     }
 }

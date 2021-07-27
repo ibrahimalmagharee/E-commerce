@@ -18,6 +18,28 @@
                 </ul>
             </li>
 
+            <li class="nav-item"><a href=""><i class="la la-group"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">صور السلايدر </span>
+                    <span
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Slider::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{'index.sliders' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.sliders')}}" data-i18n="nav.dash.ecommerce">عرض السلايدر</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item"><a href=""><i class="la la-group"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">اللافتات </span>
+                    <span
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Banner::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="{{'index.banners' == request()->path() ? 'active' : ''}}"><a class="menu-item" href="{{route('index.banners')}}" data-i18n="nav.dash.ecommerce">عرض اللافتات</a>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">{{__('translate-admin/sidebar.categories')}} </span>

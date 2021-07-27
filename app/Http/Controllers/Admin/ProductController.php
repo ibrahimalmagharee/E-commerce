@@ -40,35 +40,32 @@ class ProductController extends Controller
                     $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Attribute" class="btn btn-outline-info box-shadow-3 mb-1 editBrand">الخصائص</a></td>';
                     return $btn;
                 })
-
                 ->addColumn('images', function ($row) {
                     $url = route('add.product.images', $row->id);
-                    $btn =  ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Images" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">صور المنتج</a></td>';
+                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Images" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">صور المنتج</a></td>';
 
                     return $btn;
                 })
-
                 ->addColumn('activation', function ($row) {
                     $url = route('edit.product.activation', $row->id);
-                    $btn =  ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Active" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
+                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Active" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
 
                     return $btn;
                 })
-
                 ->addColumn('action', function ($row) {
                     $url = route('edit.product.general', $row->id);
                     $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-outline-primary box-shadow-3 mb-1 editBrand">تعديل المنتج</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $url = route('edit.product.price', $row->id);
-                    $btn = $btn.'<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Price" class="btn btn-outline-success box-shadow-3 mb-1 editBrand">السعر</a></td>';
+                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Price" class="btn btn-outline-success box-shadow-3 mb-1 editBrand">السعر</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $url = route('edit.product.store', $row->id);
-                    $btn = $btn.'<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Store" class="btn btn-outline-blue box-shadow-3 mb-1 editBrand">المخزون</a></td>';
+                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Store" class="btn btn-outline-blue box-shadow-3 mb-1 editBrand">المخزون</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteProduct">حذف</a></td>';
                     return $btn;
                 })
-                ->rawColumns(['attribute','images','activation','action'])
+                ->rawColumns(['attribute', 'images', 'activation', 'action'])
                 ->make(true);
 
 
@@ -154,67 +151,66 @@ class ProductController extends Controller
     {
 
 
-             $product_general = Product::with('categories','tags','brand')->find($product_id);
-          //  dd($product_general);
-            if (!$product_general)
-                return redirect()->route('index.product')->with('error','هذا المنتج غير موجود');
+        $product_general = Product::with('categories', 'tags', 'brand')->find($product_id);
+        //  dd($product_general);
+        if (!$product_general)
+            return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
 
-            $data = [];
-            $data['brand'] = Brand::active()->select('id')->get();
-            $data['tags'] = Tag::active()->select('id')->get();
-              $data['categories'] = Category::active()->select('id')->parent()->with('childrenCategories')->get();
-             $product_tags = collect();
-             foreach ($product_general->tags as $tags){
-                $product_tags []= $tags;
+        $data = [];
+        $data['brand'] = Brand::active()->select('id')->get();
+        $data['tags'] = Tag::active()->select('id')->get();
+        $data['categories'] = Category::active()->select('id')->parent()->with('childrenCategories')->get();
+        $product_tags = collect();
+        foreach ($product_general->tags as $tags) {
+            $product_tags [] = $tags;
 
-             }
+        }
 
-             $product_categories = collect();
-             foreach ($product_general->categories as $mainCategory){
-                 $product_categories [] = $mainCategory;
-             }
+        $product_categories = collect();
+        foreach ($product_general->categories as $mainCategory) {
+            $product_categories [] = $mainCategory;
+        }
 
-            // return $product_tags;
+        // return $product_tags;
 
-            return view('admin.products.edit.editProductGeneral', compact('product_general','data','product_tags', 'product_categories'));
+        return view('admin.products.edit.editProductGeneral', compact('product_general', 'data', 'product_tags', 'product_categories'));
 
 
     }
 
     public function updateProductGeneral(ProductGeneralRequest $request, $product_id)
     {
-         $product_general = Product::with('categories','tags','brand')->find($product_id);
 
-            if (!$product_general)
-                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+        $product_general = Product::with('categories', 'tags', 'brand')->find($product_id);
 
-            if (!$request->has('is_active')) {
-                $request->request->add(['is_active' => 0]);
+        if (!$product_general)
+            return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
 
-            } else {
-                $request->request->add(['is_active' => 1]);
-            }
+        if (!$request->has('is_active')) {
+            $request->request->add(['is_active' => 0]);
 
-            DB::beginTransaction();
+        } else {
+            $request->request->add(['is_active' => 1]);
+        }
 
-            $product_general->update([
-                'slug' => $request->slug,
-                'category_id' => $request->categories,
-                'tag_id' => $request->tags,
-                'brand_id' => $request->brand_id,
-                'is_active' => $request->is_active,
-            ]);
+        DB::beginTransaction();
 
-            $product_general->name = $request->name;
-            $product_general->description = $request->description;
-            $product_general->short_description = $request->short_description;
-            $product_general->save();
+        $product_general->where('id', $product_id)->update([
+            'slug' => $request->slug,
+            'brand_id' => $request->brand_id,
+            'is_active' => $request->is_active,
+        ]);
 
-            $product_general->categories()->sync($request->categories);
-            $product_general->tags()->sync($request->tags);
+        $product_general->name = $request->name;
+        $product_general->description = $request->description;
+        $product_general->short_description = $request->short_description;
+        $product_general->save();
 
-            DB::commit();
-            return redirect()->route('index.product')->with('success', 'تم تحديث المنتج بنجاح');
+        $product_general->categories()->sync($request->categories);
+        $product_general->tags()->sync($request->tags);
+
+        DB::commit();
+        return redirect()->route('index.product')->with('success', 'تم تحديث المنتج بنجاح');
 
 
     }
@@ -222,15 +218,15 @@ class ProductController extends Controller
     public function editProductPrice($product_id)
     {
         try {
-              $product_price = Product::find($product_id);
+            $product_price = Product::find($product_id);
             if (!$product_price)
-                return redirect()->route('index.product')->with('error','هذا المنتج غير موجود');
+                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
 
 
             return view('admin.products.edit.editProductPrice', compact('product_price'));
 
-        }catch (\Exception $exception){
-            return redirect()->route('index.product')->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+        } catch (\Exception $exception) {
+            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
 
         }
     }
@@ -256,8 +252,8 @@ class ProductController extends Controller
             DB::commit();
             return redirect()->route('index.product')->with('success', 'تم تحديث سعر المنتج بنجاح');
 
-        }catch (\Exception $exception){
-            return redirect()->route('index.product')->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+        } catch (\Exception $exception) {
+            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
 
         }
     }
@@ -267,13 +263,13 @@ class ProductController extends Controller
         try {
             $product_store = Product::find($product_id);
             if (!$product_store)
-                return redirect()->route('index.product')->with('error','هذا المنتج غير موجود');
+                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
 
 
             return view('admin.products.edit.editProductStore', compact('product_store'));
 
-        }catch (\Exception $exception){
-            return redirect()->route('index.product')->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+        } catch (\Exception $exception) {
+            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
 
         }
     }
@@ -298,8 +294,8 @@ class ProductController extends Controller
             DB::commit();
             return redirect()->route('index.product')->with('success', 'تم تحديث مخزون المنتج بنجاح');
 
-        }catch (\Exception $exception){
-            return redirect()->route('index.product')->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+        } catch (\Exception $exception) {
+            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
 
         }
     }
@@ -322,40 +318,32 @@ class ProductController extends Controller
 
     public function saveImagesOfProductInDB(ImageRequest $request)
     {
-        try {
-            if ($request->has('images') && count($request->images) > 0) {
-                foreach ($request->images as $image) {
-                    Image::create([
-                        'imageable_id' => $request->product_id,
-                        'imageable_type' => 'App\Models\Product',
-                        'photo' => $image
-                    ]);
-                }
+        if ($request->has('images') && count($request->images) > 0) {
+            foreach ($request->images as $image) {
+                Image::create([
+                    'imageable_id' => $request->product_id,
+                    'imageable_type' => 'App\Models\Product',
+                    'photo' => $image
+                ]);
             }
-
-            return redirect()->route('index.product')->with('success', 'تمت اضافة صور المنتج بنجاح');
-        } catch (\Exception $ex) {
-            return redirect()->route('add.product.images')->with('error', 'هناك حطأ ما يرجى المحاولة مرة أخرى');
         }
+
+        return redirect()->route('index.product')->with('success', 'تمت اضافة صور المنتج بنجاح');
+
 
     }
 
     public function saveImagesOfProductInFolder(Request $request)
     {
-        try {
+
             $image = $request->file('dzfile');
             $fileName = uploadImage('products', $image);
 
-            return response()->json([
-                'status' => true,
-                'success' => $fileName,
-            ]);
-        } catch (\Exception $ex) {
-            return response()->json([
-                'status' => false,
-                'msg' => 'فشلت عملية لبحفظ يرجى المحاولة مرة اخرى'
-            ]);
-        }
+        return response()->json([
+            'name' => $fileName,
+            'original_name' => $image->getClientOriginalName(),
+        ]);
+
     }
 
     public function deleteImagesOfProduct($id)
@@ -410,21 +398,20 @@ class ProductController extends Controller
     public function destroy($id)
     {
 
-        $product = Product::with('categories','tags','brand')->find($id);
-            if (!$product) {
-                return response()->json([
-                    'status' => false,
-                    'msg' => __('translate-admin/category.error'),
-                ]);
+        $product = Product::with('categories', 'tags', 'brand')->find($id);
+        if (!$product) {
+            return response()->json([
+                'status' => false,
+                'msg' => __('translate-admin/category.error'),
+            ]);
 
-            }
+        }
 
-                $product->delete();
-                return response()->json([
-                    'status' => true,
-                    'msg' => __('translate-admin/category.success-delete'),
-                ]);
-
+        $product->delete();
+        return response()->json([
+            'status' => true,
+            'msg' => __('translate-admin/category.success-delete'),
+        ]);
 
 
     }

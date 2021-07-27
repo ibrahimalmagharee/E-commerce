@@ -60,8 +60,8 @@
     <!-- END Custom CSS-->
     <link rel="stylesheet" href="{{asset('assets/admin/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    @notify_css
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
@@ -85,15 +85,14 @@
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('admin.includes.footer')
 
-@notify_js
-@notify_render
-
 
 
 
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script src="{{asset('assets/admin/js/jquery.validate.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
@@ -154,7 +153,29 @@
 
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/dataTables.bootstrap4.min.js')}}" type="text/javascript"></script>
+
 @yield('script')
+<script type="text/javascript">
+        @if(Session::has('message'))
+    var type="{{Session::get('alert-type','info')}}"
+
+
+    switch(type){
+        case 'info':
+            toastr.info("{{Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 <script>
     $('#meridians1').timeDropper({
         meridians: true,

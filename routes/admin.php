@@ -38,6 +38,34 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
 
         ######################### End Profile Routes #############################################################
 
+        ##################  Slider Routes #############################################################
+
+        Route::group(['prefix' => 'slider'], function (){
+            Route::get('/show-slider', 'SliderController@index')->name('index.sliders');
+            Route::post('save', 'SliderController@saveImagesOfSliderInDB')->name('save.slider');
+            Route::get('edit/{id}', 'SliderController@edit')->name('edit.slider');
+            Route::post('update/{id}', 'SliderController@update')->name('update.slider');
+            Route::get('delete/{id}', 'SliderController@destroy')->name('delete.slider');
+
+            Route::post('save-images-slider-inFolder', 'SliderController@saveImagesOfSliderInFolder')->name('save.images.slider.inFolder');
+            Route::get('delete-image-slider', 'SliderController@deleteImagesOfSlider')->name('delete.slider.image');
+        });
+        ######################### End Slider Routes #############################################################
+
+        ##################  Banner Routes #############################################################
+
+        Route::group(['prefix' => 'banners'], function (){
+            Route::get('/show-banners', 'BannerController@index')->name('index.banners');
+            Route::post('save', 'BannerController@save')->name('save.banner');
+            Route::get('edit/{id}', 'BannerController@edit')->name('edit.banner');
+            Route::post('update/{id}', 'BannerController@update')->name('update.banner');
+            Route::get('delete/{id}', 'BannerController@destroy')->name('delete.banner');
+
+            Route::post('save-images-banner-inFolder', 'BannerController@saveImagesOfBannerInFolder')->name('save.images.banner.inFolder');
+            Route::get('delete-image-banner', 'BannerController@deleteImagesOfBanner')->name('delete.banner.image');
+        });
+        ######################### End Banner Routes #############################################################
+
         ##################  Category Routes #############################################################
 
         Route::group(['prefix' => 'category'], function (){

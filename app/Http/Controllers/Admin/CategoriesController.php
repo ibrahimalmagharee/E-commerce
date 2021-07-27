@@ -158,17 +158,15 @@ class CategoriesController extends Controller
             }
 
             DB::beginTransaction();
-            if ($request->type == CategoryType::mainCategory) {
-
                 if ($filePath != '') {
-                    $category->update([
+                    $category->where('id',$id)->update([
                         'slug' => $request->slug,
                         'photo' => $filePath,
                         'is_active' => $request->is_active,
                     ]);
 
                 } else {
-                    $category->update([
+                    $category->where('id',$id)->update([
                         'slug' => $request->slug,
                         'is_active' => $request->is_active,
                     ]);
@@ -181,33 +179,7 @@ class CategoriesController extends Controller
                 DB::commit();
 
                 return redirect()->route('index.categories')->with('success', __('translate-admin/category.success-update'));
-            } else {
-                DB::beginTransaction();
 
-                if ($filePath != '') {
-                    $category->update([
-                        'slug' => $request->slug,
-                        'parent_id' => $request->parent_id,
-                        'photo' => $filePath,
-                        'is_active' => $request->is_active,
-                    ]);
-
-                } else {
-                    $category->update([
-                        'slug' => $request->slug,
-                        'parent_id' => $request->parent_id,
-                        'is_active' => $request->is_active,
-                    ]);
-
-                }
-
-                $category->name = $request->name;
-                $category->save();
-
-                DB::commit();
-
-                return redirect()->route('index.categories')->with('success', __('translate-admin/category.success-update'));
-            }
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->route('edit.category')->with('error', __('translate-admin/category.exception-update'));

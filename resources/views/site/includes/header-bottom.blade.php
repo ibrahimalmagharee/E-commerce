@@ -7,7 +7,7 @@
                     <span class="btnov-lines"></span>
                     <span>{{__('translate-site/index.shop_by_categories')}}</span>
                 </div>
-                <div class="verticalmenu-content has-showmore show">
+                <div class="verticalmenu-content has-showmore ">
                     <div id="_desktop_verticalmenu" class="nov-verticalmenu block" data-count_showmore="6">
                         <div class="box-content block_content">
                             <div id="verticalmenu" class="verticalmenu" role="navigation">
@@ -21,22 +21,22 @@
 
                                                     </i>{{$category -> name}}</a>
 
-                                                @isset($category -> childrens)
+                                                @isset($category -> categories)
 
                                                     <span
                                                         class="show-sub fa-active-sub"></span>
                                                     <div class="dropdown-menu" style="width:222px">
                                                         <ul>
-                                                            @foreach($category -> childrens as $childern)
+                                                            @foreach($category -> categories as $childern)
                                                                 <li class="item ">
                                                                 <li class="item  parent">
                                                                     <a href="{{route('category',$childern -> slug )}}"
                                                                        title="Laptop Thinkpad">{{$childern -> name}}</a>
-                                                                    @isset($childern -> childrens )
+                                                                    @isset($childern -> categories )
                                                                         <span class="show-sub fa-active-sub"></span>
                                                                         <div class="dropdown-menu">
                                                                             <ul>
-                                                                                @foreach($childern -> childrens  as $_childern)
+                                                                                @foreach($childern -> categories  as $_childern)
                                                                                     <li class="item ">
                                                                                         <a href="{{route('category',$_childern -> slug )}}"
                                                                                            title="Aliquam lobortis">
@@ -77,7 +77,7 @@
 
                                     </li>
 
-                                    <li class="item  group"><span class="opener"></span><a href="2-home.html"
+                                    <li class="item  group"><span class="opener"></span><a href="#"
                                                                                            title="الأقسام"><i
                                                 class="zmdi zmdi-group"></i>الأقسام</a>
                                         <div class="dropdown-menu">
@@ -85,103 +85,28 @@
                                                 <li class="item container group">
                                                     <div class="dropdown-menu">
                                                         <ul class="">
-                                                            <li class="item col-lg-3 col-md-3 html"><span
-                                                                    class="menu-title">Laptop</span>
-                                                                <div class="menu-content">
-                                                                    <ul class="col">
-                                                                        <li><a href="#" title="EliteBook">EliteBook</a>
-                                                                        </li>
-                                                                        <li><a href="#" title="Lenovo Yoga">Lenovo
-                                                                                Yoga</a></li>
-                                                                        <li><a href="#" title="Probook">Probook</a></li>
-                                                                        <li><a href="#" title="Dell Precision">Dell
-                                                                                Precision</a></li>
-                                                                        <li><a href="#" title="Dell Alienware">Dell
-                                                                                Alienware</a></li>
-                                                                        <li><a href="#" title="HP Pavilion">HP
-                                                                                Pavilion</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item col-lg-3 col-md-3 html"><span
-                                                                    class="menu-title">Electronics</span>
-                                                                <div class="menu-content">
-                                                                    <ul class="col">
-                                                                        <li><a href="#">Fridge</a></li>
-                                                                        <li><a href="#">Air conditioning</a></li>
-                                                                        <li><a href="#">Electric Fan</a></li>
-                                                                        <li><a href="#">Spray Mist Fan</a></li>
-                                                                        <li><a href="#">Vacuum Cleanr</a></li>
-                                                                        <li><a href="#">Washing Machine</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item col-lg-3 col-md-3 html"><span
-                                                                    class="menu-title">Audio</span>
-                                                                <div class="menu-content">
-                                                                    <ul class="col">
-                                                                        <li><a href="#" title="Lansing Products">Lansing
-                                                                                Products</a></li>
-                                                                        <li><a href="#" title="UFi Products">UFi
-                                                                                Products</a></li>
-                                                                        <li><a href="#" title="Edifier Products">Edifier
-                                                                                Products</a></li>
-                                                                        <li><a href="#" title="Sarotech Products">Sarotech
-                                                                                Products</a></li>
-                                                                        <li><a href="#" title="Plantronics Products">Plantronics
-                                                                                Products</a></li>
-                                                                        <li><a href="#" title="Sennheiser Products">Sennheiser
-                                                                                Products</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item col-lg-3 col-md-3 html"><span
-                                                                    class="menu-title">Smartphone</span>
-                                                                <div class="menu-content">
-                                                                    <ul class="col">
-                                                                        <li><a href="#" title="Samsung ">Samsung </a>
-                                                                        </li>
-                                                                        <li><a href="#" title="OPPO ">OPPO </a></li>
-                                                                        <li><a href="#" title="Sony">Sony</a></li>
-                                                                        <li><a href="#" title="Xiaomi ">Xiaomi </a></li>
-                                                                        <li><a href="#" title="Huawei ">Huawei </a></li>
-                                                                        <li><a href="#" title="Nokia ">Nokia </a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </li>
+                                                            @isset($categories)
+                                                                @foreach($categories as $category)
+                                                                    <li class="item col-lg-3 col-md-3 html"><a href="{{route('category',$category -> slug )}}" title="Laptops &amp; Accessories">
+                                                                            <span class="menu-title">{{$category -> name}}</span></a>
+                                                                        <div class="menu-content">
+                                                                            <ul class="col">
+                                                                                @isset($category -> categories)
+                                                                                    @foreach($category -> categories as $childern)
+                                                                                        <li><a href="{{route('category',$childern -> slug )}}" title="EliteBook">{{$childern -> name}}</a>
+                                                                                        </li>
+                                                                                    @endforeach
+                                                                                @endisset
+
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                @endforeach
+                                                            @endisset
                                                         </ul>
                                                     </div>
                                                 </li>
-                                                <li class="item container group">
-                                                    <div class="dropdown-menu">
-                                                        <ul class="">
-                                                            <li class="item  html">
-                                                                <div class="menu-content">
-                                                                    <div class="row">
-                                                                        <div
-                                                                            class="col-12 col-lg-4 col-md-4 mt-xs-10 text-center">
-                                                                            <a href="#"><img class="img-fluid"
-                                                                                             src="img/banner-mega-1.jpg"
-                                                                                             alt="menu-banner-1"></a>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center">
-                                                                            <a href="#"><img class="img-fluid"
-                                                                                             src="img/banner-mega-2.jpg"
-                                                                                             alt="menu-banner-2"></a>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-4 col-lg-4 col-md-4 mt-xs-10 text-center">
-                                                                            <a href="#"><img class="img-fluid"
-                                                                                             src="img/banner-mega-3.jpg"
-                                                                                             alt="menu-banner-3"></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </li>
@@ -224,134 +149,134 @@
                                                name="search_query" value="" placeholder="Search">
 
                                         <div class="input-group-btn nov_category_tree hidden-sm-down">
-                                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                                                    aria-haspopup="true" value="" aria-expanded="false">
-                                                CATEGORIES
-                                            </button>
-                                            <ul class="dropdown-menu list-unstyled">
-                                                <li class="dropdown-item active" data-value="0">
-                                                    <span>All Categories</span></li>
-                                                <li class="dropdown-item " data-value="2"><span>Home</span></li>
-                                                <ul class="list-unstyled pl-5">
-                                                    <li class="dropdown-item" data-value="3">
-                                                        <span>Computer &amp; Networking</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="10">
-                                                        <span>-- USB</span>
-                                                        <ul class="list-unstyled">
-                                                            <li class="dropdown-item" data-value="11">
-                                                                <span>---- USB Kingston</span>
-                                                            </li>
-                                                            <li class="dropdown-item" data-value="12">
-                                                                <span>---- USB Sandisk</span>
-                                                            </li>
-                                                            <li class="dropdown-item" data-value="13">
-                                                                <span>---- USB Samsung</span>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="14">
-                                                        <span>-- Hard Disk</span>
-                                                        <ul class="list-unstyled">
-                                                            <li class="dropdown-item" data-value="19">
-                                                                <span>---- Hard Disk Drive</span>
-                                                            </li>
-                                                            <li class="dropdown-item" data-value="20">
-                                                                <span>---- Solid State Drives</span>
-                                                            </li>
-                                                            <li class="dropdown-item" data-value="21">
-                                                                <span>---- SATA</span>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="15">
-                                                        <span>-- Modem WIFI</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="16">
-                                                        <span>-- Keyboard</span>
-                                                        <ul class="list-unstyled">
-                                                            <li class="dropdown-item" data-value="22">
-                                                                <span>---- Keyboard 1</span>
-                                                            </li>
-                                                            <li class="dropdown-item" data-value="23">
-                                                                <span>---- Keyboard 2</span>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="17">
-                                                        <span>-- Mouse</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="18">
-                                                        <span>-- Monitor</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="6">
-                                                        <span>Laptop &amp; Accessories</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="7">
-                                                        <span>-- Laptop 1</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="8">
-                                                        <span>-- Laptop 2</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="9">
-                                                        <span>Smartphone &amp; Tablet</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="24">
-                                                        <span>-- Apple</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="25">
-                                                        <span>-- Samsung</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="26">
-                                                        <span>-- Motorola</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="27">
-                                                        <span>-- Chargers</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="4">
-                                                        <span>Home Appliance</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="5">
-                                                        <span>Camera &amp; Photo</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="28">
-                                                        <span>-- Camera 1</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="29">
-                                                        <span>-- Camera 2</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="30">
-                                                        <span>-- Photo 1</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="31">
-                                                        <span>-- Photo 2</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="32">
-                                                        <span>Audio</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="33">
-                                                        <span>-- Headphone</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="34">
-                                                        <span>-- Wireless Speaker</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="35">
-                                                        <span>-- Bluetooth Speaker</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="36">
-                                                        <span>-- Mini Speaker</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="37">
-                                                        <span>-- Sound Card</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="38">
-                                                        <span>-- Accessories</span>
-                                                    </li>
-                                                    <li class="dropdown-item" data-value="39">
-                                                        <span>-- Earbuds and  In-ear</span>
-                                                    </li>
-                                                </ul>
-                                            </ul>
+{{--                                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"--}}
+{{--                                                    aria-haspopup="true" value="" aria-expanded="false">--}}
+{{--                                                CATEGORIES--}}
+{{--                                            </button>--}}
+{{--                                            <ul class="dropdown-menu list-unstyled">--}}
+{{--                                                <li class="dropdown-item active" data-value="0">--}}
+{{--                                                    <span>All Categories</span></li>--}}
+{{--                                                <li class="dropdown-item " data-value="2"><span>Home</span></li>--}}
+{{--                                                <ul class="list-unstyled pl-5">--}}
+{{--                                                    <li class="dropdown-item" data-value="3">--}}
+{{--                                                        <span>Computer &amp; Networking</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="10">--}}
+{{--                                                        <span>-- USB</span>--}}
+{{--                                                        <ul class="list-unstyled">--}}
+{{--                                                            <li class="dropdown-item" data-value="11">--}}
+{{--                                                                <span>---- USB Kingston</span>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="dropdown-item" data-value="12">--}}
+{{--                                                                <span>---- USB Sandisk</span>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="dropdown-item" data-value="13">--}}
+{{--                                                                <span>---- USB Samsung</span>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="14">--}}
+{{--                                                        <span>-- Hard Disk</span>--}}
+{{--                                                        <ul class="list-unstyled">--}}
+{{--                                                            <li class="dropdown-item" data-value="19">--}}
+{{--                                                                <span>---- Hard Disk Drive</span>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="dropdown-item" data-value="20">--}}
+{{--                                                                <span>---- Solid State Drives</span>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="dropdown-item" data-value="21">--}}
+{{--                                                                <span>---- SATA</span>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="15">--}}
+{{--                                                        <span>-- Modem WIFI</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="16">--}}
+{{--                                                        <span>-- Keyboard</span>--}}
+{{--                                                        <ul class="list-unstyled">--}}
+{{--                                                            <li class="dropdown-item" data-value="22">--}}
+{{--                                                                <span>---- Keyboard 1</span>--}}
+{{--                                                            </li>--}}
+{{--                                                            <li class="dropdown-item" data-value="23">--}}
+{{--                                                                <span>---- Keyboard 2</span>--}}
+{{--                                                            </li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="17">--}}
+{{--                                                        <span>-- Mouse</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="18">--}}
+{{--                                                        <span>-- Monitor</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="6">--}}
+{{--                                                        <span>Laptop &amp; Accessories</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="7">--}}
+{{--                                                        <span>-- Laptop 1</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="8">--}}
+{{--                                                        <span>-- Laptop 2</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="9">--}}
+{{--                                                        <span>Smartphone &amp; Tablet</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="24">--}}
+{{--                                                        <span>-- Apple</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="25">--}}
+{{--                                                        <span>-- Samsung</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="26">--}}
+{{--                                                        <span>-- Motorola</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="27">--}}
+{{--                                                        <span>-- Chargers</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="4">--}}
+{{--                                                        <span>Home Appliance</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="5">--}}
+{{--                                                        <span>Camera &amp; Photo</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="28">--}}
+{{--                                                        <span>-- Camera 1</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="29">--}}
+{{--                                                        <span>-- Camera 2</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="30">--}}
+{{--                                                        <span>-- Photo 1</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="31">--}}
+{{--                                                        <span>-- Photo 2</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="32">--}}
+{{--                                                        <span>Audio</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="33">--}}
+{{--                                                        <span>-- Headphone</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="34">--}}
+{{--                                                        <span>-- Wireless Speaker</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="35">--}}
+{{--                                                        <span>-- Bluetooth Speaker</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="36">--}}
+{{--                                                        <span>-- Mini Speaker</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="37">--}}
+{{--                                                        <span>-- Sound Card</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="38">--}}
+{{--                                                        <span>-- Accessories</span>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li class="dropdown-item" data-value="39">--}}
+{{--                                                        <span>-- Earbuds and  In-ear</span>--}}
+{{--                                                    </li>--}}
+{{--                                                </ul>--}}
+{{--                                            </ul>--}}
                                         </div>
 
                                         <span class="input-group-btn">

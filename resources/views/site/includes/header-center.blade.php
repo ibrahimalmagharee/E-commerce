@@ -21,7 +21,7 @@
                 </div>
                 <div class="contentsticky_group d-flex justify-content-end">
                     <div class="header_link_myaccount">
-                        <a class="login" href="login-1.html" rel="nofollow" title="Log in to your customer account"><i
+                        <a class="login" href="{{route('profile')}}" rel="nofollow" title="Log in to your customer account"><i
                                 class="header-icon-account"></i></a>
                     </div>
                     <div class="header_link_wishlist">
@@ -33,14 +33,14 @@
                         <div class="blockcart cart-preview active" data-refresh-url="">
                             <div class="header-cart">
                                 <div class="cart-left">
-                                    <a href="{{route('site.cart.index')}}" title="My Cart">
+                                    <a href="{{route('cart.products.index')}}" title="My Cart">
                                         <div class="shopping-cart">
                                             <i class="zmdi zmdi-shopping-cart"></i>
 
                                         </div>
 
                                     </a>
-                                    <div class="cart-products-count">0</div>
+                                    <div class="cart-products-count">@auth('customer') {{count($cart_products)}} @else 0 @endauth </div>
                                 </div>
                                 <div class="cart-right d-flex flex-column align-self-end ml-13">
                                     <span class="title-cart">Cart</span>

@@ -32,70 +32,26 @@
                             <div class="nov_preload">
                                 <div class="process-loading active">
                                     <div class="loader">
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
-                                        <div class="dot"></div>
+                                        @isset($data['sliders'])
+                                            @foreach($data['sliders'] as $slider)
+                                                <div class="dot"></div>
+                                            @endforeach
+                                        @endisset
                                     </div>
                                 </div>
                             </div>
                             <div class="nivoSlider">
-                                <a href="#">
-                                    <img src="http://demo.bestprestashoptheme.com/savemart/modules/novnivoslider/images/266cf50ba4d1d91fa5f5ded20bb66ea38de3b350_1.jpg" alt="" title="#htmlcaption_42" />
-                                </a>
-                                <a href="#">
-                                    <img src="http://demo.bestprestashoptheme.com/savemart/modules/novnivoslider/images/62896aebffd6fdce749d957fc76bd83d734fa338_2.jpg" alt="" title="#htmlcaption_43" />
-                                </a>
-                                <a href="#">
-                                    <img src="http://demo.bestprestashoptheme.com/savemart/modules/novnivoslider/images/195d62088850e3489886855b4239edcc4fb1868f_3.jpg" alt="" title="#htmlcaption_57" />
-                                </a>
+                                @isset($data['sliders'])
+                                    @foreach($data['sliders'] as $slider)
+                                        <a href="#">
+                                            <img src="{{$slider->getPhoto($slider->photo)}}" alt="" title="#htmlcaption_42" />
+                                        </a>
+                                    @endforeach
+                                @endisset
+
+
                             </div>
-                            <div id="htmlcaption_42" class="nivo-html-caption">
-                                <div class="nov-slider-ct">
-                                    <div class="nov-center slider-none">
-                                        <div class="nov-title effect-0" >
-                                            Slide Home 3 01
-                                        </div>
-                                        <div class="nov-description effect-0" >
-                                            <p>Slide Home 3 01</p>
-                                        </div>
-                                        <div class="nov-html effect-0">
-                                            <p>Slide Home 3 01</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="htmlcaption_43" class="nivo-html-caption">
-                                <div class="nov-slider-ct">
-                                    <div class="nov-center slider-none">
-                                        <div class="nov-title effect-0" >
-                                            Slide Home 3 02
-                                        </div>
-                                        <div class="nov-description effect-0" >
-                                            <p>Slide Home 3 02</p>
-                                        </div>
-                                        <div class="nov-html effect-0">
-                                            <p>Slide Home 3 02</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="htmlcaption_57" class="nivo-html-caption">
-                                <div class="nov-slider-ct">
-                                    <div class="nov-center slider-none">
-                                        <div class="nov-title effect-0" >
-                                            Slider Home 3 03
-                                        </div>
-                                        <div class="nov-description effect-0" >
-                                            <p>Slider Home 3 03</p>
-                                        </div>
-                                        <div class="nov-html effect-0">
-                                            <p>Slider Home 3 03</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/slider.tpl -->
@@ -111,41 +67,21 @@
                 <div class="row">
                     <div class="nov-row spacing-30 mt-15 col-lg-12 col-xs-12" ><div class="nov-row-wrap row">
                             <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-                            <div class="nov-image col-lg-4 col-md-4">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid" src="/savemart/modules/novpagemanage/img/a223ed2bb4f6212bafd475e4e758f7af.jpg" alt="banner3-1" title="banner3-1"></a>
+                            @isset($data['first_banners'])
+                                @foreach($data['first_banners'] as $banner)
+                                    <div class="nov-image col-lg-4 col-md-4">
+                                        <div class="block">
+                                            <div class="block_content">
+                                                <div class="effect">
+                                                    <a href="#"> <img class="img-fluid" src="{{$banner->getPhoto($banner->photo)}}" alt="banner3-1" title="banner3-1"></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
+                                @endforeach
+                            @endisset
 
-                            <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-                            <div class="nov-image col-lg-4 col-md-4">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid" src="/savemart/modules/novpagemanage/img/5e6800ef298ec899a558d05d905c3756.jpg" alt="banner3-2" title="banner3-2"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-
-                            <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-                            <div class="nov-image col-lg-4 col-md-4">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid" src="/savemart/modules/novpagemanage/img/9f5a7c1afb433543e3138412909ebf5b.jpg" alt="banner3-3" title="banner3-3"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                         </div></div><div class="nov-row  col-lg-12 col-xs-12" ><div class="nov-row-wrap row">
@@ -2300,28 +2236,22 @@
                             <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
                         </div></div><div class="nov-row spacing-30 col-lg-12 col-xs-12" ><div class="nov-row-wrap row">
                             <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-                            <div class="nov-image col-lg-6 col-md-6">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid" src="/savemart/modules/novpagemanage/img/7fdfbf16d6ffe0c99cd109bd3a886527.jpg" alt="banner-4" title="banner-4"></a>
+                            @isset($data['latest_banners'])
+                                @foreach($data['latest_banners'] as $banner)
+                                    <div class="nov-image col-lg-6 col-md-6">
+                                        <div class="block">
+                                            <div class="block_content">
+                                                <div class="effect">
+                                                    <a href="#"> <img class="img-fluid" src="{{$banner->getPhoto($banner->photo)}}" alt="banner-4" title="banner-4"></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
+                                @endforeach
+                            @endisset
 
-                            <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-                            <div class="nov-image col-lg-6 col-md-6">
-                                <div class="block">
-                                    <div class="block_content">
-                                        <div class="effect">
-                                            <a href="#"> <img class="img-fluid" src="/savemart/modules/novpagemanage/img/64cc43a522417168a8f8418b3d783545.jpg" alt="banner-5" title="banner-5"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                         </div></div><div class="nov-row  col-lg-12 col-xs-12" ><div class="nov-row-wrap row">

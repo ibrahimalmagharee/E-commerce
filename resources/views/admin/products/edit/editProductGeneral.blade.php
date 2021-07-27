@@ -121,11 +121,11 @@
 
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <div class="form-group">
+                                                            <div class="">
                                                                 <label
                                                                     for="projectinput2"> {{__('translate-admin/category.choose category')}} </label>
                                                                 <select name="categories[]" id="parent_id"
-                                                                        class="select2 form-control width-480"
+                                                                        class="select2 form-control width-300"
                                                                         multiple>
                                                                     <optgroup
                                                                         label="{{__('translate-admin/category.choose_main_category')}} ">
@@ -152,10 +152,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <div class="form-group">
+                                                            <div class="">
                                                                 <label for="projectinput2"> العلامات </label>
                                                                 <select name="tags[]" id="parent_id"
-                                                                        class="select2 form-control width-480"
+                                                                        class="select2 form-control width-300"
                                                                         multiple>
                                                                     <optgroup label="الرجاء اختر العلامة المناسبة">
 
@@ -176,11 +176,11 @@
                                                         </div>
 
                                                         <div class="col-md-4">
-                                                            <div class="form-group">
+                                                            <div class="">
                                                                 <label for="projectinput2"> الماركة
                                                                     التجارية </label>
                                                                 <select name="brand_id" id="brand"
-                                                                        class="select2 form-control width-480">
+                                                                        class="form-control width-300">
                                                                     <optgroup label="الرجاء اختر الماركة التجارية">
                                                                         @if($data['brand'] && $data['brand'] -> count() > 0)
                                                                             @foreach($data['brand'] as $brand)
