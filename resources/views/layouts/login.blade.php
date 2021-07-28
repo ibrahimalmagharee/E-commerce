@@ -35,7 +35,7 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
     <!-- END Custom CSS-->
-    @notify_css
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">s
     <style>
         body {
@@ -59,6 +59,8 @@
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <!-- BEGIN PAGE VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/validation/jqBootstrapValidation.js')}}"
@@ -74,7 +76,26 @@
 
 <script>
 </script>
-@notify_js
-@notify_render
+<script type="text/javascript">
+        @if(Session::has('message'))
+    var type="{{Session::get('alert-type','info')}}"
+
+
+    switch(type){
+        case 'info':
+            toastr.info("{{Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 </body>
 </html>

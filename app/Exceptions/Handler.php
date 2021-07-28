@@ -63,6 +63,10 @@ class Handler extends ExceptionHandler
             return redirect()->guest('admin/login/');
         }
 
+        if ($request->is(app() -> getLocale().'/super-admin') || $request->is(app() -> getLocale().'/super-admin/*')) {
+            return redirect()->guest('super-admin/login/');
+        }
+
         if ($request->is(app() -> getLocale().'/customer') || $request->is(app() -> getLocale().'/customer/*')) {
             return redirect()->guest('customer/login/');
         }

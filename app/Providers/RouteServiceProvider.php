@@ -23,6 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
     public const ADMIN = '/admin/index';
+    public const SUPERADMIN = '/super-admin/index';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -48,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         $this->mapSiteRoutes();
         $this->mapAdminRoutes();
+        $this->mapSuperAdminRoutes();
 
         //
     }
@@ -95,6 +97,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
            // ->prefix('admin')
             ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapSuperAdminRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            // ->prefix('admin')
+            ->group(base_path('routes/superAdmin.php'));
     }
 
     /**

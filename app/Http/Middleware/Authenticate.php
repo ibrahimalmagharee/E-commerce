@@ -20,6 +20,10 @@ class Authenticate extends Middleware
                 return route('admin.login.page');
 
             }
+            if (Request::is(app() -> getLocale().'/super-admin*')){
+                return route('superAdmin.login.page');
+
+            }
             if (Request::is(app() -> getLocale().'/*')){
                 return route('customer.login.page');
 
