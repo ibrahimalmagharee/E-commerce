@@ -101,9 +101,9 @@
                                                                  data-full-size-image-url="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
                                                                  width="600" height="600">
                                                             <img class="img-fluid image-secondary"
-                                                                 src="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
+                                                                 src="{{$product->getPhoto($product -> images[1] -> photo ?? '')}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
+                                                                 data-full-size-image-url="{{$product->getPhoto($product -> images[1] -> photo ?? '')}}"
                                                                  width="600" height="600">
                                                         </a>
 
@@ -118,16 +118,16 @@
                                                             </div>
 
                                                             <div class="group-reviews">
-                                                                <div class="product-comments">
-                                                                    <div class="star_content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                    <span>0 review</span>
-                                                                </div>
+{{--                                                                <div class="product-comments">--}}
+{{--                                                                    <div class="star_content">--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <span>0 review</span>--}}
+{{--                                                                </div>--}}
 
 
                                                                 <div class="info-stock ml-auto">
@@ -199,9 +199,9 @@
                             <nav class="pagination row justify-content-around">
                                 <div class="col col-xs-12 col-lg-6 col-md-12">
 
-    <span class='showing'>
-    Showing 1-4 of 4 item(s)
-    </span>
+{{--    <span class='showing'>--}}
+{{--    Showing 1-4 of 4 item(s)--}}
+{{--    </span>--}}
 
                                 </div>
                                 <div class="col col-xs-12 col-lg-6 col-md-12">

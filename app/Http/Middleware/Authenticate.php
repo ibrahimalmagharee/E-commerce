@@ -24,6 +24,10 @@ class Authenticate extends Middleware
                 return route('superAdmin.login.page');
 
             }
+            if (Request::is('/forsa*')){
+                return route('vendor.signIn.page');
+
+            }
             if (Request::is(app() -> getLocale().'/*')){
                 return route('customer.login.page');
 

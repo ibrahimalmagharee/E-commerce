@@ -74,16 +74,16 @@
 
                             <div class="seller_info">
 
-                                <div class="average_rating">
-                                    <a href="http://demo.bestprestashoptheme.com/savemart/en/jmarketplace/2_taylor-jonson/comments" title="View comments about Taylor Jonson">
-                                        <div class="star"></div>
-                                        <div class="star"></div>
-                                        <div class="star"></div>
-                                        <div class="star"></div>
-                                        <div class="star"></div>
-                                        (0)
-                                    </a>
-                                </div>
+{{--                                <div class="average_rating">--}}
+{{--                                    <a href="http://demo.bestprestashoptheme.com/savemart/en/jmarketplace/2_taylor-jonson/comments" title="View comments about Taylor Jonson">--}}
+{{--                                        <div class="star"></div>--}}
+{{--                                        <div class="star"></div>--}}
+{{--                                        <div class="star"></div>--}}
+{{--                                        <div class="star"></div>--}}
+{{--                                        <div class="star"></div>--}}
+{{--                                        (0)--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
                             </div>
 
                         </div>

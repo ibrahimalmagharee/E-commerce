@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.superAdmin')
 
 @section('content')
     <div class="app-content content">
@@ -10,7 +10,7 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/editProfile.main')}}</a></li>
-                                <li class="breadcrumb-item active"> {{__('translate-admin/editProfile.edit')}} - {{$admin->name}}</li>
+                                <li class="breadcrumb-item active"> {{__('translate-admin/editProfile.edit')}} - {{$superAdmin->name}}</li>
                             </ol>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center"><strong> {{__('translate-admin/editProfile.edit')}}
-                                            - {{$admin->name}} </strong></h4>
+                                            - {{$superAdmin->name}} </strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -37,20 +37,20 @@
                                     </div>
                                 </div>
 
-                            @include('admin.includes.alert.success')
-                            @include('admin.includes.alert.errors')
+                            @include('superAdmin.includes.alert.success')
+                            @include('superAdmin.includes.alert.errors')
 
                             <!--  Begin Form Edit -->
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <form class="form" id="categoryFormLocale" method="post"
-                                              action="{{route('update.profile')}}"
+                                              action="{{route('superAdmin.update.profile')}}"
                                               enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <h4 class="form-section"><i class="ft-home"></i> {{__('translate-admin/editProfile.edit')}}
-                                                - {{$admin->name}}</h4>
-                                            <input type="hidden" name="id" value="{{$admin->id}}">
+                                                - {{$superAdmin->name}}</h4>
+                                            <input type="hidden" name="id" value="{{$superAdmin->id}}">
 
                                             <div class="form-body">
 
@@ -58,7 +58,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="projectinput1">{{__('translate-admin/editProfile.name')}} </label>
-                                                            <input type="text" id="name" class="form-control" placeholder="" name="name" value="{{$admin->name}}">
+                                                            <input type="text" id="name" class="form-control" placeholder="" name="name" value="{{$superAdmin->name}}">
 
                                                             @error('name')
                                                             <span class="text-danger">{{$message}}</span>
@@ -69,7 +69,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="projectinput1">{{__('translate-admin/editProfile.email')}}</label>
-                                                            <input type="email" id="email" class="form-control" placeholder="" name="email" value="{{$admin->email}}">
+                                                            <input type="email" id="email" class="form-control" placeholder="" name="email" value="{{$superAdmin->email}}">
 
                                                             @error('email')
                                                             <span class="text-danger">{{$message}}</span>

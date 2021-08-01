@@ -99,9 +99,9 @@
                                                                  data-full-size-image-url="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
                                                                  width="600" height="600">
                                                             <img class="img-fluid image-secondary"
-                                                                 src="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
+                                                                 src="{{$product->getPhoto($product -> images[1] -> photo ?? '')}}"
                                                                  alt=""
-                                                                 data-full-size-image-url="{{$product->getPhoto($product -> images[0] -> photo ?? '')}}"
+                                                                 data-full-size-image-url="{{$product->getPhoto($product -> images[1] -> photo ?? '')}}"
                                                                  width="600" height="600">
                                                         </a>
 

@@ -19,6 +19,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::group(['namespace' => 'Admin', 'middleware' =>'auth:admin', 'prefix' => 'admin'], function (){
 
         Route::get('index','DashboardController@index')->name('admin.dashboard');
+        Route::get('purchases','PurchaseController@purchase')->name('admin.purchase');
+        Route::get('customers','CustomerController@index')->name('admin.customers');
         Route::get('logout','LoginController@logout')->name('admin.logout');
 
         ######################### Settings Routes #############################################################

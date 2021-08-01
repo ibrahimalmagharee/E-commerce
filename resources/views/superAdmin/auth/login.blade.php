@@ -18,8 +18,8 @@
                     </div>
 
                     <!-- begin alet section-->
-                    @include('admin.includes.alert.errors')
-                    @include('admin.includes.alert.success')
+                    @include('superAdmin.includes.alert.errors')
+                    @include('superAdmin.includes.alert.success')
 
                     <!-- end alet section-->
 
@@ -52,15 +52,6 @@
                                     <span class="text-danger">{{$message}} </span>
                                     @enderror
                                 </fieldset>
-                                <div class="form-group row">
-                                    <div class="col-md-6 col-12 text-center text-md-left">
-                                        <fieldset>
-                                            <input type="checkbox" name="remember_me" id="remember-me"
-                                                   class="chk-remember">
-                                            <label for="remember-me">تذكر دخولي</label>
-                                        </fieldset>
-                                    </div>
-                                </div>
                                 <button type="submit" class="btn btn-info btn-lg btn-block"><i
                                         class="ft-unlock"></i>
                                     دخول

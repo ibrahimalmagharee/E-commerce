@@ -24,7 +24,11 @@ class RedirectIfAuthenticated
 
             } elseif ($guard == 'superAdmin') {
                 return redirect(RouteServiceProvider::SUPERADMIN);
+
+            } elseif ($guard == 'vendor') {
+                return redirect(RouteServiceProvider::VENDOR);
             }
+
             else
                 return redirect(RouteServiceProvider::HOME);
         }

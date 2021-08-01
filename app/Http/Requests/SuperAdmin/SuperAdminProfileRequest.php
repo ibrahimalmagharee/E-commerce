@@ -4,7 +4,7 @@ namespace App\Http\Requests\SuperAdmin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileRequest extends FormRequest
+class SuperAdminProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:superAdmin,email,'. $this -> id,
+            'email' => 'required|email|unique:unique:landlord.super_admins,email,'. $this -> id,
             'password' => 'nullable|confirmed|min:8',
         ];
     }

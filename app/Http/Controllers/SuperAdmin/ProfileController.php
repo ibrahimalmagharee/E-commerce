@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SuperAdmin\ProfileRequest;
 use App\Models\SuperAdmin;
 use Illuminate\Http\Request;
+use Spatie\Multitenancy\Models\Concerns\UsesLandlordConnection;
 
 class ProfileController extends Controller
 {
@@ -13,7 +15,7 @@ class ProfileController extends Controller
         return view('superAdmin.profile.edit', compact('superAdmin'));
     }
 
-    public function update(ProfileRequest $request)
+    public function update(Request $request)
     {
         try {
 

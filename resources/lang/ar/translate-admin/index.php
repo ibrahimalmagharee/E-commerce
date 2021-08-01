@@ -11,7 +11,7 @@ return [
     'customer' => 'العميل',
     'price' => 'السعر ($)',
     'status order' => 'حالة الطلب',
-    'total' => 'الاجمالي',
+    'payment_method' => 'وسيلة الدفع',
     'latest rating' => 'آخر التقييمات',
     'product' => 'المنتج',
     'rating' => 'التقيم',

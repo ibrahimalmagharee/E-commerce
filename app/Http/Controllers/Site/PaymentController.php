@@ -80,6 +80,16 @@ class PaymentController extends Controller
                             'transaction_id' => $charge_id,
                         ]);
 
+                        $prod = Product::where('id', $cart_product->product_id)->first();
+
+                        $count_selling = $prod->selling_price + 1;
+
+                        $prod->where('id', $cart_product->product_id)->update([
+                            'selling_price' => $count_selling,
+                        ]);
+
+
+
                     }
                 }
             }

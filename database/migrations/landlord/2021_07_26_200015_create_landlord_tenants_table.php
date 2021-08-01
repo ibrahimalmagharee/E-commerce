@@ -13,6 +13,12 @@ class CreateLandlordTenantsTable extends Migration
             $table->string('name');
             $table->string('domain')->unique();
             $table->string('database')->unique();
+            $table->string('email')->unique();
+            $table->string('mobile')->unique();
+            $table->string('password');
+            $table->string('subscription')->nullable();
+            $table->string('subscription_type')->nullable();
+            $table->string('subscription_amount')->nullable();
             $table->timestamps();
         });
     }

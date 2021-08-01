@@ -80,24 +80,24 @@
                                                 <div class="productdetail-right col-12 col-lg-6 col-md-6">
                                                     <div class="product-reviews">
                                                         <div id="product_comments_block_extra">
-                                                            <div class="comments_note">
-                                                                <span>Review: </span>
-                                                                <div class="star_content clearfix">
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                </div>
-                                                            </div>
+{{--                                                            <div class="comments_note">--}}
+{{--                                                                <span>Review: </span>--}}
+{{--                                                                <div class="star_content clearfix">--}}
+{{--                                                                    <div class="star star_on"></div>--}}
+{{--                                                                    <div class="star star_on"></div>--}}
+{{--                                                                    <div class="star star_on"></div>--}}
+{{--                                                                    <div class="star star_on"></div>--}}
+{{--                                                                    <div class="star star_on"></div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
 
-                                                            <div class="comments_advices">
-                                                                <a href="#" class="comments_advices_tab"><i
-                                                                        class="fa fa-comments"></i>Read reviews (1)</a>
-                                                                <a class="open-comment-form" data-toggle="modal"
-                                                                   data-target="#new_comment_form" href="#"><i
-                                                                        class="fa fa-edit"></i>Write your review</a>
-                                                            </div>
+{{--                                                            <div class="comments_advices">--}}
+{{--                                                                <a href="#" class="comments_advices_tab"><i--}}
+{{--                                                                        class="fa fa-comments"></i>Read reviews (1)</a>--}}
+{{--                                                                <a class="open-comment-form" data-toggle="modal"--}}
+{{--                                                                   data-target="#new_comment_form" href="#"><i--}}
+{{--                                                                        class="fa fa-edit"></i>Write your review</a>--}}
+{{--                                                            </div>--}}
                                                         </div>
                                                         <!--  /Module NovProductComments -->
                                                     </div>
@@ -247,10 +247,10 @@
                                             <a class="nav-link active" data-toggle="tab" aria-expanded="true" href="#product-details">Product
                                                 Detail</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#reviews">Write Your Own
-                                                Review<span class='count-comment'> (1)</span></a>
-                                        </li>
+{{--                                        <li class="nav-item">--}}
+{{--                                            <a class="nav-link" data-toggle="tab" href="#reviews">Write Your Own--}}
+{{--                                                Review<span class='count-comment'> (1)</span></a>--}}
+{{--                                        </li>--}}
 
                                     </ul>
 
@@ -469,9 +469,9 @@
                                                          data-full-size-image-url="{{$_product->getPhoto($_product -> images[0] -> photo ?? '')}}"
                                                          width="600" height="600">
                                                     <img class="img-fluid image-secondary"
-                                                         src="{{$_product->getPhoto($_product -> images[0] -> photo ?? '')}}"
+                                                         src="{{$_product->getPhoto($_product -> images[1] -> photo ?? '')}}"
                                                          alt=""
-                                                         data-full-size-image-url="{{$_product->getPhoto($_product -> images[0] -> photo ?? '')}}"
+                                                         data-full-size-image-url="{{$_product->getPhoto($_product -> images[1] -> photo ?? '')}}"
                                                          width="600" height="600">
                                                 </a>
 
@@ -489,16 +489,16 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="product-comments">
-                                                        <div class="star_content">
-                                                            <div class="star"></div>
-                                                            <div class="star"></div>
-                                                            <div class="star"></div>
-                                                            <div class="star"></div>
-                                                            <div class="star"></div>
-                                                        </div>
-                                                        <span>0 review</span>
-                                                    </div>
+{{--                                                    <div class="product-comments">--}}
+{{--                                                        <div class="star_content">--}}
+{{--                                                            <div class="star"></div>--}}
+{{--                                                            <div class="star"></div>--}}
+{{--                                                            <div class="star"></div>--}}
+{{--                                                            <div class="star"></div>--}}
+{{--                                                            <div class="star"></div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <span>0 review</span>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                                 <div class="product-buttons d-flex justify-content-start"
                                                      itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">

@@ -21,9 +21,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
     public const ADMIN = '/admin/index';
-    public const SUPERADMIN = '/super-admin/index';
+    public const SUPERADMIN = '/super-admin/indexs';
+    public const VENDOR = '/forsa/';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -48,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
         $this->mapSiteRoutes();
+        $this->mapForsaRoutes();
         $this->mapAdminRoutes();
         $this->mapSuperAdminRoutes();
 
@@ -81,6 +83,13 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/site.php'));
+    }
+
+    protected function mapForsaRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/forsa.php'));
     }
 
     /**

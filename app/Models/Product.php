@@ -98,4 +98,5 @@ class Product extends Model
         return $total =  $this->special_price ?? $this -> price;
 
     }
+
 }

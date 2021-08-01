@@ -15,12 +15,19 @@ class LoginController extends Controller
 
     public function checkLogin(LoginRequest $request)
     {
-        $remember_me = $request->has('remember_me') ? true : false;
-        if (auth()->guard('superAdmin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember_me)){
-            return redirect()->route('superAdmin.dashboard');
+        if (auth()->guard('superAdmin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
+            $notification = array(
+                'message' => 'تم تسجيل دخولك بنجاح',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('superAdmin.dashboard')->with($notification);
         }
 
-        return redirect() -> back()->with(['error' => 'هناك خطأ بالبيانات يرجى التحقق']);
+        $notification = array(
+            'message' => 'هناك خطأ بالبيانات يرجى التحقق',
+            'alert-type' => 'error'
+        );
+        return redirect() -> back()->with($notification);
     }
 
     public function logout()
