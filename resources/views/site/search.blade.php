@@ -14,8 +14,8 @@
                         <meta itemprop="position" content="1">
                     </li>
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="{{route('wishlist.products.index')}}">
-                            <span itemprop="name">{{__('translate-site/index.my_wishlist')}}</span>
+                        <a itemprop="item" href="{{route('search')}}">
+                            <span itemprop="name">{{__('translate-site/index.my_search')}}</span>
                         </a>
                         <meta itemprop="position" content="3">
                     </li>
@@ -29,7 +29,7 @@
             <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <section id="main">
                     <div class="block-category hidden-sm-down">
-                        <h1 class="h1"> {{__('translate-site/index.my_wishlist')}}</h1>
+                        <h1 class="h1"> {{__('translate-site/index.my_search')}}</h1>
                     </div>
                     <section id="products">
 

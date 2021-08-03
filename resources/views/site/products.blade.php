@@ -9,7 +9,7 @@
                 <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="{{route('home')}}">
-                            <span itemprop="name">Home</span>
+                            <span itemprop="name">{{__('translate-site/index.main')}}</span>
                         </a>
                         <meta itemprop="position" content="1">
                     </li>
@@ -43,40 +43,40 @@
                                         <span class="list-type" data-view-type="list"><i class="fa fa-bars"></i></span>
                                     </div>
                                     <div class="hidden-sm-down total-products">
-                                        <p>There are {{count($products) ?? '0'}} products.</p>
+                                        <p>{{__('translate-site/index.THERE_ARE')}} {{count($products) ?? '0'}} {{__('translate-site/index.PRODUCTS')}}.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-6">
-                                    <div class="d-flex sort-by-row justify-content-end">
+{{--                                    <div class="d-flex sort-by-row justify-content-end">--}}
 
-                                        <span class="hidden-sm-down sort-by">Sort by:</span>
-                                        <div class="products-sort-order dropdown">
-                                            <a class="select-title" rel="nofollow" data-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false">
-                                                <span>Relevance</span>
-                                                <i class="material-icons pull-xs-right">&#xE5C5;</i>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a rel="nofollow"
-                                                   href="36-mini-speaker-27.html?home=home_3&amp;order=product.position.asc"
-                                                   class="select-list current js-search-link">
-                                                    Relevance
-                                                </a>
-                                                <a rel="nofollow"
-                                                   href="36-mini-speaker-28.html?home=home_3&amp;order=product.name.asc"
-                                                   class="select-list js-search-link">
-                                                    Name, A to Z
-                                                </a>
-                                                <a rel="nofollow"
-                                                   href="36-mini-speaker-29.html?home=home_3&amp;order=product.name.desc"
-                                                   class="select-list js-search-link">
-                                                    Name, Z to A
-                                                </a>
+{{--                                        <span class="hidden-sm-down sort-by">Sort by:</span>--}}
+{{--                                        <div class="products-sort-order dropdown">--}}
+{{--                                            <a class="select-title" rel="nofollow" data-toggle="dropdown"--}}
+{{--                                               aria-haspopup="true" aria-expanded="false">--}}
+{{--                                                <span>Relevance</span>--}}
+{{--                                                <i class="material-icons pull-xs-right">&#xE5C5;</i>--}}
+{{--                                            </a>--}}
+{{--                                            <div class="dropdown-menu">--}}
+{{--                                                <a rel="nofollow"--}}
+{{--                                                   href="36-mini-speaker-27.html?home=home_3&amp;order=product.position.asc"--}}
+{{--                                                   class="select-list current js-search-link">--}}
+{{--                                                    Relevance--}}
+{{--                                                </a>--}}
+{{--                                                <a rel="nofollow"--}}
+{{--                                                   href="36-mini-speaker-28.html?home=home_3&amp;order=product.name.asc"--}}
+{{--                                                   class="select-list js-search-link">--}}
+{{--                                                    Name, A to Z--}}
+{{--                                                </a>--}}
+{{--                                                <a rel="nofollow"--}}
+{{--                                                   href="36-mini-speaker-29.html?home=home_3&amp;order=product.name.desc"--}}
+{{--                                                   class="select-list js-search-link">--}}
+{{--                                                    Name, Z to A--}}
+{{--                                                </a>--}}
 
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                    </div>
+{{--                                    </div>--}}
                                 </div>
                             </div>
 
@@ -251,7 +251,7 @@
             e.preventDefault();
 
             @guest('customer')
-            toastr.warning('انت غير مسجل دخول في النظام')
+            toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
             $.ajax({
                 type: 'post',
@@ -277,7 +277,7 @@
             e.preventDefault();
 
             @guest('customer')
-            toastr.warning('انت غير مسجل دخول في النظام')
+            toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
 
             $.ajax({

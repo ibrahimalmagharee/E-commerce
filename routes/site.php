@@ -27,6 +27,7 @@ Route::group([
         Route::get('wishlist/products', 'WishlistController@index')->name('wishlist.products.index');
         Route::get('/cart', 'CartController@index')->name('cart.products.index');
         Route::get('/profile', 'ProfileController@edit')->name('profile');
+        Route::get('/search', 'HomeController@search')->name('search');
 
 
         /**

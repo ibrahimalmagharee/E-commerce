@@ -25,9 +25,9 @@ class AttributesController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $url = route('edit.attribute', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" id="editBrand" class="btn btn-outline-primary box-shadow-3 mb-1 editAttribute" style="width: 80px"><i class="la la-edit"></i>تعديل</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="تعديل" id="editBanner" class="primary box-shadow-3 mb-1 editAttribute" style="width: 80px"><i class="la la-edit font-large-1"></i></a></td>';
                     $btn .= '&nbsp;&nbsp;';
-                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteAttribute" style="width: 80px"><i class="la la-remove"></i> حذف</a></td>';
+                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="حذف" class="danger box-shadow-3 mb-1 deleteAttribute" style="width: 80px"><i class="la la-trash font-large-1"></i></a></td>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -52,7 +52,7 @@ class AttributesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(AttributesRequest $request)
     {
@@ -67,12 +67,16 @@ class AttributesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'msg' => 'تمت اضافة الخاصية بنجاح'
+                'msg' => __('translate-admin/attributes.success_add')
             ]);
 
         }catch (\Exception $ex){
             DB::rollBack();
-            return redirect() -> route('index.attribute') ->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/attributes.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.attribute') ->with($notification);
         }
 
     }
@@ -97,8 +101,13 @@ class AttributesController extends Controller
     public function edit($id)
     {
         $attribute = Attribute::find($id);
-        if (!$attribute)
-            return redirect()-> route('index.attribute')->with('error','هذه الخاصية غير موجودة');
+        if (!$attribute){
+            $notification = array(
+                'message' => __('translate-admin/attributes.error'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.attribute') ->with($notification);
+        }
 
         return view('admin.products.attributes.edit', compact('attribute'));
     }
@@ -114,8 +123,13 @@ class AttributesController extends Controller
     {
         try {
             $attribute = Attribute::find($id);
-            if (!$attribute)
-                return redirect()-> route('index.attribute')->with('error','هذه الخاصية غير موجودة');
+            if (!$attribute){
+                $notification = array(
+                    'message' => __('translate-admin/attributes.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect() -> route('index.attribute') ->with($notification);
+            }
 
             DB::beginTransaction();
 
@@ -125,11 +139,19 @@ class AttributesController extends Controller
 
             DB::commit();
 
-            return redirect() -> route('index.attribute') ->with('success', 'تمت تحديث الخاصية بنجاح');
+            $notification = array(
+                'message' => __('translate-admin/attributes.success_update'),
+                'alert-type' => 'info'
+            );
+            return redirect() -> route('index.attribute') ->with($notification);
 
         }catch (\Exception $ex){
             DB::rollBack();
-            return redirect() -> route('edit.attribute') ->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/attributes.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.attribute') ->with($notification);
         }
     }
 
@@ -146,7 +168,7 @@ class AttributesController extends Controller
         if (!$attribute){
             return response() -> json([
                 'status' => false,
-                'msg' =>'هناك خطأ ما يرجى المحاولة فيما بعد',
+                'msg' =>__('translate-admin/attributes.exception_add'),
             ]);
         }
 
@@ -156,7 +178,7 @@ class AttributesController extends Controller
             $attribute->delete();
             return response() -> json([
                 'status' => true,
-                'msg' => 'تمت عملية الحذف بنجاح',
+                'msg' => __('translate-admin/attributes.success_delete'),
             ]);
         }
 

@@ -540,7 +540,7 @@
                                 class="nov-productlist  productlist-rows     col-xl-12 col-lg-12 col-md-12 col-xs-12 col-md-12">
                                 <div class="block block-product clearfix">
                                     <h2 class="title_block">
-                                        NEW ARRIVALS
+                                        {{__('translate-site/index.new_arrivals')}}
                                     </h2>
                                     <div class="block_content">
 
@@ -2125,7 +2125,7 @@
                                 class="nov-productlist   productlist-slider      col-xl-9 col-lg-9 col-md-9 col-xs-12 col-md-12 col-lg-12">
                                 <div class="block block-product clearfix">
                                     <h2 class="title_block">
-                                        TRENDING NOW
+                                        {{__('translate-site/index.trending_now')}}
                                     </h2>
                                     <div class="block_content">
                                         <div id="productlist381904327"
@@ -3237,7 +3237,7 @@
                                 class="nov-productlist     productlist-liststyle-2  col-xl-3 col-lg-3 col-md-3 col-xs-12 col-md-12 col-lg-12">
                                 <div class="block block-product clearfix">
                                     <h2 class="title_block">
-                                        BEST SELLERS
+                                        {{__('translate-site/index.best_sellers')}}
                                     </h2>
                                     <div class="block_content">
                                         <div id="productlist331208303"
@@ -5074,8 +5074,8 @@
                                     <div class="block_content">
                                         <div class="policy-row"><i class="noviconpolicy noviconpolicy-1"></i>
                                             <div class="policy-content">
-                                                <div class="policy-name">Free Delivery From $ 250</div>
-                                                <div class="policy-des">Sed ut perspiciatis unde omnis iste</div>
+                                                <div class="policy-name">{{__('translate-site/index.free_delivery_from')}}</div>
+                                                <div class="policy-des"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -5090,8 +5090,8 @@
                                     <div class="block_content">
                                         <div class="policy-row"><i class="noviconpolicy noviconpolicy-2"></i>
                                             <div class="policy-content">
-                                                <div class="policy-name">Money Back Guarantee</div>
-                                                <div class="policy-des">Sed ut perspiciatis unde omnis iste natus</div>
+                                                <div class="policy-name">{{__('translate-site/index.money_back_guarantee')}}</div>
+                                                <div class="policy-des"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -5106,8 +5106,8 @@
                                     <div class="block_content">
                                         <div class="policy-row"><i class="noviconpolicy noviconpolicy-3"></i>
                                             <div class="policy-content">
-                                                <div class="policy-name">Authenticity 100% guaranteed</div>
-                                                <div class="policy-des">Sed ut perspiciatis unde omnis iste natus</div>
+                                                <div class="policy-name">{{__('translate-site/index.authenticity_is_guaranteed')}}</div>
+                                                <div class="policy-des"></div>
                                             </div>
                                         </div>
                                     </div>

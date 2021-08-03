@@ -32,8 +32,8 @@ class CustomerLoginRequest extends FormRequest
     public function messages()
     {
         return[
-            'mobile.required' => 'يجب ادخال رقم الهاتف',
-            'password.required' => 'يجب ادخال كلمة المرور'
+            'mobile.required' => __('translate-site/index.mobile.required'),
+            'password.required' => __('translate-site/index.password.required')
         ];
 
     }

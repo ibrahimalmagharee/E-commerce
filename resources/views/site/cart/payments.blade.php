@@ -111,7 +111,7 @@
                 <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="index-11.htm">
-                            <span itemprop="name">Home</span>
+                            <span itemprop="name">{{__('translate-site/index.main')}}</span>
                         </a>
                         <meta itemprop="position" content="1">
                     </li>
@@ -125,7 +125,7 @@
         <div class="row">
             <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <section id="main">
-                    <h1 class="page-title">Payment Methods</h1>
+                    <h1 class="page-title">{{__('translate-site/index.PAYMENT_METHODS')}}</h1>
                     <div class="cart-grid row">
 
                         <form
@@ -193,7 +193,7 @@
                             </div>
 
                             <hr class="mb-4">
-                            <button class="btn btn-primary btn-lg btn-block mb-3" type="submit" id="payment">Continue to checkout</button>
+                            <button class="btn btn-primary btn-lg btn-block mb-3" type="submit" id="payment">{{__('translate-site/index.continue_to_checkout')}}</button>
                         </form>
                     </div>
                 </section>

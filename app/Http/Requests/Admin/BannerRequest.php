@@ -32,11 +32,11 @@ class BannerRequest extends FormRequest
     public function messages()
     {
         return [
-            'category_id.required' => 'يجب اختيار القسم',
-            'category_id.numeric' => 'يجب ان تكون قيمة القسم رقم',
-            'category_id.exists' => 'هذا القسم غير موجود',
-            'photo.required_without' => 'يجب ادخال الصورة',
-            'photo.mimes' => 'يجب ان تكون امتداد الصورة jpg,jpeg,png',
+            'category_id.required' => __('translate-admin/banners.category_id.required'),
+            'category_id.numeric' => __('translate-admin/banners.category_id.numeric'),
+            'category_id.exists' => __('translate-admin/banners.category_id.exists'),
+            'photo.required_without' => __('translate-admin/banners.photo.required_without'),
+            'photo.mimes' => __('translate-admin/banners.photo.mimes'),
         ];
 
     }

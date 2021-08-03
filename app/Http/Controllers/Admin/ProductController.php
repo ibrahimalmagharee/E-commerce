@@ -33,39 +33,41 @@ class ProductController extends Controller
             return DataTables::of($products)
                 ->addIndexColumn()
                 ->addColumn('is_active', function ($row) {
-                    return $row->is_active == 1 ? __('translate-admin/brand.active') : __('translate-admin/brand.not active');
+                    return $row->is_active == 1 ? __('translate-admin/products.active') : __('translate-admin/products.not active');
                 })
                 ->addColumn('attribute', function ($row) {
                     $url = route('index.option', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Attribute" class="btn btn-outline-info box-shadow-3 mb-1 editBrand">الخصائص</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Attribute" class="btn btn-outline-info box-shadow-3 mb-1 editBrand">'.__('translate-admin/products.attributes').'</a></td>';
                     return $btn;
                 })
                 ->addColumn('images', function ($row) {
                     $url = route('add.product.images', $row->id);
-                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Images" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">صور المنتج</a></td>';
+                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Images" class="btn btn-outline-warning box-shadow-3 mb-1 addProductImages">'.__('translate-admin/products.images_product').'</a></td>';
 
                     return $btn;
                 })
-                ->addColumn('activation', function ($row) {
-                    $url = route('edit.product.activation', $row->id);
-                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Active" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
-
-                    return $btn;
-                })
+//                ->addColumn('activation', function ($row) {
+//                    $url = route('edit.product.activation', $row->id);
+//                    $btn = ' <td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Active" class="btn btn-outline-secondary box-shadow-3 mb-1 addProductImages">تفعيل</a></td>';
+//
+//                    return $btn;
+//                })
                 ->addColumn('action', function ($row) {
                     $url = route('edit.product.general', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-outline-primary box-shadow-3 mb-1 editBrand">تعديل المنتج</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="تعديل" id="editBanner" class="primary box-shadow-3 mb-1 editOption" style="width: 80px"><i class="la la-edit font-large-1"></i></a></td>';
+                    $btn .= '&nbsp;&nbsp;';
+                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="حذف" class="danger box-shadow-3 mb-1 deleteProduct" style="width: 80px"><i class="la la-trash font-large-1"></i></a></td>';
+
                     $btn .= '&nbsp;&nbsp;';
                     $url = route('edit.product.price', $row->id);
-                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Price" class="btn btn-outline-success box-shadow-3 mb-1 editBrand">السعر</a></td>';
+                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Price" class="btn btn-outline-success box-shadow-3 mb-1 editBrand">'.__('translate-admin/products.price').'</a></td>';
                     $btn .= '&nbsp;&nbsp;';
                     $url = route('edit.product.store', $row->id);
-                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Store" class="btn btn-outline-blue box-shadow-3 mb-1 editBrand">المخزون</a></td>';
+                    $btn = $btn . '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit Store" class="btn btn-outline-blue box-shadow-3 mb-1 editBrand">'.__('translate-admin/products.stoke').'</a></td>';
                     $btn .= '&nbsp;&nbsp;';
-                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteProduct">حذف</a></td>';
                     return $btn;
                 })
-                ->rawColumns(['attribute', 'images', 'activation', 'action'])
+                ->rawColumns(['attribute', 'images', 'action'])
                 ->make(true);
 
 
@@ -138,12 +140,21 @@ class ProductController extends Controller
 
             DB::commit();
 
-            return redirect()->route('index.product')->with('success', 'تمت اضافة المنتج بنجاح');
+            $notification = array(
+                'message' => __('translate-admin/products.success_add'),
+                'alert-type' => 'info'
+            );
+
+            return redirect()->route('index.product')->with($notification);
 
 
         } catch (\Exception $ex) {
             DB::rollBack();
-            return redirect()->route('create.product')->with('error', 'هناك حطأ ما يرجى المحاولة مرة أخرى');
+            $notification = array(
+                'message' => __('translate-admin/products.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect()->route('create.product')->with($notification);
         }
     }
 
@@ -153,8 +164,14 @@ class ProductController extends Controller
 
         $product_general = Product::with('categories', 'tags', 'brand')->find($product_id);
         //  dd($product_general);
-        if (!$product_general)
-            return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+        if (!$product_general){
+            $notification = array(
+                'message' => __('translate-admin/products.error'),
+                'alert-type' => 'error'
+            );
+            return redirect()->route('index.product')->with($notification);
+
+        }
 
         $data = [];
         $data['brand'] = Brand::active()->select('id')->get();
@@ -183,8 +200,14 @@ class ProductController extends Controller
 
         $product_general = Product::with('categories', 'tags', 'brand')->find($product_id);
 
-        if (!$product_general)
-            return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+        if (!$product_general){
+            $notification = array(
+                'message' => __('translate-admin/products.error'),
+                'alert-type' => 'error'
+            );
+            return redirect()->route('index.product')->with($notification);
+
+        }
 
         if (!$request->has('is_active')) {
             $request->request->add(['is_active' => 0]);
@@ -210,7 +233,12 @@ class ProductController extends Controller
         $product_general->tags()->sync($request->tags);
 
         DB::commit();
-        return redirect()->route('index.product')->with('success', 'تم تحديث المنتج بنجاح');
+
+        $notification = array(
+            'message' => __('translate-admin/products.success_update'),
+            'alert-type' => 'info'
+        );
+        return redirect()->route('index.product')->with($notification);
 
 
     }
@@ -219,14 +247,23 @@ class ProductController extends Controller
     {
         try {
             $product_price = Product::find($product_id);
-            if (!$product_price)
-                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+            if (!$product_price){
+                $notification = array(
+                    'message' => __('translate-admin/products.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
 
+            }
 
             return view('admin.products.edit.editProductPrice', compact('product_price'));
 
         } catch (\Exception $exception) {
-            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/products.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         }
     }
@@ -236,8 +273,14 @@ class ProductController extends Controller
         try {
             $product_price = Product::find($product_id);
 
-            if (!$product_price)
-                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+            if (!$product_price){
+                $notification = array(
+                    'message' => __('translate-admin/products.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
+
+            }
 
             DB::beginTransaction();
 
@@ -250,10 +293,19 @@ class ProductController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('index.product')->with('success', 'تم تحديث سعر المنتج بنجاح');
+
+            $notification = array(
+                'message' => __('translate-admin/products.success_update'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         } catch (\Exception $exception) {
-            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/products.exception_add'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         }
     }
@@ -262,14 +314,24 @@ class ProductController extends Controller
     {
         try {
             $product_store = Product::find($product_id);
-            if (!$product_store)
-                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+            if (!$product_store){
+                $notification = array(
+                    'message' => __('translate-admin/products.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
+
+            }
 
 
             return view('admin.products.edit.editProductStore', compact('product_store'));
 
         } catch (\Exception $exception) {
-            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/products.exception_add'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         }
     }
@@ -279,8 +341,14 @@ class ProductController extends Controller
         try {
             $product_store = Product::find($product_id);
 
-            if (!$product_store)
-                return redirect()->route('index.product')->with('error', 'هذا المنتج غير موجود');
+            if (!$product_store){
+                $notification = array(
+                    'message' => __('translate-admin/products.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
+
+            }
 
             DB::beginTransaction();
 
@@ -292,10 +360,19 @@ class ProductController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('index.product')->with('success', 'تم تحديث مخزون المنتج بنجاح');
+
+            $notification = array(
+                'message' => __('translate-admin/products.success_update'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         } catch (\Exception $exception) {
-            return redirect()->route('index.product')->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/products.exception_add'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.product')->with($notification);
 
         }
     }
@@ -328,7 +405,11 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('index.product')->with('success', 'تمت اضافة صور المنتج بنجاح');
+        $notification = array(
+            'message' => __('translate-admin/products.success_add_images'),
+            'alert-type' => 'success'
+        );
+        return redirect()->route('index.product')->with($notification);
 
 
     }
@@ -402,7 +483,7 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json([
                 'status' => false,
-                'msg' => __('translate-admin/category.error'),
+                'msg' => __('translate-admin/products.error'),
             ]);
 
         }
@@ -410,7 +491,7 @@ class ProductController extends Controller
         $product->delete();
         return response()->json([
             'status' => true,
-            'msg' => __('translate-admin/category.success-delete'),
+            'msg' => __('translate-admin/products.success_delete'),
         ]);
 
 

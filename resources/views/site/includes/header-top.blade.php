@@ -5,14 +5,14 @@
                 <div class="header-top-left col-lg-6 col-md-6 d-flex justify-content-start align-items-center">
                     <div class="detail-email d-flex align-items-center justify-content-center">
                         <i class="icon-email"></i>
-                        <p>الايميل : </p>
+                        <p>{{__('translate-site/index.email')}} : </p>
                         <span>
                   support@gmail.com
                 </span>
                     </div>
                     <div class="detail-call d-flex align-items-center justify-content-center">
                         <i class="icon-deal"></i>
-                        <p>عروض اليوم </p>
+                        <p>{{__('translate-site/index.today_deals')}} </p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 d-flex justify-content-end align-items-center header-top-right">
@@ -21,16 +21,16 @@
                         @guest('customer')
                             <a class="register" href="{{route('customer.register.page')}}"
                                data-link-action="display-register-form">
-                                تسجيل
+                                {{__('translate-site/index.register')}}
                             </a>
                             <span class="or-text">أو</span>
-                            <a class="login" href="{{route('customer.login.page')}}" rel="nofollow" title="Log in to your customer account">تسجيل الدخول</a>
+                            <a class="login" href="{{route('customer.login.page')}}" rel="nofollow" title="Log in to your customer account">{{__('translate-site/index.login')}} </a>
                         @endguest
                         @auth('customer')
 
 
                             <a href="{{ route('customer.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                تسجيل الخروج
+                                {{__('translate-site/index.logout')}}
                             </a>
 
                             <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">

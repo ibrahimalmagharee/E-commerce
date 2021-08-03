@@ -8,7 +8,7 @@
                 <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="index-11.htm">
-                            <span itemprop="name">Home</span>
+                            <span itemprop="name">{{__('translate-site/index.main')}}</span>
                         </a>
                         <meta itemprop="position" content="1">
                     </li>
@@ -22,7 +22,7 @@
         <div class="row">
             <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <section id="main">
-                    <h1 class="page-title">Shopping Cart</h1>
+                    <h1 class="page-title">{{__('translate-site/index.shopping_cart')}}</h1>
                     <div class="cart-grid row">
                         <div class="cart-grid-body col-xs-12 col-lg-9">
                             <!-- cart products detailed -->
@@ -73,9 +73,9 @@
                                                                         <div class="col-sm-9 col-xs-12">
                                                                             <div class="row">
                                                                                 <div class="col-md-6 col-xs-6 qty">
-                                                                                    <div class="label" @if(app() -> getLocale() === 'ar') style="margin-right: 150px" @elseif(app() -> getLocale() === 'en') style="margin-left: 150px" @endif>Total</div>
+                                                                                    <div class="label" @if(app() -> getLocale() === 'ar') style="margin-right: 150px" @elseif(app() -> getLocale() === 'en') style="margin-left: 150px" @endif>{{__('translate-site/index.total')}}</div>
 
-                                                                                    <div class="label">Qty:</div>
+                                                                                    <div class="label">  {{__('translate-site/index.qty')}}:</div>
 
                                                                                     <div
                                                                                         class="input-group bootstrap-touchspin">
@@ -144,21 +144,21 @@
                                 </div>
                             </div>
                             <a class="label btn btn-primary mt-5 " href="{{route('home')}}">
-                                Continue shopping
+                                {{__('translate-site/index.continue_shopping')}}
                             </a>
                             <!-- shipping informations -->
                         </div>
                         <!-- Right Block: cart subtotal & cart total -->
-                        <div class="cart-grid-right col-xs-12 col-lg-3">
+                        <div class="cart-grid-right col-xs-12 col-lg-3 mb-10">
                             <div class="cart-summary">
                                 <div class="cart-detailed-totals">
                                     <div class="cart-summary-products">
-                                        <div class="summary-label" id="number_cart_product">There are  ({{count($cart_products)}}) items in your cart</div>
+                                        <div class="summary-label" id="number_cart_product">   {{__('translate-site/index.there_are')}}  ({{count($cart_products)}})    {{__('translate-site/index.items_in_your_cart')}}</div>
                                     </div>
 
                                     <div class="">
                                         <div class="cart-summary-line cart-total">
-                                            <span class="label">Total:</span>
+                                            <span class="label">   {{__('translate-site/index.total')}}:</span>
                                             <span class="value" id="total_price">$ {{$total_price}} </span>
                                         </div>
 
@@ -168,7 +168,7 @@
 
 
                                 <div class="checkout text-xs-center card-block">
-                                    <a href="{{route('payment', $total_price)}}" id="payment_amount" type="button" class="btn btn-primary"> proceed to payment
+                                    <a href="{{route('payment', $total_price)}}" id="payment_amount" type="button" class="btn btn-primary">   {{__('translate-site/index.proceed_payment')}}
                                     </a>
                                 </div>
 
@@ -176,36 +176,36 @@
                             </div>
 
 
-                            <div class="blockreassurance_product">
-                                <div>
-            <span class="item-product">
-                                                        <img class="svg invisible"
-                                                             src="../modules/blockreassurance/img/ic_verified_user_black_36dp_1x.png">
-                                    &nbsp;
-            </span>
-                                    <p class="block-title" style="color:#000000;">Security policy (edit with
-                                        Customer reassurance module)</p>
-                                </div>
-                                <div>
-            <span class="item-product">
-                                                        <img class="svg invisible"
-                                                             src="../modules/blockreassurance/img/ic_local_shipping_black_36dp_1x.png">
-                                    &nbsp;
-            </span>
-                                    <p class="block-title" style="color:#000000;">Delivery policy (edit with
-                                        Customer reassurance module)</p>
-                                </div>
-                                <div>
-            <span class="item-product">
-                                                        <img class="svg invisible"
-                                                             src="../modules/blockreassurance/img/ic_swap_horiz_black_36dp_1x.png">
-                                    &nbsp;
-            </span>
-                                    <p class="block-title" style="color:#000000;">Return policy (edit with Customer
-                                        reassurance module)</p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
+{{--                            <div class="blockreassurance_product">--}}
+{{--                                <div>--}}
+{{--            <span class="item-product">--}}
+{{--                                                        <img class="svg invisible"--}}
+{{--                                                             src="../modules/blockreassurance/img/ic_verified_user_black_36dp_1x.png">--}}
+{{--                                    &nbsp;--}}
+{{--            </span>--}}
+{{--                                    <p class="block-title" style="color:#000000;">Security policy (edit with--}}
+{{--                                        Customer reassurance module)</p>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--            <span class="item-product">--}}
+{{--                                                        <img class="svg invisible"--}}
+{{--                                                             src="../modules/blockreassurance/img/ic_local_shipping_black_36dp_1x.png">--}}
+{{--                                    &nbsp;--}}
+{{--            </span>--}}
+{{--                                    <p class="block-title" style="color:#000000;">Delivery policy (edit with--}}
+{{--                                        Customer reassurance module)</p>--}}
+{{--                                </div>--}}
+{{--                                <div>--}}
+{{--            <span class="item-product">--}}
+{{--                                                        <img class="svg invisible"--}}
+{{--                                                             src="../modules/blockreassurance/img/ic_swap_horiz_black_36dp_1x.png">--}}
+{{--                                    &nbsp;--}}
+{{--            </span>--}}
+{{--                                    <p class="block-title" style="color:#000000;">Return policy (edit with Customer--}}
+{{--                                        reassurance module)</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="clearfix"></div>--}}
+{{--                            </div>--}}
 
 
                         </div>
@@ -257,7 +257,7 @@
         $(document).on('click', '.remove-from-cart', function (e) {
             e.preventDefault();
             @guest('customer')
-            toastr.warning('انت غير مسجل دخول في النظام')
+            toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
                 @endguest
 
             var Clickedthis = $(this);
@@ -272,7 +272,7 @@
                     $(Clickedthis).closest('.delete-product').remove();
                     toastr.success(data.msg);
                     $('#total_price').html('$ ' + data.total_price);
-                    $('#number_cart_product').html("There are (" + data.number_cart_product + ") items in your cart")
+                    $('#number_cart_product').html("{{__('translate-site/index.there_are')}} (" + data.number_cart_product + ") {{__('translate-site/index.items_in_your_cart')}}")
                 }
             });
         });

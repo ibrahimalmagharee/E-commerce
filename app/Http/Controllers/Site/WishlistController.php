@@ -11,7 +11,7 @@ class WishlistController extends Controller
     {
         if (! auth('customer')->user()){
             $notification = array(
-                'message' => 'انت غير مسجل دخول في النظام',
+                'message' => __('translate-site/index.you_are_not_logged_into_the_system'),
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
@@ -36,9 +36,9 @@ class WishlistController extends Controller
     {
         if (! auth('customer')->user()->wishlistHas(request('productId'))) {
             auth('customer')->user()->wishlist()->attach(request('productId'));
-            return response() -> json(['status' => true , 'wished' => true, 'msg' => 'تم اضافة المنتج الي مفضلتك']);
+            return response() -> json(['status' => true , 'wished' => true, 'msg' => __('translate-site/index.The_product_has_been_added_to_your_favourites')]);
         }
-        return response() -> json(['status' => true , 'wished' => false, 'msg' => 'هذا المنتج تمت اضافته من قبل']);  // added before we can use enumeration here
+        return response() -> json(['status' => true , 'wished' => false, 'msg' => __('translate-site/index.this_product_has_already_been_added')]);  // added before we can use enumeration here
     }
 
     /**
@@ -58,7 +58,7 @@ class WishlistController extends Controller
             'status' => true ,
             'wished' => true,
             'products' => count($products),
-            'msg' => 'تم حذف المنتج من مفضلتك'
+            'msg' => __('translate-site/index.the_product_has_been_removed_from_your_favourites')
         ]);
     }
 }

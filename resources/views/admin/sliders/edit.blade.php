@@ -10,12 +10,12 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/slider.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.sliders')}}">صور السلايدر</a>
+                                    <a href="{{route('index.sliders')}}"> {{ __('translate-admin/slider.slider')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active"> تعديل صورة السلايدر </li>
+                                <li class="breadcrumb-item active"> {{ __('translate-admin/slider.edit_slider')}} </li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong>  تعديل صورة السلايدر</strong></h4>
+                                        <strong>  {{ __('translate-admin/slider.edit_slider')}}</strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -67,10 +67,10 @@
                                                         <div id="photo1">
                                                             <div class="form-body">
 
-                                                                <h4 class="form-section"> صور السلايدر </h4>
+                                                                <h4 class="form-section">{{ __('translate-admin/slider.slider')}}</h4>
                                                                 <div class="form-group">
                                                                     <div id="dpz-multiple-files" class="dropzone dropzone-area">
-                                                                        <div class="dz-message">يمكنك رفع اكثر من صوره هنا</div>
+                                                                        <div class="dz-message">{{ __('translate-admin/slider.can_upload_image')}}</div>
                                                                     </div>
                                                                     <br><br>
                                                                 </div>
@@ -88,11 +88,11 @@
 
                                             <div class="form-actions">
                                                 <input type="hidden" name="action" id="action" value="Update">
-                                                <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
+                                                <a href="{{route('index.sliders')}}" type="button" class="btn btn-warning mr-1" data-dismiss="modal">
                                                     <i
-                                                        class="ft-x"></i> تراجع
-                                                </button>
-                                                <button class="btn btn-primary" id="updateSlider"> تحديث</button>
+                                                        class="ft-x"></i> {{ __('translate-admin/slider.retreat')}}
+                                                </a>
+                                                <button class="btn btn-primary" id="updateSlider"> {{ __('translate-admin/slider.update')}}</button>
                                             </div>
 
                                         </form>
@@ -127,7 +127,7 @@
             dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
             dictCancelUpload: "الغاء الرفع ",
             dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
-            dictRemoveFile: "حذف الصوره",
+            dictRemoveFile: "{{__('translate-admin/slider.delete')}}",
             dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
             headers: {
                 'X-CSRF-TOKEN':

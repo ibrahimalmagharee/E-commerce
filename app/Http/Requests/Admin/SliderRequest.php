@@ -32,8 +32,8 @@ class SliderRequest extends FormRequest
     public function messages()
     {
         return [
-            'photo.required' => 'يجب ادخال الصور',
-            'photo.mimes' => 'يجب ان تكون امتداد الصورة jpg,jpeg,png',
+            'photo.required_without' => __('translate-admin/slider.photo.required_without'),
+            'photo.mimes' => __('translate-admin/slider.photo.mimes'),
         ];
 
     }

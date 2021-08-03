@@ -10,12 +10,12 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/optionsAttributes.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.option', $option->product_id)}}">خيارات خصائص المنتجات</a>
+                                    <a href="{{route('index.option', $option->product_id)}}">{{__('translate-admin/optionsAttributes.options')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active">تعديل -
+                                <li class="breadcrumb-item active">{{__('translate-admin/optionsAttributes.edit_option')}} -
                                     {{$option->name}} </li>
                             </ol>
                         </div>
@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong> تعديل-
+                                        <strong> {{__('translate-admin/optionsAttributes.edit_option')}} -
                                             {{$option->name}} </strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
@@ -55,9 +55,9 @@
                                             <input type="hidden" name="product_id" value="{{$option->product_id}}">
                                             <div class="form-body">
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">الاسم</label>
+                                                            <label for="projectinput1">{{__('translate-admin/optionsAttributes.name')}} </label>
                                                             <input type="text" id="name" class="form-control" placeholder="الاسم : أحمر,أصفر,صغير,كبير ..."
                                                                    name="name" value="{{$option->name}}">
                                                             @error('name')
@@ -65,13 +65,9 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">السعر</label>
+                                                            <label for="projectinput1">{{__('translate-admin/optionsAttributes.price')}} </label>
                                                             <input type="number" id="price" class="form-control" placeholder="السعر : 20$"
                                                                    name="price" value="{{$option->price}}">
 
@@ -80,16 +76,18 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+
                                                 </div>
 
+
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">الخاصية</label>
+                                                            <label for="projectinput1">{{__('translate-admin/optionsAttributes.attribute')}} </label>
                                                             <select name="attribute_id" id="attribute_id"
                                                                     class="select form-control">
-                                                                <optgroup label="الرجاء اختر الخاصية المناسبة">
-                                                                    <option>اختر الخاصية المناسبة</option>
+                                                                <optgroup label="{{__('translate-admin/optionsAttributes.choose_the_appropriate_feature')}} ">
+                                                                    <option>{{__('translate-admin/optionsAttributes.choose_the_appropriate_feature')}} </option>
                                                                     @isset($attributes)
                                                                         @foreach($attributes as $attribute)
                                                                             <option value="{{$attribute->id}}" @if($attribute->id == $option->attribute_id) selected @endif>{{$attribute->name}}</option>
@@ -109,10 +107,10 @@
                                             </div>
 
                                             <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
-                                                        class="ft-x"></i> تراجع
-                                                </button>
-                                                <button class="btn btn-primary" id="addOption"> تحديث</button>
+                                                <a href="{{route('index.option', $option->product_id)}}" type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
+                                                        class="ft-x"></i> {{__('translate-admin/optionsAttributes.retreat')}}
+                                                </a>
+                                                <button class="btn btn-primary" id="addOption"> {{__('translate-admin/optionsAttributes.update')}} </button>
                                             </div>
 
                                         </form>

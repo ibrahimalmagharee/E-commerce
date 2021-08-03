@@ -28,14 +28,14 @@ class RegisterationController extends Controller
         if (auth()->guard('customer')->attempt(['mobile' => $request->input('mobile'), 'password' => $request->input('password')])) {
 
             $notification = array(
-                'message' => 'تم تسجيل دخولك بنجاح',
+                'message' => __('translate-site/index.you_are_logged_in_successfully'),
                 'alert-type' => 'success'
             );
             return redirect()->route('home')->with($notification);
         }
 
         $notification = array(
-            'message' => 'هناك خطأ بالبيانات يرجى التحقق',
+            'message' => __('translate-site/index.there_is_an_error_in_the_data_please_check'),
             'alert-type' => 'error'
         );
 
@@ -66,7 +66,7 @@ class RegisterationController extends Controller
 
 
         $notification = array(
-            'message' => 'تم اضافتك كعميل في االمتجر',
+            'message' => __('translate-site/index.you_have_been_added_as_a_customer_in_the_store'),
             'alert-type' => 'success'
         );
 
@@ -78,7 +78,7 @@ class RegisterationController extends Controller
     {
         if (!auth('customer')->user()) {
             $notification = array(
-                'message' => 'انت غير مسجل دخول في النظام',
+                'message' => __('translate-site/index.you_are_not_logged_into_the_system'),
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
@@ -87,7 +87,7 @@ class RegisterationController extends Controller
         $guard->logout();
 
         $notification = array(
-            'message' => 'تم تسجيل الخروج بنجاح',
+            'message' => __('translate-site/index.signed_out_successfully'),
             'alert-type' => 'success'
         );
 

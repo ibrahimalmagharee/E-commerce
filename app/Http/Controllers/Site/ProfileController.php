@@ -14,7 +14,7 @@ class ProfileController extends Controller
     {
         if (! auth('customer')->user()){
             $notification = array(
-                'message' => 'انت غير مسجل دخول في النظام',
+                'message' => __('translate-site/index.you_are_not_logged_into_the_system'),
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
@@ -48,7 +48,7 @@ class ProfileController extends Controller
 
 
         $notification = array(
-            'message' => 'تم تحديث الملف الشخصي بنجاح',
+            'message' => __('translate-site/index.profile_updated_successfully'),
             'alert-type' => 'success'
         );
 

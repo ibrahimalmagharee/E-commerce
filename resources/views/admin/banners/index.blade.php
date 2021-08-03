@@ -5,12 +5,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">اللافتات</h3>
+                    <h3 class="content-header-title">{{__('translate-admin/banners.banners')}}</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a></li>
-                                <li class="breadcrumb-item active">اللافتات</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/banners.main')}}</a></li>
+                                <li class="breadcrumb-item active">{{__('translate-admin/banners.banners')}}</li>
                             </ol>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a class="btn btn-outline-success float-left" href="javascript:void(0)"
-                                       id="addNewBanner"><i class="la la-cart-plus">اضافة لافتة جديد</i></a>
+                                       id="addNewBanner"><i class="la la-plus">{{__('translate-admin/banners.add_banner')}}</i></a>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -42,9 +42,9 @@
                                         <table class="table banners-table">
                                             <thead>
                                             <tr>
-                                                <th>القسم</th>
-                                                <th>الصورة</th>
-                                                <th>الاجراءات</th>
+                                                <th>{{__('translate-admin/banners.category')}}</th>
+                                                <th>{{__('translate-admin/banners.photo')}}</th>
+                                                <th>{{__('translate-admin/banners.process')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -67,7 +67,7 @@
             <div class="modal-content width-800">
                 <div class="modal-header">
                     <h4 class="modal-title form-section" id="modalheader">
-                        <i class="ft-home"></i> اضافة لافتة
+                        <i class="ft-home"></i>{{__('translate-admin/banners.add_banner')}}
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -84,7 +84,7 @@
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label> الصورة </label>
+                                                    <label> {{__('translate-admin/banners.photo')}} </label>
                                                     <label id="projectinput7" class="file center-block">
                                                         <input type="file" id="file" name="photo">
                                                         <span class="file-custom"></span>
@@ -93,9 +93,9 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput2">اختر القسم</label>
+                                                        <label for="projectinput2"> {{__('translate-admin/banners.select_category')}}</label>
                                                         <select name="category_id" id="category_id" class="form-control">
-                                                            <optgroup label="الرجاء اختر القسم">
+                                                            <optgroup label="{{__('translate-admin/banners.category_id.required')}}">
                                                                 @isset($data['categories'] )
                                                                     @foreach($data['categories'] as $category)
                                                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -115,9 +115,9 @@
                                 <div class="form-actions">
                                     <input type="hidden" name="action" id="action" value="Add">
                                     <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
-                                            class="ft-x"></i> {{__('translate-admin/brand.retreat')}}
+                                            class="ft-x"></i> {{__('translate-admin/banners.retreat')}}
                                     </button>
-                                    <button class="btn btn-primary" id="addBanner"> {{__('translate-admin/brand.save')}}</button>
+                                    <button class="btn btn-primary" id="addBanner"> {{__('translate-admin/banners.save')}}</button>
                                 </div>
 
                             </form>
@@ -143,7 +143,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/brand.confirm-delete')}}</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/banners.confirm-delete')}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -155,11 +155,11 @@
 
                     <div class="modal-body">
                         <input type="hidden" id="delete_language">
-                            <h5>هل انت متأكد من حذف هذه الافتة</h5>
+                            <h5>{{ __('translate-admin/banners.alert-delete')}}</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/brand.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/brand.delete')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/banners.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/banners.delete')}}</button>
                     </div>
                 </form>
             </div>
@@ -190,7 +190,10 @@
                     {data: 'category_id', name: 'category_id'},
                     {data: 'photo', name: 'photo'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                @if(app()-> getLocale() == 'ar')
+                language: {"url": "{{asset('assets/admin/js/dataTableArabic.json')}}"},
+                @endif
             });
 
 
@@ -227,7 +230,7 @@
                             $('#banner-modal').modal('hide');
                             bannersTable.draw();
                         } else {
-                            toastr.error('لم تتم اضافة البانار');
+                            toastr.error('{{ __('translate-admin/banners.exception-add')}}');
                             $('#bannerForm').trigger('reset');
                             $('#banner-modal').modal('hide');
                             bannersTable.draw();

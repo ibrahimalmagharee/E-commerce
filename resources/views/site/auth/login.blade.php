@@ -8,7 +8,7 @@
                 <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="{{route('home')}}">
-                            <span itemprop="name">Home</span>
+                            <span itemprop="name">{{__('translate-site/index.main')}}</span>
                         </a>
                         <meta itemprop="position" content="1">
                     </li>
@@ -32,7 +32,7 @@
                                 <section>
                                     <div class="form-group row no-gutters">
                                         <label class="col-md-2 form-control-label mb-xs-5 required">
-                                            Mobile :
+                                            {{__('translate-site/index.mobile')}} :
                                         </label>
                                         <div class="col-md-6">
 
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="form-group row no-gutters">
                                         <label class="col-md-2 form-control-label mb-xs-5 required">
-                                            Password :
+                                            {{__('translate-site/index.password')}} :
                                         </label>
                                         <div class="col-md-6">
 
@@ -57,8 +57,8 @@
                                                 <input class="form-control js-child-focus js-visible-password"
                                                        name="password" type="password">
                                                 <span class="input-group-btn">
-                                                    <button class="btn" type="button" data-action="show-password" data-text-show="Show" data-text-hide="Hide">
-                                                        Show
+                                                    <button class="btn" type="button" data-action="show-password" data-text-show="{{__('translate-site/index.show')}}" data-text-hide="{{__('translate-site/index.hide')}}">
+                                                        {{__('translate-site/index.show')}}
                                                     </button>
                                                  </span>
                                             </div>
@@ -74,9 +74,9 @@
                                     <div class="row no-gutters">
                                         <div class="col-md-10 offset-md-2">
                                             <div class="forgot-password mt-1">
-                                                <a href="{{route('customer.password.request')}}" style="margin-right: 200px" rel="nofollow">
-                                                    Forgot your password?
-                                                </a>
+{{--                                                <a href="{{route('customer.password.request')}}" style="margin-right: 200px" rel="nofollow">--}}
+{{--                                                    Forgot your password?--}}
+{{--                                                </a>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                         <div class="col-md-10 offset-md-2">
                                             <input type="hidden" name="submitLogin" value="1">
                                             <button class="btn btn-primary form-control-submit mt-1" data-link-action="sign-in" style="margin-right: 200px" type="submit">
-                                                Sign in
+                                                {{__('translate-site/index.sign_in')}}
                                             </button>
                                         </div>
                                     </div>
@@ -96,8 +96,8 @@
                         <div class="row no-gutters">
                             <div class="col-md-10 offset-md-2">
                                 <div class="no-account">
-                                    <a href="" data-link-action="display-register-form" style="margin-right: 200px">
-                                        No account? Create one here
+                                    <a href="{{route('customer.register.page')}}" data-link-action="display-register-form" style="margin-right: 200px">
+                                        {{__('translate-site/index.no_account_create_one_here')}}
                                     </a>
                                 </div>
                             </div>

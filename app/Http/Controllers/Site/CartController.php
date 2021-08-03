@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         if (!auth('customer')->user()) {
             $notification = array(
-                'message' => 'انت غير مسجل دخول في النظام',
+                'message' => __('translate-site/index.you_are_not_logged_into_the_system'),
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
@@ -74,12 +74,12 @@ class CartController extends Controller
             return response()->json([
                 'status' => true,
                 'cart_products_count' => count($cart_products),
-                'msg' => 'تم اضافة المنتج الي السلة'
+                'msg' => __('translate-site/index.the_product_has_been_added_to_the_cart')
             ]);
         }
         return response()->json([
             'status' => false,
-            'msg' => 'هذا المنتج تمت اضافته من قبل'
+            'msg' => __('translate-site/index.this_product_has_already_been_added')
         ]);
     }
 
@@ -124,7 +124,7 @@ class CartController extends Controller
         return response()->json([
             'status' => true,
             'total_price' => $total_price,
-            'msg' => 'تم تحديث كمية هذا المنتج'
+            'msg' => __('translate-site/index.the_quantity_of_this_product_has_been_updated')
         ]);
     }
 
@@ -167,7 +167,7 @@ class CartController extends Controller
             'status' => true ,
             'total_price' => $total_price,
             'number_cart_product' => count($cart_products),
-            'msg' => 'تم حذف المنتج من السلة'
+            'msg' =>  __('translate-site/index.the_product_has_been_removed_from_the_basket')
         ]);
     }
 }

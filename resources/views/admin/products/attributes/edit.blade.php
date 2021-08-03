@@ -10,12 +10,12 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/attributes.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.attribute')}}">خصائص المنتجات</a>
+                                    <a href="{{route('index.attribute')}}"> {{__('translate-admin/attributes.attributes')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active">تعديل -
+                                <li class="breadcrumb-item active">{{__('translate-admin/attributes.edit_attribute')}} -
                                     {{$attribute->name}} </li>
                             </ol>
                         </div>
@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong> تعديل-
+                                        <strong>{{__('translate-admin/attributes.edit_attribute')}} -
                                             {{$attribute->name}} </strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
@@ -58,7 +58,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم الخاصية</label>
+                                                            <label for="projectinput1">  {{__('translate-admin/attributes.name')}}</label>
                                                             <input type="text" id="name" class="form-control"
                                                                    placeholder=""
                                                                    name="name" value="{{$attribute->name}}">
@@ -73,11 +73,11 @@
 
                                             <div class="form-actions">
                                                 <input type="hidden" name="action" id="action" value="Update">
-                                                <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
+                                                <a href="{{route('index.attribute')}}" type="button" class="btn btn-warning mr-1" data-dismiss="modal">
                                                     <i
-                                                        class="ft-x"></i> تراجع
-                                                </button>
-                                                <button class="btn btn-primary" id="updateBrand"> تحديث</button>
+                                                        class="ft-x"></i>{{__('translate-admin/attributes.retreat')}}
+                                                </a>
+                                                <button class="btn btn-primary" id="updateBrand"> {{__('translate-admin/attributes.update')}}</button>
                                             </div>
 
                                         </form>

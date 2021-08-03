@@ -13,7 +13,7 @@
                 <div class="data-contact d-flex align-items-center">
                     <div class="title-icon">support<i class="icon-support icon-address"></i></div>
                     <div class="content-data-contact">
-                        <div class="support">اتصل بخدمة العملاء :</div>
+                        <div class="support"> {{__('translate-site/index.contact_customer_service')}}</div>
                         <div class="phone-support">
                             1234 567 899
                         </div>

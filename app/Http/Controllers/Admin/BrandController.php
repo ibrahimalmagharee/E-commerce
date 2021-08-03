@@ -30,9 +30,9 @@ class BrandController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $url = route('edit.brand', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" id="editBrand" class="btn btn-outline-primary box-shadow-3 mb-1 editBrand" style="width: 80px"><i class="la la-edit"></i>'.__('translate-admin/brand.edit').'</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="تعديل" id="editBanner" class="primary box-shadow-3 mb-1 editBrand" style="width: 80px"><i class="la la-edit font-large-1"></i></a></td>';
                     $btn .= '&nbsp;&nbsp;';
-                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteBrand" style="width: 80px"><i class="la la-remove"></i> '.__('translate-admin/brand.delete').'</a></td>';
+                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="حذف" class="danger box-shadow-3 mb-1 deleteBrand" style="width: 80px"><i class="la la-trash font-large-1"></i></a></td>';
                     return $btn;
                 })
                 ->rawColumns(['logo', 'action'])
@@ -88,8 +88,13 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = Brand::find($id);
-        if (!$brand)
-            return redirect()-> route('index.brand')->with('error',__('translate-admin/brand.error'));
+        if (!$brand){
+            $notification = array(
+                'message' => __('translate-admin/brand.error'),
+                'alert-type' => 'error'
+            );
+            return redirect()-> route('index.brand')->with($notification);
+        }
 
         return view('admin.brands.edit', compact('brand'));
     }
@@ -98,8 +103,14 @@ class BrandController extends Controller
     {
         try {
             $brand = Brand::find($id);
-            if (!$brand)
-                return redirect()-> route('index.brand')->with('error',__('translate-admin/brand.error'));
+            if (!$brand){
+                $notification = array(
+                    'message' => __('translate-admin/brand.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()-> route('index.brand')->with($notification);
+            }
+
 
             if (!$request->has('is_active')){
                 $request->request->add(['is_active' => 0]);
@@ -131,10 +142,19 @@ class BrandController extends Controller
 
             DB::commit();
 
-            return redirect() -> route('index.brand') ->with('success', __('translate-admin/brand.success-update'));
+            $notification = array(
+                'message' => __('translate-admin/brand.success-update'),
+                'alert-type' => 'info'
+            );
+
+            return redirect() -> route('index.brand') ->with($notification);
         }catch (\Exception $exception){
             DB::rollBack();
-            return redirect() -> route('edit.brand') ->with('error', __('translate-admin/brand.exception-update'));
+            $notification = array(
+                'message' => __('translate-admin/brand.exception-update'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('edit.brand') ->with($notification);
         }
     }
 
@@ -151,8 +171,8 @@ class BrandController extends Controller
 
             else
             {
-                 $image_path = public_path() . '/' . $brand->logo;
-                 unlink($image_path);
+//                $image_path = public_path('assets/images/brands') . '/' . $brand->logo;
+//                 unlink($image_path);
                 $brand->delete();
                 return response() -> json([
                     'status' => true,

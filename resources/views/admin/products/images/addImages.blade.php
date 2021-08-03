@@ -10,13 +10,13 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/category.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/products.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.product')}}"> المنتجات -</a>
+                                    <a href="{{route('index.product')}}"> {{__('translate-admin/products.products')}} </a>
 
                                 </li>
-                                <li class="breadcrumb-item active"> اضافة منتج جديد
+                                <li class="breadcrumb-item active"> {{__('translate-admin/products.add_product_images')}} - {{$product->name}}
                                 </li>
                             </ol>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong> اضافة منتج جديد
+                                        <strong>{{__('translate-admin/products.add_product_images')}} - {{$product->name}}
                                         </strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
@@ -71,11 +71,11 @@
                                             <div id="photo">
                                                 <div class="form-body">
 
-                                                    <h4 class="form-section"><i class="ft-home"></i> صور المنتج </h4>
+                                                    <h4 class="form-section"><i class="ft-home"></i> {{__('translate-admin/products.images_product')}}  </h4>
                                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     <div class="form-group">
                                                         <div id="dpz-multiple-files" class="dropzone dropzone-area">
-                                                            <div class="dz-message">يمكنك رفع اكثر من صوره هنا</div>
+                                                            <div class="dz-message">{{__('translate-admin/products.can_upload_image')}} </div>
                                                         </div>
                                                         <br><br>
                                                     </div>
@@ -86,13 +86,13 @@
 
 
                                             <div class="form-actions">
-                                                <a href="{{route('index.categories')}}" type="button"
+                                                <a href="{{route('index.product')}}" type="button"
                                                    class="btn btn-warning mr-1"
                                                    data-dismiss="modal"><i
-                                                        class="ft-x"></i> {{__('translate-admin/category.retreat')}}
+                                                        class="ft-x"></i> {{__('translate-admin/products.retreat')}}
                                                 </a>
                                                 <button type="submit" class="btn btn-primary"
-                                                        id="updateCategory"> حفظ
+                                                        id="updateCategory">  {{__('translate-admin/products.save')}}
                                                 </button>
                                             </div>
 
@@ -133,7 +133,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/category.confirm-delete')}}</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">{{__('translate-admin/products.confirm_delete')}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -145,11 +145,11 @@
 
                     <div class="modal-body">
                         <input type="hidden" id="delete_language">
-                        <h5>هل انتا متأكد من حذف هذه الصورة</h5>
+                        <h5>{{__('translate-admin/products.alert_delete')}}</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/category.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/category.delete')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/products.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/products.delete')}}</button>
                     </div>
                 </form>
             </div>
@@ -216,7 +216,7 @@
             dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
             dictCancelUpload: "الغاء الرفع ",
             dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
-            dictRemoveFile: "حذف الصوره",
+            dictRemoveFile: " {{ __('translate-admin/products.delete')}}",
             dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
             headers: {
                 'X-CSRF-TOKEN':

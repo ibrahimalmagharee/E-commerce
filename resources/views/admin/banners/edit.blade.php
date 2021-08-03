@@ -10,12 +10,12 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/banners.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.banners')}}">اللافتات</a>
+                                    <a href="{{route('index.banners')}}">{{__('translate-admin/banners.banners')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active"> تعديل اللافتة </li>
+                                <li class="breadcrumb-item active"> {{__('translate-admin/banners.edit_banner')}} </li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong>  تعديل اللافتة</strong></h4>
+                                        <strong> {{__('translate-admin/banners.edit_banner')}}</strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -67,7 +67,7 @@
                                                         <div class="form-body">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <label> الصورة </label>
+                                                                    <label> {{__('translate-admin/banners.photo')}} </label>
                                                                     <label id="projectinput7" class="file center-block">
                                                                         <input type="file" id="file" name="photo">
                                                                         <span class="file-custom"></span>
@@ -82,9 +82,9 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
-                                                                        <label for="projectinput2">اختر القسم</label>
+                                                                        <label for="projectinput2">{{__('translate-admin/banners.select_category')}}</label>
                                                                         <select name="category_id" id="category_id" class="form-control">
-                                                                            <optgroup label="الرجاء اختر القسم">
+                                                                            <optgroup label="{{__('translate-admin/banners.category_id.required')}}">
                                                                                 @isset($data['categories'] )
                                                                                     @foreach($data['categories'] as $category)
 
@@ -111,9 +111,9 @@
                                                 <input type="hidden" name="action" id="action" value="Update">
                                                 <a href="{{route('index.banners')}}" type="button" class="btn btn-warning mr-1" data-dismiss="modal">
                                                     <i
-                                                        class="ft-x"></i> تراجع
+                                                        class="ft-x"></i> {{__('translate-admin/banners.retreat')}}
                                                 </a>
-                                                <button class="btn btn-primary" id="updateSlider"> تحديث</button>
+                                                <button class="btn btn-primary" id="updateSlider"> {{__('translate-admin/banners.update')}}</button>
                                             </div>
 
                                         </form>

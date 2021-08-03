@@ -61,7 +61,7 @@ class BannerController extends Controller
 
         return response()->json([
             'status' => true,
-            'msg' => 'تم اضافة اللافتة بنجاح'
+            'msg' => __('translate-admin/banners.success-add')
         ]);
     }
 
@@ -74,7 +74,7 @@ class BannerController extends Controller
             ->get();
         $banner = Banner::find($id);
         $notification = array(
-            'message' => 'هذا السلايدر غير موجود',
+            'message' => __('translate-admin/banners.error'),
             'alert-type' => 'error'
         );
 
@@ -88,7 +88,7 @@ class BannerController extends Controller
     {
         $banner = Banner::find($id);
         $notification = array(
-            'message' => 'هذا السلايدر غير موجود',
+            'message' => __('translate-admin/banners.error'),
             'alert-type' => 'error'
         );
 
@@ -108,7 +108,7 @@ class BannerController extends Controller
 
 
         $notification = array(
-            'message' => 'تم تحديث اللافتة بنجاح',
+            'message' => __('translate-admin/banners.success-update'),
             'alert-type' => 'info'
         );
 
@@ -123,7 +123,7 @@ class BannerController extends Controller
         if (!$banner){
             return response()->json([
                 'status' => true,
-                'msg' => 'هذه اللافتة غير موجودة'
+                'msg' => __('translate-admin/banners.error')
             ]);
 
         } else {
@@ -132,7 +132,7 @@ class BannerController extends Controller
             $banner->delete();
             return response()->json([
                 'status' => true,
-                'msg' => 'تم حذف اللافتة بنجاح'
+                'msg' => __('translate-admin/banners.success-delete')
             ]);
         }
 

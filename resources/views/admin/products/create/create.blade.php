@@ -10,13 +10,13 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/category.main')}}</a>
+                                        href="{{route('admin.dashboard')}}">{{__('translate-admin/products.main')}}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('index.product')}}"> المنتجات -</a>
+                                    <a href="{{route('index.product')}}"> {{__('translate-admin/products.products')}} -</a>
 
                                 </li>
-                                <li class="breadcrumb-item active"> اضافة منتج جديد
+                                <li class="breadcrumb-item active">{{__('translate-admin/products.add_product')}}
                                 </li>
                             </ol>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title text-center">
-                                        <strong> اضافة منتج جديد
+                                        <strong>{{__('translate-admin/products.add_product')}}
                                         </strong></h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
@@ -57,20 +57,20 @@
                                                 <a class="nav-link active" id="generalLable-tab" data-toggle="tab"
                                                    href="#general" aria-controls="general"
                                                    aria-expanded="true">
-                                                    معلومات المنتج العامة</a>
+                                                    {{__('translate-admin/products.general_product_information')}}</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="priceLable-tab" data-toggle="tab"
                                                    href="#price" aria-controls="price"
                                                    aria-expanded="false">
-                                                    معلومات سعر المنتج</a>
+                                                    {{__('translate-admin/products.product_price_information')}}</a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" id="storeLable-tab" data-toggle="tab"
                                                    href="#store" aria-controls="store"
                                                    aria-expanded="false">
-                                                    معلومات مخزون المنتج</a>
+                                                    {{__('translate-admin/products.product_stoke_information')}}</a>
                                             </li>
                                         </ul>
 
@@ -86,14 +86,14 @@
                                                  aria-labelledby="generalLable-tab"
                                                  aria-expanded="true">
                                                     <h4 class="form-section"><i
-                                                            class="ft-home"></i>اضافة منتج جديد
+                                                            class="ft-home"></i>{{__('translate-admin/products.add_product')}}
                                                     </h4>
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="projectinput1">الاسم</label>
+                                                                        for="projectinput1">{{__('translate-admin/products.name')}}</label>
                                                                     <input type="text" id="name" class="form-control"
                                                                            placeholder=""
                                                                            name="name" value="{{old('name')}}">
@@ -107,7 +107,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="projectinput1">الاسم بالرابط </label>
+                                                                        for="projectinput1">{{__('translate-admin/products.slug')}} </label>
                                                                     <input type="text" id="slug" class="form-control"
                                                                            placeholder=""
                                                                            name="slug" value="{{old('slug')}}">
@@ -123,7 +123,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1">الوصف القصير</label>
+                                                                    <label for="projectinput1">{{__('translate-admin/products.short_description')}}</label>
 
                                                                     <textarea name="short_description"
                                                                               id="short-description" cols="3" rows="4"
@@ -138,7 +138,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group mt-1">
                                                                     <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة</label>
+                                                                           class="card-title ml-1">{{__('translate-admin/products.status')}}</label>
                                                                     <input type="checkbox" name="is_active" value="1"
                                                                            id="switcheryColor4"
                                                                            class="switchery active" data-color="success"
@@ -153,7 +153,7 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="projectinput2"> {{__('translate-admin/category.choose category')}} </label>
+                                                                        for="projectinput2"> {{__('translate-admin/products.category')}} </label>
                                                                     <select name="categories[]" id="parent_id"
                                                                             class="select2 form-control width-480"
                                                                             multiple>
@@ -184,11 +184,11 @@
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput2"> العلامات </label>
+                                                                    <label for="projectinput2"> {{__('translate-admin/products.tags')}} </label>
                                                                     <select name="tags[]" id="parent_id"
                                                                             class="select2 form-control width-480"
                                                                             multiple>
-                                                                        <optgroup label="الرجاء اختر العلامة المناسبة">
+                                                                        <optgroup label="{{__('translate-admin/products.please_choose_the_appropriate_tag')}}">
                                                                             @if($data['tags'] && $data['tags'] -> count() > 0)
                                                                                 @foreach($data['tags'] as $tag)
                                                                                     <option
@@ -208,11 +208,10 @@
 
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput2"> الماركة
-                                                                        التجارية </label>
+                                                                    <label for="projectinput2">{{__('translate-admin/products.brand')}}</label>
                                                                     <select name="brand_id" id="brand"
                                                                             class="select2 form-control width-480">
-                                                                        <optgroup label="الرجاء اختر الماركة التجارية">
+                                                                        <optgroup label="{{__('translate-admin/products.please_select_a_brand')}}">
                                                                             @if($data['brand'] && $data['brand'] -> count() > 0)
                                                                                 @foreach($data['brand'] as $brand)
                                                                                     <option
@@ -255,13 +254,13 @@
                                                  aria-labelledby="priceLable-tab">
 
                                                     <h4 class="form-section"><i
-                                                            class="ft-home"></i>اضافة سعر المنتج
+                                                            class="ft-home"></i>{{__('translate-admin/products.add_product_price')}}
                                                     </h4>
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1" class="ml-1">سعر المنتج</label>
+                                                                    <label for="projectinput1" class="ml-1">{{__('translate-admin/products.price')}}</label>
                                                                     <input type="number" id="price" class="form-control"
                                                                            placeholder=""
                                                                            name="price" value="{{old('price')}}">
@@ -275,7 +274,7 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label
-                                                                        for="projectinput1" class="ml-1">سعر خاص </label>
+                                                                        for="projectinput1" class="ml-1">{{__('translate-admin/products.special_price')}} </label>
                                                                     <input type="number" id="special_price" class="form-control"
                                                                            placeholder=""
                                                                            name="special_price" value="{{old('special_price')}}">
@@ -288,13 +287,13 @@
 
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput2" class="ml-1">نوع السعر</label>
+                                                                    <label for="projectinput2" class="ml-1">{{__('translate-admin/products.type_price')}}</label>
                                                                     <select name="special_price_type" id="special_price_type"
                                                                             class="select2 form-control width-300">
-                                                                        <optgroup label="الرجاء اختر نوع السعر">
-                                                                            <option value="">الرجاء اختر نوع السعر</option>
-                                                                            <option value="percent">percent</option>
-                                                                            <option value="fixed"> fixed</option>
+                                                                        <optgroup label="{{__('translate-admin/products.please_select_a_price_type')}}">
+                                                                            <option value="">{{__('translate-admin/products.please_select_a_price_type')}}</option>
+                                                                            <option value="percent">{{__('translate-admin/products.percent')}}</option>
+                                                                            <option value="fixed"> {{__('translate-admin/products.fixed')}}</option>
                                                                         </optgroup>
                                                                     </select>
                                                                 </div>
@@ -310,7 +309,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="srartdate"
-                                                                           class="card-title ml-1">تاريخ البداية</label>
+                                                                           class="card-title ml-1">{{__('translate-admin/products.start_date')}}</label>
                                                                     <input type="date" name="special_price_start" id="special_price_start" class="form-control" value="{{old('special_price_start')}}">
 
                                                                 </div>
@@ -323,7 +322,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="enddate"
-                                                                           class="card-title ml-1">تاريخ النهاية</label>
+                                                                           class="card-title ml-1">{{__('translate-admin/products.end_date')}}</label>
                                                                     <input type="date" name="special_price_end" id="special_price_end" class="form-control" value="{{old('special_price_end')}}">
 
                                                                 </div>
@@ -342,14 +341,14 @@
                                             <div class="tab-pane" id="store"
                                                  aria-labelledby="storeLable-tab">
                                                     <h4 class="form-section"><i
-                                                            class="ft-home"></i>ادارة المستودع
+                                                            class="ft-home"></i>{{__('translate-admin/products.add_product_stoke')}}
                                                     </h4>
 
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="projectinput1" class="ml-1">كود المنتج</label>
+                                                                <label for="projectinput1" class="ml-1">{{__('translate-admin/products.product_code')}}</label>
                                                                 <input type="text" id="SKU" class="form-control"
                                                                        placeholder="كود المنتج"
                                                                        name="SKU" value="{{old('SKU')}}">
@@ -362,12 +361,12 @@
 
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="projectinput2">تتبع المستودع</label>
+                                                                <label for="projectinput2">{{__('translate-admin/products.warehouse_tracking')}}</label>
                                                                 <select name="manage_stock" id="manage_stock" class="form-control">
-                                                                    <optgroup label="هل تريد تتبع المستودع">
-                                                                        <option value="">هل تريد تتبع المستودع</option>
-                                                                        <option value="1">اتاحة التتبع</option>
-                                                                        <option value="0"> عدم اتاحة التتبع</option>
+                                                                    <optgroup label="{{__('translate-admin/products.do_you_want_to_track_the_warehouse')}}">
+                                                                        <option value="">{{__('translate-admin/products.do_you_want_to_track_the_warehouse')}}</option>
+                                                                        <option value="1">{{__('translate-admin/products.enable_tracking')}}</option>
+                                                                        <option value="0">{{__('translate-admin/products.unable_tracking')}}</option>
                                                                     </optgroup>
                                                                 </select>
                                                             </div>
@@ -382,12 +381,12 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="projectinput2">حالة النتج</label>
+                                                                <label for="projectinput2">{{__('translate-admin/products.product_status')}}</label>
                                                                 <select name="in_stock" id="in_stock" class="form-control">
-                                                                    <optgroup label="الرجاء اختر حالة المنتج">
-                                                                        <option value="">الرجاء اختر حالة المنتج</option>
-                                                                        <option value="1">متاح</option>
-                                                                        <option value="0">غير متاح</option>
+                                                                    <optgroup label="{{__('translate-admin/products.please_select_a_product_status')}}">
+                                                                        <option value="">{{__('translate-admin/products.please_select_a_product_status')}}</option>
+                                                                        <option value="1">{{__('translate-admin/products.available')}}</option>
+                                                                        <option value="0">{{__('translate-admin/products.unavailable')}}</option>
                                                                     </optgroup>
                                                                 </select>
                                                             </div>
@@ -399,11 +398,11 @@
 
                                                         <div class="col-md-6" style="display:none"  id="qtyDiv">
                                                             <div class="form-group">
-                                                                <label for="projectinput1">الكمية
+                                                                <label for="projectinput1">{{__('translate-admin/products.quantity')}}
                                                                 </label>
                                                                 <input type="number" id="qty"
                                                                        class="form-control"
-                                                                       placeholder="كمية المنتج"
+                                                                       placeholder="{{__('translate-admin/products.quantity')}}"
                                                                        value="{{old('qty')}}"
                                                                        name="qty">
                                                                 @error("qty")
@@ -419,13 +418,13 @@
                                         </div>
 
                                             <div class="form-actions">
-                                                <a href="{{route('index.categories')}}" type="button"
+                                                <a href="{{route('index.product')}}" type="button"
                                                    class="btn btn-warning mr-1"
                                                    data-dismiss="modal"><i
-                                                        class="ft-x"></i> {{__('translate-admin/category.retreat')}}
+                                                        class="ft-x"></i> {{__('translate-admin/products.retreat')}}
                                                 </a>
                                                 <button type="submit" class="btn btn-primary"
-                                                        id="updateCategory"> حفظ</button>
+                                                        id="updateCategory"> {{__('translate-admin/products.save')}}</button>
                                             </div>
 
                                         </form>

@@ -40,9 +40,10 @@ class OptionController extends Controller
                                  })
                                  ->addColumn('action', function ($row) {
                                      $url = route('edit.option', $row->id);
-                                     $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" id="edit" class="btn btn-outline-primary box-shadow-3 mb-1 editOption" style="width: 80px"><i class="la la-edit"></i>تعديل</a></td>';
+                                     $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="تعديل" id="editBanner" class="primary box-shadow-3 mb-1 editOption" style="width: 80px"><i class="la la-edit font-large-1"></i></a></td>';
                                      $btn .= '&nbsp;&nbsp;';
-                                     $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteOption" style="width: 80px"><i class="la la-remove"></i> حذف</a></td>';
+                                     $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="حذف" class="danger box-shadow-3 mb-1 deleteOption" style="width: 80px"><i class="la la-trash font-large-1"></i></a></td>';
+
                                      return $btn;
                                  })
                                  ->rawColumns(['action'])
@@ -89,12 +90,16 @@ class OptionController extends Controller
 
             return response()->json([
                 'status' => true,
-                'msg' => 'تمت اضافة خيار الخاصية بنجاح'
+                'msg' => __('translate-admin/optionsAttributes.success_add')
             ]);
 
         }catch (\Exception $ex){
             DB::rollBack();
-            return redirect() -> route('index.option', $request->product_id) ->with('error', 'هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/optionsAttributes.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.option', $request->product_id) ->with($notification);
         }
     }
 
@@ -121,14 +126,22 @@ class OptionController extends Controller
 
             $option= Option::find($option_id);
             $attributes = Attribute::select('id')->get();
-            if (!$option)
-                return redirect()->route('index.product')->with('error','خيار الخاصية غير تابع لاي منتج');
-
+            if (!$option){
+                $notification = array(
+                    'message' => __('translate-admin/optionsAttributes.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
+            }
 
             return view('admin.products.attributes.options.edit', compact('option', 'attributes'));
 
         }catch (\Exception $exception){
-            return redirect()->route('index.option', $option->product_id)->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/optionsAttributes.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.option', $option->product_id) ->with($notification);
 
         }
     }
@@ -145,8 +158,13 @@ class OptionController extends Controller
         try {
             $option = Option::find($option_id);
 
-            if (!$option)
-                return redirect()->route('index.option', $option->product_id)->with('error','خيار الخاصية غير موجود');
+            if (!$option){
+                $notification = array(
+                    'message' => __('translate-admin/optionsAttributes.error'),
+                    'alert-type' => 'error'
+                );
+                return redirect()->route('index.product')->with($notification);
+            }
 
             DB::beginTransaction();
 
@@ -160,10 +178,19 @@ class OptionController extends Controller
             $option->save();
 
             DB::commit();
-            return redirect()->route('index.option', $option->product_id)->with('success', 'تم تحديث خيار الخاصية بنجاح');
+
+            $notification = array(
+                'message' => __('translate-admin/optionsAttributes.success_update'),
+                'alert-type' => 'info'
+            );
+            return redirect()->route('index.option', $option->product_id)->with($notification);
 
         }catch (\Exception $exception){
-            return redirect()->route('index.option', $option->product_id)->with('error','هناك خطأ ما يرجى المحاولة فيما بعد');
+            $notification = array(
+                'message' => __('translate-admin/optionsAttributes.exception_add'),
+                'alert-type' => 'error'
+            );
+            return redirect() -> route('index.option', $option->product_id) ->with($notification);
 
         }
     }
@@ -172,10 +199,25 @@ class OptionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+         $option = Option::find($id);
+
+        if (!$option){
+            return response() -> json([
+                'status' => false,
+                'msg' =>__('translate-admin/optionsAttributes.exception_add'),
+            ]);
+        }
+        else
+        {
+            $option->delete();
+            return response() -> json([
+                'status' => true,
+                'msg' => __('translate-admin/optionsAttributes.success_delete'),
+            ]);
+        }
     }
 }

@@ -33,14 +33,14 @@ class CustomerRequest extends FormRequest
     public function messages()
     {
         return[
-            'name.required' => 'يجب ادخال الاسم',
-            'name.max' => 'يجب ان لا يتجاوز الاسم 200 حرف',
-            'mobile.required' => 'يجب ادخال رقم الهاتف',
-            'mobile.max' => 'يجب ان لا يتجاوز رقم الهاتف عن 20 رقم',
-            'mobile.unique' => 'هذا الرقم مسجل من قبل',
-            'password.required' => 'يجب ادخال كلمة المرور',
-            'password.confirmed' => 'كلمة المرور غير متطابقة',
-            'password.min' => 'يجب ان تكون كلمة المرور اكتر من اربع احرف',
+            'name.required' => __('translate-site/index.name.required'),
+            'name.max' => __('translate-site/index.name.max'),
+            'mobile.required' => __('translate-site/index.mobile.required'),
+            'mobile.max' =>__('translate-site/index.mobile.max'),
+            'mobile.unique' => __('translate-site/index.mobile.unique'),
+            'password.required' => __('translate-site/index.password.required'),
+            'password.confirmed' => __('translate-site/index.password.confirmed'),
+            'password.min' => __('translate-site/index.password.min'),
         ];
 
     }

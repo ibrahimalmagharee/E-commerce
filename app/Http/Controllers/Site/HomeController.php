@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductTranslation;
 use App\Models\Purchase;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -45,6 +46,18 @@ class HomeController extends Controller
 
         }
 
+
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+          $products = Product::query()
+            ->where('slug', 'LIKE', "%{$search}%")
+            ->get();
+
+         return view('site.search', compact('products'));
 
     }
 

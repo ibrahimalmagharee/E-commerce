@@ -10,7 +10,7 @@
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                             <a itemprop="item" href="{{route('home')}}">
-                                <span itemprop="name">Home</span>
+                                <span itemprop="name">{{__('translate-site/index.main')}}</span>
                             </a>
                             <meta itemprop="position" content="1">
                         </li>
@@ -119,7 +119,6 @@
                                                                 </div>
                                                             </div>
                                                             <div class="tax-shipping-delivery-label">
-                                                                Tax included
                                                             </div>
                                                         </div>
 
@@ -129,12 +128,12 @@
                                                     <div class="in_border end">
 
                                                         <div class="sku">
-                                                            <label class="control-label">Sku:</label>
+                                                            <label class="control-label">{{__('translate-site/index.sku')}}:</label>
                                                             <span itemprop="sku"
                                                                   content="demo_1">{{$product -> sku ?? '--'}}</span>
                                                         </div>
                                                         <div class="pro-cate">
-                                                            <label class="control-label">Categories:</label>
+                                                            <label class="control-label">{{__('translate-site/index.categories')}}:</label>
 
                                                             @isset($product -> categories)
                                                                 <div>
@@ -147,7 +146,7 @@
                                                             @endisset
                                                         </div>
                                                         <div class="pro-tag">
-                                                            <label class="control-label">Tags:</label>
+                                                            <label class="control-label">{{__('translate-site/index.tags')}}:</label>
                                                             @isset($product -> tags)
                                                                 <div>
                                                                     @foreach($product -> tags as $tag )
@@ -167,7 +166,7 @@
                                                                     <div class="icon-cart">
                                                                         <i class="shopping-cart"></i>
                                                                     </div>
-                                                                    <span>Add to cart</span>
+                                                                    <span>{{__('translate-site/index.add_to_cart')}}</span>
                                                                 </button>
                                                             </div>
 
@@ -182,7 +181,7 @@
                                                             <div class="clearfix"></div>
 
                                                             <div id="product-availability" class="info-stock mt-20">
-                                                                <label class="control-label">Availability:</label>
+                                                                <label class="control-label">{{__('translate-site/index.availability')}}:</label>
                                                                 {{$product -> in_stock ? 'in stock' : 'out of stock'}}
                                                             </div>
                                                         </div>
@@ -197,7 +196,7 @@
 
 
                                                     <div class="product-quantity">
-                                                        <span class="control-label">Quantity : </span>
+                                                        <span class="control-label">{{__('translate-site/index.qty')}} : </span>
                                                         <div class="qty">
                                                             <input type="text" name="qty" id="quantity_wanted" value="1"
                                                                    class="input-group" min="1">
@@ -244,8 +243,7 @@
                                     <ul class="nav nav-tabs">
 
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" aria-expanded="true" href="#product-details">Product
-                                                Detail</a>
+                                            <a class="nav-link active" data-toggle="tab" aria-expanded="true" href="#product-details">{{__('translate-site/index.product_details')}}</a>
                                         </li>
 {{--                                        <li class="nav-item">--}}
 {{--                                            <a class="nav-link" data-toggle="tab" href="#reviews">Write Your Own--}}
@@ -408,24 +406,22 @@
                                                     <div class="icon-policy"><i
                                                             class="noviconpolicy noviconpolicy-1">1</i></div>
                                                     <div class="policy-content">
-                                                        <div class="policy-name">Free Delivery</div>
-                                                        <div class="policy-des">From $ 250</div>
+                                                        <div class="policy-name">{{__('translate-site/index.free_delivery_from')}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="policy-row d-flex">
                                                     <div class="icon-policy"><i
                                                             class="noviconpolicy noviconpolicy-2">2</i></div>
                                                     <div class="policy-content">
-                                                        <div class="policy-name">Money Back</div>
-                                                        <div class="policy-des">Guarantee</div>
+                                                        <div class="policy-name">{{__('translate-site/index.money_back_guarantee')}}</div>
+
                                                     </div>
                                                 </div>
                                                 <div class="policy-row d-flex">
                                                     <div class="icon-policy"><i
                                                             class="noviconpolicy noviconpolicy-3">3</i></div>
                                                     <div class="policy-content">
-                                                        <div class="policy-name">Authenticity</div>
-                                                        <div class="policy-des">100% guaranteed</div>
+                                                        <div class="policy-name">{{__('translate-site/index.authenticity_is_guaranteed')}}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -441,7 +437,7 @@
                         <div class="container">
 
                             <section class="relate-product product-accessories clearfix">
-                                <h3 class="h5 title_block">Related products<span class="sub_title">Hand-picked arrivals from the best designer</span>
+                                <h3 class="h5 title_block">{{__('translate-site/index.related_products')}}<span class="sub_title">Hand-picked arrivals from the best designer</span>
                                 </h3>
 
                                 <div class="products product_list grid owl-carousel owl-theme" data-autoplay="true"
@@ -562,7 +558,7 @@
             e.preventDefault();
 
             @guest('customer')
-            toastr.warning('انت غير مسجل دخول في النظام')
+            toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
             $.ajax({
                 type: 'post',
@@ -588,7 +584,7 @@
             e.preventDefault();
 
             @guest('customer')
-            toastr.warning('انت غير مسجل دخول في النظام')
+            toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
 
             $.ajax({

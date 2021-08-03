@@ -64,7 +64,7 @@ class SliderController extends Controller
 
         return response()->json([
             'status' => true,
-            'msg' => 'تم اضافة الصورة بنجاح'
+            'msg' => __('translate-admin/slider.success-add')
         ]);
 
     }
@@ -73,7 +73,7 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $notification = array(
-            'message' => 'هذا السلايدر غير موجود',
+            'message' => __('translate-admin/slider.error'),
             'alert-type' => 'error'
         );
 
@@ -88,7 +88,7 @@ class SliderController extends Controller
         $slider = Slider::find($id);
 
         $notification = array(
-            'message' => 'هذا السلايدر غير موجود',
+            'message' => __('translate-admin/slider.error'),
             'alert-type' => 'error'
         );
 
@@ -105,7 +105,7 @@ class SliderController extends Controller
         }
 
         $notification = array(
-            'message' => 'تم تحديث السلايدر بنجاح',
+            'message' => __('translate-admin/slider.success-update'),
             'alert-type' => 'info'
         );
 
@@ -117,14 +117,14 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $notification = array(
-            'message' => 'هذا السلايدر غير موجود',
+            'message' => __('translate-admin/slider.error'),
             'alert-type' => 'error'
         );
 
         if (!$slider){
             return response()->json([
                 'status' => true,
-                'msg' => 'هذا السلايدر غير موجود'
+                'msg' => __('translate-admin/slider.error')
             ]);
 
         } else {
@@ -133,7 +133,7 @@ class SliderController extends Controller
             $slider->delete();
             return response()->json([
                 'status' => true,
-                'msg' => 'تم حذف السلايدر بنجاح'
+                'msg' => __('translate-admin/slider.success-delete')
             ]);
         }
 

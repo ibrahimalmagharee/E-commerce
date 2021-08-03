@@ -44,7 +44,7 @@ class PaymentController extends Controller
         if (!$charge_id) {
             return response()->json([
                 'status' => false,
-                'msg' => 'فشلت عملية الدفع يرجى التحقق من البطاقة'
+                'msg' =>  __('translate-site/index.payment_failed_please_check_card')
             ]);
         } else {
             DB::beginTransaction();
@@ -100,7 +100,7 @@ class PaymentController extends Controller
             return response()->json([
                 'status' => true,
                 'url' => route('home'),
-                'msg' => 'تم شراء المنتج'
+                'msg' =>  __('translate-site/index.product_purchased')
             ]);
 
 

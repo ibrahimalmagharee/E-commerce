@@ -5,12 +5,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">صور السلايدر</h3>
+                    <h3 class="content-header-title"> {{__('translate-admin/slider.slider')}}</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/brand.main')}}</a></li>
-                                <li class="breadcrumb-item active">صور السلايدر</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/slider.main')}}</a></li>
+                                <li class="breadcrumb-item active">{{__('translate-admin/slider.slider')}}</li>
                             </ol>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <a class="btn btn-outline-success float-left" href="javascript:void(0)"
-                                       id="addNewSlider"><i class="la la-cart-plus">اضافة سلايدر جديد</i></a>
+                                       id="addNewSlider"><i class="la la-plus">{{__('translate-admin/slider.add_slider')}}</i></a>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -42,8 +42,8 @@
                                         <table class="table sliders-table">
                                             <thead>
                                             <tr>
-                                                <th>الصورة</th>
-                                                <th>الاجراءات</th>
+                                                <th>{{__('translate-admin/slider.photo')}}</th>
+                                                <th>{{__('translate-admin/slider.process')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -66,7 +66,7 @@
             <div class="modal-content width-800">
                 <div class="modal-header">
                     <h4 class="modal-title form-section" id="modalheader">
-                        <i class="ft-home"></i> اضافة سلايدر
+                        <i class="ft-home"></i>{{__('translate-admin/slider.add_slider')}}
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -82,10 +82,10 @@
                                     <div id="photo">
                                         <div class="form-body">
 
-                                            <h4 class="form-section"><i class="ft-home"></i> صور السلايدر </h4>
+                                            <h4 class="form-section"><i class="ft-home"></i> {{__('translate-admin/slider.slider')}} </h4>
                                             <div class="form-group">
                                                 <div id="dpz-multiple-files" class="dropzone dropzone-area">
-                                                    <div class="dz-message">يمكنك رفع اكثر من صوره هنا</div>
+                                                    <div class="dz-message">{{__('translate-admin/slider.can_upload_image')}}</div>
                                                 </div>
                                                 <br><br>
                                             </div>
@@ -100,9 +100,9 @@
                                 <div class="form-actions">
                                     <input type="hidden" name="action" id="action" value="Add">
                                     <button type="button" class="btn btn-warning mr-1" data-dismiss="modal"><i
-                                            class="ft-x"></i> {{__('translate-admin/brand.retreat')}}
+                                            class="ft-x"></i> {{__('translate-admin/slider.retreat')}}
                                     </button>
-                                    <button class="btn btn-primary" id="addSlider"> {{__('translate-admin/brand.save')}}</button>
+                                    <button class="btn btn-primary" id="addSlider"> {{__('translate-admin/slider.save')}}</button>
                                 </div>
 
                             </form>
@@ -128,7 +128,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/brand.confirm-delete')}}</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/slider.confirm-delete')}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -143,8 +143,8 @@
                         <h5>هل انت متأكد من حذف هذه الصورة</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/brand.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/brand.delete')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/slider.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/slider.delete')}}</button>
                     </div>
                 </form>
             </div>
@@ -174,7 +174,10 @@
                 columns: [
                     {data: 'photo', name: 'photo'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                @if(app()-> getLocale() == 'ar')
+                language: {"url": "{{asset('assets/admin/js/dataTableArabic.json')}}"},
+                @endif
             });
 
 
@@ -209,7 +212,7 @@
                             $('#slider-modal').modal('hide');
                             slidersTable.draw();
                         } else {
-                            toastr.error('لم تتم اضافة الصةرة');
+                            toastr.error('{{ __('translate-admin/slider.exception-add')}}');
                             $('#sliderForm').trigger('reset');
                             $('#slider-modal').modal('hide');
                             slidersTable.draw();
@@ -278,7 +281,7 @@
             dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
             dictCancelUpload: "الغاء الرفع ",
             dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
-            dictRemoveFile: "حذف الصوره",
+            dictRemoveFile: "{{__('translate-admin/slider.delete')}}",
             dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
             headers: {
                 'X-CSRF-TOKEN':
