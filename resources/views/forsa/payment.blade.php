@@ -48,8 +48,8 @@
                                 <div class="row mt-4">
                                     <select class="custom-select col-6" name="subscription_type" id="subscription_type">
                                         <option value="" selected>نوع الاشتراك</option>
-                                        <option value="1">اشتراك شهري</option>
-                                        <option value="2">اشتراك سنوي</option>
+                                        <option value="1">اشتراك شهري 50$</option>
+                                        <option value="2">اشتراك سنوي 450$</option>
                                     </select>
                                 </div>
 
@@ -80,8 +80,8 @@
                                         </div>
                                         <div class="row pr-3">
 
-                                            <input type="text" class="form-control col-5" placeholder="Expiration Month" name="mm" id="mm">
-                                            <input type="text" class="form-control col-5 mr-2" placeholder="Expiration Year" name="yy" id="yy">
+                                            <input type="text" class="form-control col-5" placeholder="MM" name="mm" id="mm">
+                                            <input type="text" class="form-control col-5 mr-2" placeholder="YY" name="yy" id="yy">
                                         </div>
 
                                     </div>

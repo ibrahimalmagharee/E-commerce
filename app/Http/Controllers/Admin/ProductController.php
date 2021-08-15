@@ -122,6 +122,7 @@ class ProductController extends Controller
                 'special_price_type' => $request->special_price_type,
                 'special_price_start' => $request->special_price_start,
                 'special_price_end' => $request->special_price_end,
+                'selling_price' => 0,
                 'SKU' => $request->SKU,
                 'manage_stock' => $request->manage_stock,
                 'in_stock' => $request->in_stock,

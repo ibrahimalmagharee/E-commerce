@@ -14,12 +14,12 @@
         "
       >
           <a class="navbar-brand" href="{{route('forsa.index')}}">
-          <img
-              src="{{asset('assets/forsa/assets/logo.png')}}"
+          <img style="width: 120px; height: 80px"
+              src="{{asset('assets/forsa/assets/logo1.png')}}"
               class="img1"
           />
           </a>
-        <a class="navbar-brand" href="{{route('forsa.index')}}"><span style="color:#37a495; font-family: 'Quicksand', Georgia, 'Times New Roman', Times, serif; font-size: 35px">فرصة</span></a>
+        <a class="navbar-brand mt-1" href="{{route('forsa.index')}}"><span style="color:#3d8a94; font-family: 'Quicksand', Georgia, 'Times New Roman', Times, serif; font-size: 40px">فرصة</span></a>
 
         <button
           class="navbar-toggler"

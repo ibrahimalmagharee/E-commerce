@@ -47,8 +47,8 @@ Route::group([
 
         Route::post('verify-user/', 'VerificationCodeController@verify')->name('verify-user');
         Route::get('verify', 'VerificationCodeController@getVerifyPage')->name('get.verification.form');
-        Route::get('products/{productId}/reviews', 'ProductReviewController@index')->name('products.reviews.index');
-        Route::post('products/{productId}/reviews', 'ProductReviewController@store')->name('products.reviews.store');
+       // Route::get('products/{productId}/reviews', 'ProductReviewController@index')->name('products.reviews.index');
+        //Route::post('products/{productId}/reviews', 'ProductReviewController@store')->name('products.reviews.store');
         Route::get('payment/{amount}', 'PaymentController@getPayments') -> name('payment');
         Route::post('payment', 'PaymentController@processPayment') -> name('payment.process');
         Route::post('logout','RegisterationController@logout')->name('customer.logout');

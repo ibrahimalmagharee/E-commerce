@@ -71,9 +71,7 @@
                                 <div class="col-lg-7 col-md-8 col-xs-12 mt-sm-20">
                                     <div class="product-information">
                                         <div class="product-actions">
-                                            <form action="{{route('products.reviews.store',$product -> id )}}"
-                                                  method="post" id="add-to-cart-or-refresh" class="row">
-                                                @csrf
+                                            <div id="" class="row">
                                                 <input type="hidden" name="id_product" value="{{$product -> id }}"
                                                        id="product_page_product_id">
 
@@ -228,7 +226,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -557,6 +555,7 @@
         $(document).on('click', '.addToWishlist', function (e) {
             e.preventDefault();
 
+
             @guest('customer')
             toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
@@ -582,7 +581,7 @@
 
         $(document).on('click', '.cart-addition', function (e) {
             e.preventDefault();
-
+            let qty = $('#quantity_wanted').val();
             @guest('customer')
             toastr.warning('{{__('translate-site/index.you_are_not_logged_into_the_system')}}')
             @endguest
@@ -592,6 +591,7 @@
                 url: "{{Route('customer.saveProduct')}}",
                 data: {
                     'product_id': $(this).attr('data-product-id'),
+                    'quantity': qty,
                 },
                 success: function (data) {
                     if(data.status ){

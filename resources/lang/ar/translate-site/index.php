@@ -51,7 +51,7 @@ return [
     'confirm_password' => 'تأكيد كلمة المرور',
     'update' => 'تحديث',
     'sign_in' => 'تسجيل الدخول',
-    'sign_up' => 'تسجيل الخروج',
+    'sign_up' => 'تسجيل ',
     'show' => 'اظهار',
     'hide' => 'اخفاء',
     'no_account_create_one_here' => 'ليس لدي حساب ؟ انشئ حساب الأن',

@@ -60,8 +60,8 @@
                                                                        <span itemprop="price"
                                                                              class="price">{{$product -> special_price ?? $product -> price }}</span>
                                                                         @if($product -> special_price)
-                                                                            <span
-                                                                                class="regular-price">{{$product -> price}}</span>
+{{--                                                                            <span--}}
+{{--                                                                                class="regular-price">{{$product -> price}}</span>--}}
                                                                         @endif
 
                                                                     </div>

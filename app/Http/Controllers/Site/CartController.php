@@ -60,11 +60,16 @@ class CartController extends Controller
 
     public function saveProduct()
     {
+        if (request('quantity')){
+            $quantity = request('quantity');
+        }else{
+            $quantity = 1;
+        }
         if (!auth('customer')->user()->cartHasProduct(request('product_id'))) {
             Cart::create([
                 'product_id' => request('product_id'),
                 'customer_id' => auth('customer')->user()->id,
-                'quantity' => 1,
+                'quantity' => $quantity,
             ]);
 
             $cart_products = auth('customer')->user()

@@ -116,16 +116,16 @@
                                                             </div>
 
                                                             <div class="group-reviews">
-                                                                <div class="product-comments">
-                                                                    <div class="star_content">
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                        <div class="star"></div>
-                                                                    </div>
-                                                                    <span>0 review</span>
-                                                                </div>
+{{--                                                                <div class="product-comments">--}}
+{{--                                                                    <div class="star_content">--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                        <div class="star"></div>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <span>0 review</span>--}}
+{{--                                                                </div>--}}
 
 
                                                                 <div class="info-stock ml-auto">
