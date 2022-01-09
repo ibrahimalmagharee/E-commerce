@@ -20,7 +20,7 @@
                                             <h6 class="text-muted"></h6>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <h4>$9,980</h4>
+                                            <h4>{{\App\Models\Purchase::count()}}</h4>
                                             <h6 class="success darken-4"></h6>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                             <h6 class="text-muted"></h6>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <h4>$944</h4>
+                                            <h4>{{\App\Models\Order::count()}}</h4>
                                             <h6 class="success darken-4"></h6>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                             <h6 class="text-muted"></h6>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <h4>$1.2</h4>
+                                            <h4>{{\App\Models\Product::count()}}</h4>
                                             <h6 class="danger"></h6>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                             <h6 class="text-muted"></h6>
                                         </div>
                                         <div class="col-5 text-right">
-                                            <h4>$1.2</h4>
+                                            <h4>{{\App\Models\Customer::count()}}</h4>
                                             <h6 class="danger"></h6>
                                         </div>
                                     </div>
@@ -135,48 +135,21 @@
                                             <th>{{__('translate-admin/index.customer')}}</th>
                                             <th>{{__('translate-admin/index.price')}}</th>
                                             <th>{{__('translate-admin/index.status order')}}</th>
-                                            <th>{{__('translate-admin/index.total')}}</th>
+                                            <th>{{__('translate-admin/index.payment_method')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr class="bg-success bg-lighten-5">
-                                            <td>115</td>
-                                            <td><i class="cc BTC-alt"></i>ابراهيم المغاري</td>
-                                            <td>$ 4762.53</td>
-                                            <td> تم الشراء</td>
-                                            <td>$ 47642.53</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-xl-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">{{__('translate-admin/index.latest rating')}}</h4>
-                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                <div class="heading-elements">
-                                    <p class="text-muted"></p>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div class="table-responsive">
-                                    <table class="table table-de mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th>{{__('translate-admin/index.customer')}}</th>
-                                            <th>{{__('translate-admin/index.product')}}</th>
-                                            <th>{{__('translate-admin/index.rating')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="bg-danger bg-lighten-5">
-                                            <td>Ibrahim Essam</td>
-                                            <td><i class="cc BTC-alt"></i>جوال آيفون 7+</td>
-                                            <td>5</td>
-                                        </tr>
+                                        @isset($orders)
+                                            @foreach($orders as $order)
+                                                <tr class="bg-success bg-lighten-5">
+                                                    <td>{{$order->id}}</td>
+                                                    <td><i class="cc BTC-alt"></i>{{$order->customer->name}}</td>
+                                                    <td>{{$order->total_price}}$</td>
+                                                    <td> {{$order->status}}</td>
+                                                    <td>{{$order->payment_method == 1 ? 'Visa' : 'Master Card'}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @endisset
 
                                         </tbody>
                                     </table>
@@ -184,6 +157,38 @@
                             </div>
                         </div>
                     </div>
+{{--                    <div class="col-12 col-xl-4">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-header">--}}
+{{--                                <h4 class="card-title">{{__('translate-admin/index.latest rating')}}</h4>--}}
+{{--                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>--}}
+{{--                                <div class="heading-elements">--}}
+{{--                                    <p class="text-muted"></p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="card-content">--}}
+{{--                                <div class="table-responsive">--}}
+{{--                                    <table class="table table-de mb-0">--}}
+{{--                                        <thead>--}}
+{{--                                        <tr>--}}
+{{--                                            <th>{{__('translate-admin/index.customer')}}</th>--}}
+{{--                                            <th>{{__('translate-admin/index.product')}}</th>--}}
+{{--                                            <th>{{__('translate-admin/index.rating')}}</th>--}}
+{{--                                        </tr>--}}
+{{--                                        </thead>--}}
+{{--                                        <tbody>--}}
+{{--                                        <tr class="bg-danger bg-lighten-5">--}}
+{{--                                            <td>Ibrahim Essam</td>--}}
+{{--                                            <td><i class="cc BTC-alt"></i>جوال آيفون 7+</td>--}}
+{{--                                            <td>5</td>--}}
+{{--                                        </tr>--}}
+
+{{--                                        </tbody>--}}
+{{--                                    </table>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <!--/ Sell Orders & Buy Order -->
                 <!-- Active Orders -->

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -51,5 +52,28 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if ($request->is(app() -> getLocale().'/admin') || $request->is(app() -> getLocale().'/admin/*')) {
+            return redirect()->guest('admin/login/');
+        }
+
+        if ($request->is(app() -> getLocale().'/super-admin') || $request->is(app() -> getLocale().'/super-admin/*')) {
+            return redirect()->guest('super-admin/login-super-admin/');
+        }
+
+        if ($request->is('/forsa') || $request->is('/forsa/*')) {
+            return redirect()->guest('forsa/sign-in/');
+        }
+
+        if ($request->is(app() -> getLocale().'/customer') || $request->is(app() -> getLocale().'/customer/*')) {
+            return redirect()->guest('customer/login/');
+        }
+        //return redirect()->guest(route('login'));
     }
 }

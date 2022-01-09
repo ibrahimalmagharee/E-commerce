@@ -292,7 +292,10 @@
                     {data: 'is_active', name: 'is_active'},
                     {data: 'photo', name: 'photo'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                @if(app()-> getLocale() == 'ar')
+                language: {"url": "{{asset('assets/admin/js/dataTableArabic.json')}}"},
+                @endif
             });
 
 
@@ -323,12 +326,12 @@
 
                     success: function (data) {
                         if (data.status == true) {
-                            $('#success_msg_add').show();
+                            toastr.success(data.msg);
                             $('#categoryForm').trigger('reset');
                             $('#category-modal').modal('hide');
                             categoryTable.draw();
                         } else {
-                            $('#error_msg_add').show();
+                            toastr.error(data.msg);
                             $('#mainCategoryForm').trigger('reset');
                             $('#mainCategory-modal').modal('hide');
                             categoryTable.draw();
@@ -366,11 +369,7 @@
                             console.log('success:', data);
                             if (data.status == true) {
                                 $('#delete-modal').modal('hide');
-                                $('#success_msg_delete').show();
-                                categoryTable.draw();
-                            } else {
-                                $('#delete-modal').modal('hide');
-                                $('#error_msg_delete').show();
+                                toastr.warning(data.msg);
                                 categoryTable.draw();
                             }
 

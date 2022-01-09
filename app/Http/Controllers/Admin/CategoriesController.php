@@ -44,9 +44,10 @@ class CategoriesController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $url = route('edit.category', $row->id);
-                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="btn btn-outline-primary box-shadow-3 mb-1 editMain_categories" style="width: 80px"><i class="la la-edit"></i>'.__('translate-admin/category.edit').'</a></td>';
+                    $btn = '<td><a href="' . $url . '" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="تعديل" id="editBanner" class="primary box-shadow-3 mb-1 editMain_categories" style="width: 80px"><i class="la la-edit font-large-1"></i></a></td>';
                     $btn .= '&nbsp;&nbsp;';
-                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-outline-danger box-shadow-3 mb-1 deleteMain_categories" style="width: 80px"><i class="la la-remove"></i> '.__('translate-admin/category.delete').'</a></td>';
+                    $btn = $btn . ' <td><a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="حذف" class="danger box-shadow-3 mb-1 deleteMain_categories" style="width: 80px"><i class="la la-trash font-large-1"></i></a></td>';
+
                     return $btn;
                 })
                 ->rawColumns(['photo', 'action'])
@@ -121,8 +122,15 @@ class CategoriesController extends Controller
     public function edit($id)
     {
          $categories = Category::find($id);
-        if (!$categories)
-            return redirect()->route('index.categories')->with('error',__('translate-admin/category.error'));
+        if (!$categories){
+            $notification = array(
+                'message' => __('translate-admin/category.error'),
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('index.categories')->with($notification);
+        }
+
 
          $mainCategories = Category::parent()
             ->with('childrenCategories')
@@ -140,9 +148,13 @@ class CategoriesController extends Controller
         try {
             $category = Category::find($id);
 
-            if (!$category) {
-                    return redirect()->route('index.categories')
-                        ->with('error', __('translate-admin/category.error'));
+            if (!$category){
+                $notification = array(
+                    'message' => __('translate-admin/category.error'),
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->route('index.categories')->with($notification);
             }
             if (!$request->has('is_active')) {
                 $request->request->add(['is_active' => 0]);
@@ -158,17 +170,15 @@ class CategoriesController extends Controller
             }
 
             DB::beginTransaction();
-            if ($request->type == CategoryType::mainCategory) {
-
                 if ($filePath != '') {
-                    $category->update([
+                    $category->where('id',$id)->update([
                         'slug' => $request->slug,
                         'photo' => $filePath,
                         'is_active' => $request->is_active,
                     ]);
 
                 } else {
-                    $category->update([
+                    $category->where('id',$id)->update([
                         'slug' => $request->slug,
                         'is_active' => $request->is_active,
                     ]);
@@ -180,34 +190,13 @@ class CategoriesController extends Controller
 
                 DB::commit();
 
-                return redirect()->route('index.categories')->with('success', __('translate-admin/category.success-update'));
-            } else {
-                DB::beginTransaction();
+            $notification = array(
+                'message' => __('translate-admin/category.success-update'),
+                'alert-type' => 'info'
+            );
 
-                if ($filePath != '') {
-                    $category->update([
-                        'slug' => $request->slug,
-                        'parent_id' => $request->parent_id,
-                        'photo' => $filePath,
-                        'is_active' => $request->is_active,
-                    ]);
+                return redirect()->route('index.categories')->with($notification);
 
-                } else {
-                    $category->update([
-                        'slug' => $request->slug,
-                        'parent_id' => $request->parent_id,
-                        'is_active' => $request->is_active,
-                    ]);
-
-                }
-
-                $category->name = $request->name;
-                $category->save();
-
-                DB::commit();
-
-                return redirect()->route('index.categories')->with('success', __('translate-admin/category.success-update'));
-            }
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->route('edit.category')->with('error', __('translate-admin/category.exception-update'));

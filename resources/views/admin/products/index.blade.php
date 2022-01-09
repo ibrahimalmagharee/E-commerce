@@ -5,12 +5,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">المنتجات</h3>
+                    <h3 class="content-header-title">{{__('translate-admin/products.products')}}</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/category.main')}} </a></li>
-                                <li class="breadcrumb-item active"> المنتجات</li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{__('translate-admin/products.main')}} </a></li>
+                                <li class="breadcrumb-item active"> {{__('translate-admin/products.products')}}</li>
                             </ol>
                         </div>
                     </div>
@@ -68,11 +68,13 @@
                                         <table class="table table-responsive-lg product-table">
                                             <thead>
                                             <tr>
-                                                <th width="10"> اسم المنتج</th>
-                                                <th width="10"> الاسم بالرابط</th>
-                                                <th width="10">الحالة</th>
-                                                <th width="10">السعر</th>
-                                                <th width="200">العمليات</th>
+                                                <th width="10"> {{__('translate-admin/products.name')}}</th>
+                                                <th width="10">{{__('translate-admin/products.slug')}}</th>
+                                                <th width="10">{{__('translate-admin/products.price')}}</th>
+                                                <th width="10">{{__('translate-admin/products.status')}}</th>
+                                                <th width="10">{{__('translate-admin/products.attributes')}}</th>
+                                                <th width="10">{{__('translate-admin/products.images_product')}}</th>
+                                                <th width="200">{{__('translate-admin/products.process')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody></tbody>
@@ -105,7 +107,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/category.confirm-delete')}}</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">{{ __('translate-admin/products.confirm_delete')}}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -117,11 +119,11 @@
 
                     <div class="modal-body">
                         <input type="hidden" id="delete_language">
-                        <h5>{{ __('translate-admin/category.alert-delete')}}</h5>
+                        <h5>{{ __('translate-admin/products.alert_delete')}}</h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/category.cancel')}}</button>
-                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/category.delete')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">{{ __('translate-admin/products.cancel')}}</button>
+                        <button type="submit" class="btn btn-danger" id="delete">{{ __('translate-admin/products.delete')}}</button>
                     </div>
                 </form>
             </div>
@@ -161,10 +163,15 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'slug', name: 'slug'},
-                    {data: 'is_active', name: 'is_active'},
                     {data: 'price', name: 'price'},
+                    {data: 'is_active', name: 'is_active'},
+                    {data: 'attribute', name: 'attribute'},
+                    {data: 'images', name: 'images'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                @if(app()-> getLocale() == 'ar')
+                language: {"url": "{{asset('assets/admin/js/dataTableArabic.json')}}"},
+                @endif
             });
 
             //Delete
@@ -182,12 +189,8 @@
                         success: function (data) {
                             console.log('success:', data);
                             if (data.status == true) {
+                                toastr.success(data.msg);
                                 $('#delete-modal').modal('hide');
-                                $('#success_msg_delete').show();
-                                productTable.draw();
-                            } else {
-                                $('#delete-modal').modal('hide');
-                                $('#error_msg_delete').show();
                                 productTable.draw();
                             }
 

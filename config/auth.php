@@ -46,6 +46,21 @@ return [
             'provider' => 'admins',
         ],
 
+        'superAdmin' => [
+            'driver' => 'session',
+            'provider' => 'superAdmins',
+        ],
+
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+
+        'vendor' => [
+            'driver' => 'session',
+            'provider' => 'vendors',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -79,6 +94,21 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'superAdmins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SuperAdmin::class,
+        ],
+
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
+        ],
+
+        'vendors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Vendor::class,
         ],
 
         // 'users' => [

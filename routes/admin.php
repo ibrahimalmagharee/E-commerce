@@ -19,6 +19,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
     Route::group(['namespace' => 'Admin', 'middleware' =>'auth:admin', 'prefix' => 'admin'], function (){
 
         Route::get('index','DashboardController@index')->name('admin.dashboard');
+        Route::get('purchases','PurchaseController@purchase')->name('admin.purchase');
+        Route::get('customers','CustomerController@index')->name('admin.customers');
         Route::get('logout','LoginController@logout')->name('admin.logout');
 
         ######################### Settings Routes #############################################################
@@ -37,6 +39,34 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         });
 
         ######################### End Profile Routes #############################################################
+
+        ##################  Slider Routes #############################################################
+
+        Route::group(['prefix' => 'slider'], function (){
+            Route::get('/show-slider', 'SliderController@index')->name('index.sliders');
+            Route::post('save', 'SliderController@saveImagesOfSliderInDB')->name('save.slider');
+            Route::get('edit/{id}', 'SliderController@edit')->name('edit.slider');
+            Route::post('update/{id}', 'SliderController@update')->name('update.slider');
+            Route::get('delete/{id}', 'SliderController@destroy')->name('delete.slider');
+
+            Route::post('save-images-slider-inFolder', 'SliderController@saveImagesOfSliderInFolder')->name('save.images.slider.inFolder');
+            Route::get('delete-image-slider', 'SliderController@deleteImagesOfSlider')->name('delete.slider.image');
+        });
+        ######################### End Slider Routes #############################################################
+
+        ##################  Banner Routes #############################################################
+
+        Route::group(['prefix' => 'banners'], function (){
+            Route::get('/show-banners', 'BannerController@index')->name('index.banners');
+            Route::post('save', 'BannerController@save')->name('save.banner');
+            Route::get('edit/{id}', 'BannerController@edit')->name('edit.banner');
+            Route::post('update/{id}', 'BannerController@update')->name('update.banner');
+            Route::get('delete/{id}', 'BannerController@destroy')->name('delete.banner');
+
+            Route::post('save-images-banner-inFolder', 'BannerController@saveImagesOfBannerInFolder')->name('save.images.banner.inFolder');
+            Route::get('delete-image-banner', 'BannerController@deleteImagesOfBanner')->name('delete.banner.image');
+        });
+        ######################### End Banner Routes #############################################################
 
         ##################  Category Routes #############################################################
 
@@ -99,6 +129,32 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
             Route::get('edit-product-activation/{product_id}', 'ProductController@editProductActivation')->name('edit.product.activation');
             Route::post('update-product-activation/{product_id}', 'ProductController@updateProductActivation')->name('update.product.activation');
             ##################### Product Edit ######################################
+
+
+            ##################### Product Attributes ######################################
+            Route::group(['prefix' => 'attribute'], function (){
+                Route::get('/show-attribute', 'AttributesController@index')->name('index.attribute');
+                Route::post('save-attribute', 'AttributesController@store')->name('save.attribute');
+                Route::get('edit-attribute/{id}', 'AttributesController@edit')->name('edit.attribute');
+                Route::post('update-attribute/{id}', 'AttributesController@update')->name('update.attribute');
+                Route::get('delete-attribute/{id}', 'AttributesController@destroy')->name('delete.attribute');
+
+                ##################### Product Attributes Options ######################################
+
+                Route::group(['prefix' => 'option'], function (){
+                    Route::get('/show-option/{product_id}', 'OptionController@index')->name('index.option');
+                    Route::post('save-option', 'OptionController@store')->name('save.option');
+                    Route::get('edit-option/{option_id}', 'OptionController@edit')->name('edit.option');
+                    Route::post('update-option/{option_id}', 'OptionController@update')->name('update.option');
+                    Route::get('delete-option/{id}', 'OptionController@destroy')->name('delete.option');
+                });
+
+                ##################### Product Attributes Options ######################################
+
+
+
+            });
+            ##################### Product Attributes ######################################
         });
         ######################### End Products Routes ###########################################################
     });

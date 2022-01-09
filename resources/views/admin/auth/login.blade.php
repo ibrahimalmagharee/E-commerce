@@ -8,7 +8,7 @@
                     <div class="card-header border-0">
                         <div class="card-title text-center">
                             <div class="p-1">
-                                <img src="{{asset('assets/front/images/logo.png')}}" alt="LOGO"/>
+                                <img src="{{asset('assets/admin/images/logo/logo.png')}}" alt="LOGO"/>
 
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                      @enderror
 
                                 </fieldset>
-                                <fieldset class="form-group position-relative has-icon-left">
+                                <fieldset class="form-group position-relative has-icon-left mt-2">
                                     <input type="password" name="password"
                                            class="form-control form-control-lg input-lg"
                                            id="user-password"

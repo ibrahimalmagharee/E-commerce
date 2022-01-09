@@ -11,7 +11,7 @@ return [
     'customer' => 'Customer',
     'price' => 'Price ($)',
     'status order' => 'Status Order',
-    'total' => 'Total',
+    'payment_method' => 'Payment Method',
     'latest rating' => 'Latest Rating',
     'product' => 'Product',
     'rating' => 'Rating',

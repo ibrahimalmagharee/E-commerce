@@ -58,10 +58,14 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/category.css')}}">
     <!-- END Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/tables/extensions/buttons.dataTables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/dataTables.bootstrap4.min.css')}}">
 
-    @notify_css
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
@@ -85,15 +89,14 @@
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('admin.includes.footer')
 
-@notify_js
-@notify_render
-
 
 
 
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script src="{{asset('assets/admin/js/jquery.validate.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
@@ -104,6 +107,18 @@
 
 
 <script src="{{asset('assets/admin/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+
+<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.25/i18n/Arabic.json"></script>
+
+<script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/assets/admin/vendors/js/tables/datatable/buttons.bootstrap4.min.js')}}" type="text/javascript"></script>
+
+<script src="{{asset('assets/admin/vendors/js/tables/jszip.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/tables/pdfmake.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/tables/vfs_fonts.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/tables/buttons.html5.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/tables/buttons.print.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/tables/buttons.colVis.min.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js')}}"
         type="text/javascript"></script>
@@ -154,7 +169,29 @@
 
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/dataTables.bootstrap4.min.js')}}" type="text/javascript"></script>
+
 @yield('script')
+<script type="text/javascript">
+        @if(Session::has('message'))
+    var type="{{Session::get('alert-type','info')}}"
+
+
+    switch(type){
+        case 'info':
+            toastr.info("{{Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.success("{{Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
 <script>
     $('#meridians1').timeDropper({
         meridians: true,

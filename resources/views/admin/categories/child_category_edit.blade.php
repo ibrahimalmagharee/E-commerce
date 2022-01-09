@@ -5,7 +5,7 @@
         @if($child_category -> id == $categories->parent_id) selected @endif
 >
 
-    {{ $child_category->name }} {{str_repeat('-', $index+=1)}}
+    {{ $child_category->name }}
 
 </option>
 @if ($child_category->categories)
